@@ -11879,6 +11879,8 @@ function setSize(s){
 .fc_key.k2.armed{outline:2px solid var(--fc-gold);filter:brightness(1.15)}
 .fc_key.keq{grid-column:5;grid-row:span 2}
 .fc_note{font-size:10.5px;color:var(--fc-hint);text-align:center;line-height:1.5}
+.fc_decbtn{font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--fc-hint);background:rgba(127,127,127,.16);border:1px solid rgba(127,127,127,.35);border-radius:6px;padding:1px 7px;line-height:1.6}
+.fc_decbtn:hover{background:rgba(127,127,127,.3);color:inherit}
 .fc_note code{background:rgba(127,127,127,.16);border-radius:4px;padding:0 4px;font-family:"DM Mono",monospace;font-size:10px}
 .fc_guide{font-size:12px;color:var(--fc-hint);line-height:1.55;border:1px solid var(--fc-hintEdge);border-radius:10px}
 .fc_guide summary{cursor:pointer;padding:8px 12px;font-weight:700;list-style:none;display:flex;justify-content:space-between}
@@ -11909,7 +11911,7 @@ function setSize(s){
        </div>
        <div class="fc_pad" id="fc_pad"></div>
      </div>
-     <p class="fc_note">↑↓ 工作表内翻字段 · <code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</p>
+     <p class="fc_note"><button type="button" id="fc_decbtn" class="fc_decbtn" title="点击切换显示小数位:0-9 或 FLOAT(全精度)。等同真机 2ND · (FORMAT)">小数位 DEC: 2 ▸</button> · <code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</p>
      <details class="fc_guide">
        <summary>使用说明 / 全部功能</summary>
        <div class="gg">
@@ -12088,7 +12090,7 @@ function setSize(s){
  function showMEM(){out('M'+S.wsIdx,S.mem[S.wsIdx]);}
  function clrWork(){if(S.ws==='cf'){S.cf={CFo:0,C:[],F:[],I:0,NPV:null,IRR:null,NFV:null,PB:null,DPB:null};S.wsIdx=0;return showCF();}if(S.ws==='stat'){S.stat.X=[];S.stat.Y=[];S.wsIdx=0;return showStat();}if(S.ws==='amort'){S.amort.P1=1;S.amort.P2=1;recalcAmort();return showWS();}if(S.ws)return showWS();clearEA();}
  function doReset(){S.N=0;S.IY=0;S.PV=0;S.PMT=0;S.FV=0;S.PY=12;S.CY=12;S.bgn=false;S.dec=2;S.tok=[];S.cf={CFo:0,C:[],F:[],I:0,NPV:null,IRR:null,NFV:null,PB:null,DPB:null};S.mem=[0,0,0,0,0,0,0,0,0,0];S.ws=null;S.entering=false;S.invMode=false;S.hypMode=false;out('RST',0);}
- function openFORMAT(){var seq=[0,2,4,6,8,9,'F'],i=seq.indexOf(S.dec);S.dec=seq[(i+1)%seq.length];R('#fc_fname').innerHTML='DEC <small>▸小数位</small>';R('#fc_readout').textContent=(S.dec==='F'?'FLOAT':String(S.dec));if(S.ws)setTimeout(showWS,700);}
+ function openFORMAT(){var seq=[0,1,2,3,4,5,6,7,8,9,'F'],i=seq.indexOf(S.dec);if(i<0)i=2;S.dec=seq[(i+1)%seq.length];R('#fc_fname').innerHTML='DEC <small>▸小数位 0-9/FLOAT</small>';R('#fc_readout').textContent=(S.dec==='F'?'FLOAT':String(S.dec));var db=R('#fc_decbtn');if(db)db.textContent='小数位 DEC: '+(S.dec==='F'?'FLOAT':String(S.dec))+' ▸';if(S.ws)setTimeout(showWS,700);}
  function tvmKey(id){var lbl={N:'N',IY:'I/Y',PV:'PV',PMT:'PMT',FV:'FV'};
   if(S.cpt){S.cpt=false;try{var r=tvmSolve(id,S);S[id]=r;out(lbl[id],r);}catch(e){out(lbl[id],(typeof e==='string'?e:'Error'));}return;}
   if(S.entering)S[id]=curVal();S.entering=false;out(lbl[id],S[id]);}
@@ -12179,6 +12181,7 @@ function setSize(s){
    if(k==='Backspace'){handle('clr');e.preventDefault();return;}
    if(k==='ArrowUp'){handle('up');e.preventDefault();}if(k==='ArrowDown'){handle('dn');e.preventDefault();}
  });
+ var _decb=R('#fc_decbtn');if(_decb)_decb.addEventListener('click',function(){openFORMAT();});
  buildPad();showValue(0);S.fname='';render();
 })();
 </script>

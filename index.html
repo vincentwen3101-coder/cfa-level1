@@ -11879,6 +11879,7 @@ function setSize(s){
 .fc_key.k2.armed{outline:2px solid var(--fc-gold);filter:brightness(1.15)}
 .fc_key.keq{grid-column:5;grid-row:span 2}
 .fc_note{font-size:10.5px;color:var(--fc-hint);text-align:center;line-height:1.5}
+#fincalc-root button,#fincalc-root .fc_key{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .fc_decbtn{font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--fc-hint);background:rgba(127,127,127,.16);border:1px solid rgba(127,127,127,.35);border-radius:6px;padding:1px 7px;line-height:1.6}
 .fc_decbtn:hover{background:rgba(127,127,127,.3);color:inherit}
 .fc_note code{background:rgba(127,127,127,.16);border-radius:4px;padding:0 4px;font-family:"DM Mono",monospace;font-size:10px}
@@ -12108,11 +12109,15 @@ function setSize(s){
  ];
  function buildPad(){var pad=R('#fc_pad');for(var i=0;i<KEYS.length;i++){(function(k){var b=document.createElement('button');b.type='button';b.className='fc_key '+(k.c||'');
    b.innerHTML=(k.s?'<span class="fc_s">'+k.s+'</span>':'')+'<span class="fc_p '+(k.xs?'xs':k.sm?'s':'')+'">'+k.p+'</span>';
-   var lastTouch=0;
-   b.addEventListener('touchstart',function(e){e.preventDefault();lastTouch=Date.now();b.classList.add('fc_press');handle(k.id);},{passive:false});
-   b.addEventListener('touchend',function(){b.classList.remove('fc_press');});
-   b.addEventListener('touchcancel',function(){b.classList.remove('fc_press');});
-   b.addEventListener('click',function(){if(Date.now()-lastTouch<600)return;handle(k.id);});
+   var lastAct=0,clearP=function(){b.classList.remove('fc_press');};
+   if(window.PointerEvent){
+     b.addEventListener('pointerdown',function(e){if(e.button&&e.button!==0)return;lastAct=Date.now();b.classList.add('fc_press');handle(k.id);});
+     b.addEventListener('pointerup',clearP);b.addEventListener('pointercancel',clearP);b.addEventListener('pointerleave',clearP);
+   }else{
+     b.addEventListener('touchstart',function(e){e.preventDefault();lastAct=Date.now();b.classList.add('fc_press');handle(k.id);},{passive:false});
+     b.addEventListener('touchend',clearP);b.addEventListener('touchcancel',clearP);
+   }
+   b.addEventListener('click',function(){if(Date.now()-lastAct<700)return;handle(k.id);});
    pad.appendChild(b);})(KEYS[i]);}}
  function arm(){var e=root.querySelectorAll('.k2');for(var i=0;i<e.length;i++)e[i].classList.toggle('armed',S.second);}
  /* ---------- dispatch ---------- */

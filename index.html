@@ -9031,6 +9031,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </table>
 </div>
 
+<div class="tip"><span class="t-zh"><b>考点·持有成本的完整定价式:</b>把"持有到期"的净成本算进远期价:<b>F₀(T) = S₀(1+r)^T − (γ − θ)(1+r)^T</b>,θ=持有成本(储存费,+)、γ=持有收益(股息/便利收益,−),<b>净持有成本 = 成本 − 收益</b>。特例:① 无收益 → F₀=S₀(1+r)^T;② 连续收益率 i → F₀=S₀·e^((r−i)T);③ 净持有成本为零 → F₀=S₀(1+r)^T。储存费若在期末付,要<b>先折现</b>再计入。</span><span class="t-en"><b>Exam · full cost-of-carry pricing:</b> fold the net carry into the forward: <b>F₀(T) = S₀(1+r)^T − (γ − θ)(1+r)^T</b>, with θ = carrying costs (storage, +), γ = carry benefits (dividends/convenience yield, −), and <b>net cost of carry = costs − benefits</b>. Special cases: ① no yield → F₀=S₀(1+r)^T; ② continuous yield i → F₀=S₀·e^((r−i)T); ③ zero net carry → F₀=S₀(1+r)^T. A storage cost paid at maturity is <b>discounted</b> before being added.</span></div>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -9067,6 +9068,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 <div class="example"><span class="exlabel">例题</span><p><span class="t-zh">一年期即期利率 3%，两年期即期利率 4%，则一年后开始的一年期远期利率为 (1.04)<sup>2</sup>/1.03−1 = 5.01%。这是无套利隐含利率，不等于对未来即期利率的无偏预测。</span><span class="t-en">With a one-year spot rate of 3% and a two-year spot rate of 4%, the one-year forward rate starting one year out is (1.04)<sup>2</sup>/1.03−1 = 5.01%. This is the no-arbitrage implied rate, not an unbiased forecast of the future spot rate.</span></p></div>
 
+<div class="tip"><span class="t-zh"><b>考点·隐含远期利率与凸性偏差:</b><br>① <b>隐含远期利率(IFR):</b>由即期(zero)利率推出——先由零息债价反解 z₂、z₃,再用 <b>(1+z₃)³ = (1+z₂)²·(1+IFR₂,₁)</b> 解出"2 年后起的 1 年"远期利率。<br>② <b>凸性偏差(convexity bias):</b>FRA 带折现结构,其隐含远期利率随<b>折现期变长而偏差变大</b>;利率<b>期货</b>每日结算、无此折现 → <b>无凸性偏差</b>。故折现期越长的 FRA 偏差越大。</span><span class="t-en"><b>Exam · implied forward rate & convexity bias:</b><br>① <b>Implied forward rate (IFR):</b> from spot (zero) rates — back out z₂, z₃ from zero-coupon prices, then solve <b>(1+z₃)³ = (1+z₂)²·(1+IFR₂,₁)</b> for the "1-year rate, 2 years forward."<br>② <b>Convexity bias:</b> an FRA carries a discounting structure, so its implied forward is biased, and the bias <b>grows with a longer discounting period</b>; interest-rate <b>futures</b> settle daily with no such discounting → <b>no convexity bias</b>. The longer-discounting FRA has the larger bias.</span></div>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -9146,6 +9148,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 <p><span class="t-zh"><b>普通香草利率互换(plain vanilla):</b>一方付<b>固定</b>利率、收<b>浮动</b>;另一方相反。本金(名义)通常不交换,只交换利息差额。互换 = <b>一系列远期</b>的组合,也可看成<b>一份固定利率债券与一份浮动利率债券的多空组合</b>。</span><span class="t-en"><b>Plain vanilla interest-rate swap:</b> one party pays a <b>fixed</b> rate and receives <b>floating</b>; the other does the reverse. The (notional) principal is usually not exchanged, only the interest difference. A swap = a combination of <b>a series of forwards</b>, and can also be seen as <b>a long-short combination of a fixed-rate bond and a floating-rate bond</b>.</span></p>
 
+<div class="tip"><span class="t-zh"><b>考点·互换 = 一串"非市场化"远期,合计价值为零:</b>互换用<b>单一固定利率</b>把内嵌各期远期打包,而每期真实远期价并不相同 → 有的隐含远期价值为正、有的为负,但设计成<b>合计恰为零</b>,于是互换<b>起始价值 = 0</b>(与 FRA/远期一样起始不换现金)。这正是"互换与一串 FRA 何时最相似""互换起始现金流"的考点。</span><span class="t-en"><b>Exam · a swap = a strip of off-market forwards summing to zero:</b> a swap packages its embedded per-period forwards at a <b>single fixed rate</b>, though each period's true forward price differs → some embedded forwards are positive, some negative, but by design they <b>sum to exactly zero</b>, so the swap's <b>initiation value = 0</b> (no cash at inception, like an FRA/forward). This is the point behind "when is a swap most like a strip of FRAs" and "a swap's initiation cash flow."</span></div>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -9158,6 +9161,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="los"><b><span class="t-zh">LOS 对应:</span><span class="t-en">LOS: </span></b>describe the pricing and valuation of interest rate swaps。</div>
 <p><span class="t-zh"><b>定价(pricing)</b>=确定使互换初始价值为<b>零</b>的<b>固定利率(swap rate)</b>。这个固定利率的设定,使得固定端现金流的现值 = 浮动端现金流的现值。<b>估值(valuation)</b>=存续期内,随利率变化,互换偏离零、对一方为正对另一方为负。核心思想仍是<b>无套利</b>:把互换拆成远期或债券组合来定价。</span><span class="t-en"><b>Pricing</b> = determining the <b>fixed rate (swap rate)</b> that makes the swap's initial value <b>zero</b>. This fixed rate is set so that the present value of the fixed-leg cash flows = the present value of the floating-leg cash flows. <b>Valuation</b> = over the life, as rates change, the swap deviates from zero, becoming positive for one party and negative for the other. The core idea is still <b>no-arbitrage</b>: price the swap by decomposing it into forwards or a bond combination.</span></p>
 
+<div class="tip"><span class="t-zh"><b>考点·互换定期结算与估值方向:</b>每期对<b>固定支付方</b>的净结算 = <b>(MRR − 固定利率) × 名义本金</b>(浮动收取方相反)。MRR 高于固定利率则固定支付方净收、否则净付。估值:MRR<b>上升</b> → 固定利率<b>收取方</b>(=浮动支付方)应付浮动的现值增大 → 互换对其<b>价值下降</b>(对固定支付方则升值)。</span><span class="t-en"><b>Exam · swap periodic settlement & valuation direction:</b> each period's net settlement to the <b>fixed-rate payer</b> = <b>(MRR − fixed) × notional</b> (opposite for the floating receiver). If MRR exceeds fixed the fixed payer nets a receipt, else a payment. Valuation: when MRR <b>rises</b>, the <b>fixed-rate receiver</b> (= floating payer) owes a larger PV on the floating leg → the swap's value to them <b>falls</b> (and rises for the fixed payer).</span></div>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">

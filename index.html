@@ -11722,6 +11722,7 @@ document.addEventListener('click', function(e){
   var items = box.querySelectorAll('.opts li');
   for(var i=0;i<items.length;i++){ if(items[i].getAttribute('data-c')==='1') items[i].classList.add('correct'); }
   if(li.getAttribute('data-c')!=='1') li.classList.add('wrong');
+  try{ if(window.__cfaRecord) window.__cfaRecord(box, li.getAttribute('data-c')==='1'); }catch(err){}
 });
 
 /* ===== 随堂练习:点按钮展开/收起本节习题 ===== */
@@ -12244,4 +12245,141 @@ function setSize(s){
 })();
 </script>
 <!-- ============ /金融计算器抽屉组件 ============ -->
+
+<style>
+#cfaPanel{position:fixed;left:12px;bottom:12px;z-index:9998;width:300px;max-width:calc(100vw - 24px);font-size:13px;font-family:inherit}
+#cfaPanel .cfaHead{background:linear-gradient(180deg,#2f7d5b,#276048);color:#fff;padding:8px 12px;border-radius:10px 10px 0 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.3);gap:8px}
+#cfaPanel .cfaHead span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#cfaPanel .cfaBody{background:var(--card,#1b2126);border:1px solid var(--line,#2a3236);border-top:0;border-radius:0 0 10px 10px;padding:10px 12px;color:var(--ink,#e5e7e4);max-height:62vh;overflow:auto;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+#cfaPanel.collapsed .cfaBody{display:none}
+#cfaPanel .cfaArrow{transition:transform .2s;flex:0 0 auto}
+#cfaPanel.collapsed .cfaArrow{transform:rotate(-90deg)}
+.cfaStat{display:flex;justify-content:space-between;margin:3px 0;gap:8px}
+.cfaStat b{font-variant-numeric:tabular-nums}
+.cfaBar{height:8px;border-radius:5px;background:rgba(127,127,127,.25);overflow:hidden;margin:6px 0}
+.cfaBar>i{display:block;height:100%;background:linear-gradient(90deg,#38a169,#2f855a);width:0;transition:width .3s}
+.cfaBtns{display:flex;gap:6px;margin:8px 0}
+.cfaBtns button{flex:1;font:inherit;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(127,127,127,.4);background:rgba(127,127,127,.14);color:inherit;border-radius:7px;padding:6px 4px}
+.cfaBtns button:hover{background:rgba(127,127,127,.28)}
+.cfaBtns button:disabled{opacity:.45;cursor:not-allowed}
+.cfaReport{margin-top:8px;border-top:1px dashed rgba(127,127,127,.35);padding-top:8px;line-height:1.6}
+.cfaReport h4{margin:0 0 6px;font-size:13px}
+.cfaReport p{margin:6px 0}
+.cfaReport .cfaWeak{margin:5px 0;padding:6px 8px;border-left:3px solid #d9a554;background:rgba(217,165,84,.10);border-radius:0 6px 6px 0}
+.cfaReport .cfaGood{color:#38a169;font-weight:700}
+.cfaReport small{opacity:.72}
+</style>
+<script>
+(function(){
+  var LSK='cfa_quiz_stats_v1';
+  function load(){try{return JSON.parse(localStorage.getItem(LSK)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(LSK,JSON.stringify(o));}catch(e){}}
+  var stats=load();
+  function lang(){return document.documentElement.getAttribute('data-lang')==='en'?'en':'zh';}
+  function txt(el,which){var s=el&&el.querySelector?el.querySelector('span.t-'+which):null;return (s?s.textContent:(el?el.textContent:'')).trim();}
+  function each(list,fn){Array.prototype.forEach.call(list,fn);}
+  function tag(){
+    var counters={};
+    each(document.querySelectorAll('.mcq'),function(m){
+      var lec=m.closest?m.closest('.lecture'):null; var vol=m.closest?m.closest('.volume'):null;
+      var lid=lec?lec.id:(vol?vol.id:'root');
+      counters[lid]=(counters[lid]||0)+1;
+      m.setAttribute('data-qid',lid+':'+counters[lid]);
+      m.setAttribute('data-lec',lid);
+      var sec=null;
+      if(lec){var h2s=lec.querySelectorAll('h2');for(var i=h2s.length-1;i>=0;i--){if(h2s[i].compareDocumentPosition(m)&Node.DOCUMENT_POSITION_FOLLOWING){sec=h2s[i];break;}}}
+      m.setAttribute('data-seczh',sec?txt(sec,'zh'):'');
+      m.setAttribute('data-secen',sec?txt(sec,'en'):'');
+    });
+  }
+  window.__cfaRecord=function(box,ok){
+    var qid=box.getAttribute('data-qid'); if(!qid)return;
+    var s=stats[qid]||{att:0,ok:false}; s.att++; s.ok=!!ok; stats[qid]=s; save(stats);
+    refresh(); checkComplete(box.getAttribute('data-lec'));
+  };
+  function activeLec(){return document.querySelector('.volume.active .lecture.active')||document.querySelector('.lecture.active')||document.querySelector('.lecture');}
+  function lecMcqs(lec){return lec?Array.prototype.slice.call(lec.querySelectorAll('.mcq')):[];}
+  function lecName(lec){if(!lec)return '';var h1=lec.querySelector('h1');return h1?txt(h1,lang()):lec.id;}
+  var panel;
+  function buildPanel(){
+    panel=document.createElement('div'); panel.id='cfaPanel'; panel.className='collapsed';
+    panel.innerHTML='<div class="cfaHead"><span id="cfaTitle">\u{1F4CA}</span><span class="cfaArrow">▾</span></div><div class="cfaBody"><div id="cfaProg"></div><div class="cfaBar"><i id="cfaBarFill"></i></div><div class="cfaBtns"><button id="cfaReset"></button><button id="cfaGen"></button></div><div id="cfaRep" class="cfaReport" style="display:none"></div></div>';
+    document.body.appendChild(panel);
+    panel.querySelector('.cfaHead').addEventListener('click',function(){panel.classList.toggle('collapsed');});
+    document.getElementById('cfaReset').addEventListener('click',resetLec);
+    document.getElementById('cfaGen').addEventListener('click',function(){genReport(true);});
+  }
+  function refresh(){
+    if(!panel)return; var L=lang(); var lec=activeLec(); var ms=lecMcqs(lec);
+    var done=0,correct=0; each(ms,function(m){if(m.classList.contains('done')){done++;if(!m.querySelector('.opts li.wrong'))correct++;}});
+    var total=ms.length; var acc=done?Math.round(correct/done*100):0;
+    var tAtt=0,tOk=0,tAns=0; for(var k in stats){tAtt+=stats[k].att;tAns++;if(stats[k].ok)tOk++;}
+    var cumAcc=tAns?Math.round(tOk/tAns*100):0;
+    document.getElementById('cfaTitle').textContent=(L==='en'?'\u{1F4CA} Quiz · ':'\u{1F4CA} 刷题 · ')+lecName(lec);
+    document.getElementById('cfaProg').innerHTML=
+      '<div class="cfaStat"><span>'+(L==='en'?'This lecture':'本讲进度')+'</span><b>'+done+' / '+total+'</b></div>'+
+      '<div class="cfaStat"><span>'+(L==='en'?'Accuracy':'本讲正确率')+'</span><b>'+(done?acc+'%':'—')+'</b></div>'+
+      '<div class="cfaStat"><small>'+(L==='en'?'Cumulative attempts':'累计做题')+'</small><small>'+tAtt+' ('+(L==='en'?'acc ':'正确率 ')+cumAcc+'%)</small></div>';
+    document.getElementById('cfaBarFill').style.width=(total?Math.round(done/total*100):0)+'%';
+    var allDone=total>0&&done===total;
+    document.getElementById('cfaGen').disabled=!allDone;
+    document.getElementById('cfaReset').textContent=L==='en'?'\u{1F504} Redo lecture':'\u{1F504} 重新刷题';
+    document.getElementById('cfaGen').textContent=L==='en'?'\u{1F4CA} Analysis':'\u{1F4CA} 生成分析';
+  }
+  function resetLec(){
+    var lec=activeLec(); if(!lec)return;
+    each(lecMcqs(lec),function(m){m.classList.remove('done');each(m.querySelectorAll('.opts li'),function(li){li.classList.remove('correct');li.classList.remove('wrong');});});
+    var rep=document.getElementById('cfaRep'); rep.style.display='none'; rep.innerHTML='';
+    try{var rk='cfa_round_'+lec.id;localStorage.setItem(rk,(parseInt(localStorage.getItem(rk)||'0',10)+1));}catch(e){}
+    refresh(); lec.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function checkComplete(lid){
+    var lec=document.getElementById(lid); if(!lec)return; var ms=lecMcqs(lec); if(ms.length===0)return;
+    var allDone=ms.every(function(m){return m.classList.contains('done');});
+    if(allDone){panel.classList.remove('collapsed');genReport(false);}
+  }
+  function pick(arr,seed){return arr[Math.abs(seed)%arr.length];}
+  function genReport(manual){
+    var L=lang(); var lec=activeLec(); var ms=lecMcqs(lec);
+    var done=ms.filter(function(m){return m.classList.contains('done');});
+    if(done.length===0)return;
+    var secMap={},order=[];
+    each(done,function(m){
+      var sname=(L==='en'?m.getAttribute('data-secen'):m.getAttribute('data-seczh'))||(L==='en'?'(section)':'(小节)');
+      if(!secMap[sname]){secMap[sname]={t:0,w:0,wq:[]};order.push(sname);}
+      secMap[sname].t++;
+      if(m.querySelector('.opts li.wrong')){secMap[sname].w++;var stem=m.querySelector('.stem');var qn='';if(stem){var t=txt(stem,L);var mm=t.match(/^\s*(\d+)/);qn=mm?mm[1]:'';}secMap[sname].wq.push(qn);}
+    });
+    var total=done.length,wrongTotal=0; each(order,function(s){wrongTotal+=secMap[s].w;});
+    var acc=Math.round((total-wrongTotal)/total*100);
+    var weak=order.filter(function(s){return secMap[s].w>0;}).sort(function(a,b){return secMap[b].w-secMap[a].w;});
+    var round=0; try{round=parseInt(localStorage.getItem('cfa_round_'+lec.id)||'0',10)+1;}catch(e){}
+    var now=new Date(); var seed=now.getTime()+wrongTotal*13+acc*7+total*3+round*101;
+    var openZH={hi:['\u{1F389} 表现优异!','\u{1F44F} 非常扎实!','\u{1F31F} 掌握得很好!'],mid:['\u{1F44D} 整体不错,仍有提升空间。','稳中有升,还差临门一脚。','基础牢固,个别点需要巩固。'],low:['⚠️ 有几处知识点需要重点补。','别灰心,找准薄弱点就能快速提分。','这一讲暴露了一些盲区,正好补齐。'],bad:['\u{1F9ED} 错得较多,建议先回看正文考点框再重刷。','基础还不稳,先把知识点讲解过一遍。','错误集中,说明相关知识点尚未吃透。']};
+    var openEN={hi:['\u{1F389} Excellent work!','\u{1F44F} Very solid!','\u{1F31F} Strong command!'],mid:['\u{1F44D} Good overall, room to grow.','Nearly there — a few points to lock in.','Solid base; a couple of points to reinforce.'],low:['⚠️ A few knowledge points need focused review.','Target the weak spots and scores jump.','This lecture exposed some blind spots — good to fix now.'],bad:['\u{1F9ED} Several misses — revisit the exam boxes, then redo.','The base is shaky; walk through the teaching first.','Errors cluster — those points aren\'t fully absorbed yet.']};
+    var band=acc>=90?'hi':acc>=70?'mid':acc>=50?'low':'bad';
+    var open=L==='en'?pick(openEN[band],seed):pick(openZH[band],seed);
+    var html='<h4>'+(L==='en'?'AI Review · ':'AI 做题点评 · ')+lecName(lec)+'</h4>';
+    html+='<p>'+open+' '+(L==='en'?'You answered <b>'+total+'</b> questions with <b>'+acc+'%</b> correct':'本轮共作答 <b>'+total+'</b> 题,正确率 <b>'+acc+'%</b>')+'.</p>';
+    if(weak.length===0){
+      html+='<p class="cfaGood">'+(L==='en'?'No weak points this round — every knowledge point was correct! Hit \u{1F504} Redo to reinforce, or move on.':'本轮没有薄弱点 —— 每个知识点都答对了!可点 \u{1F504} 重新刷题巩固,或进入下一讲。')+'</p>';
+    }else{
+      html+='<p>'+(L==='en'?'Knowledge points to review (weakest first):':'尚未掌握的知识点(按薄弱程度排序):')+'</p>';
+      each(weak,function(s){var d=secMap[s];var qs=d.wq.filter(Boolean);
+        html+='<div class="cfaWeak"><b>'+s+'</b><br><small>'+(L==='en'?('missed '+d.w+' of '+d.t+(qs.length?' (Q'+qs.join(', Q')+')':'')+' → revisit this section\'s exam box'):('错 '+d.w+'/'+d.t+' 题'+(qs.length?'(第 '+qs.join('、')+' 题)':'')+' → 回看该节考点框'))+'</small></div>';});
+    }
+    var tips=L==='en'?['Tip: after review, hit \u{1F504} Redo — a fresh attempt is the best test.','Tip: focus your next study block on the boxes above.','Tip: explain each missed point out loud before redoing.']:['小建议:回看后点 \u{1F504} 重新刷题,再考一遍最能检验掌握。','小建议:下一段学习集中攻上面这几节的考点框。','小建议:重刷前先把每个错点用自己的话讲一遍。'];
+    html+='<p><small>'+pick(tips,seed+5)+'</small></p>';
+    html+='<p><small>'+(L==='en'?'Round #'+round+' · ':'第 '+round+' 轮 · ')+now.toLocaleString()+'</small></p>';
+    var rep=document.getElementById('cfaRep'); rep.innerHTML=html; rep.style.display='block';
+    if(manual)rep.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function init(){
+    tag(); buildPanel(); refresh();
+    document.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('.volnav button,.lecnav button,.nextbtn'):null;if(b)setTimeout(refresh,80);});
+    each(document.querySelectorAll('[onclick*="setLang"]'),function(b){b.addEventListener('click',function(){setTimeout(function(){refresh();var rep=document.getElementById('cfaRep');if(rep&&rep.style.display==='block')genReport(false);},80);});});
+  }
+  if(document.readyState!=='loading')init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
 

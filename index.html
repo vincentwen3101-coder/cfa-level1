@@ -390,6 +390,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 常把利率拆成<b>真实无风险+通胀+违约+流动性+期限溢价</b>,给你几个溢价让你<b>加总</b>求名义利率。</span><span class="t-en"><b>🎯 Exam tip:</b> Rates are decomposed into <b>real risk-free + inflation + default + liquidity + maturity premiums</b>; you're given premiums to <b>sum</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">利率的三种解读</p><p>同一个利率可看作:① <b>必需回报率</b>(投资者要求的补偿);② <b>折现率</b>(把未来现金流折成现值);③ <b>机会成本</b>(放弃的其他用途回报)。</p><p class="ddh">利率的构成</p><p><b>名义利率 = 真实无风险 + 通胀溢价 + 违约风险 + 流动性 + 期限溢价</b>。名义无风险 ≈ 真实无风险 + 预期通胀。</p><p class="ddh">易错对比</p><p>① 三种解读是同一数的不同视角;② 溢价<b>逐项加总</b>;③ 风险越高、期限越长 → 要求利率越高。</p></span><span class="t-en"><p class="ddh">Three views of an interest rate</p><p>One rate is: ① a <b>required return</b>; ② a <b>discount rate</b>; ③ an <b>opportunity cost</b>.</p><p class="ddh">Components</p><p><b>Nominal = real risk-free + inflation + default + liquidity + maturity premiums</b>. Nominal risk-free ≈ real risk-free + expected inflation.</p><p class="ddh">Common traps</p><p>① The three views are one number; ② premiums <b>add up</b>; ③ more risk / longer term → higher rate.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -415,6 +416,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 分清<b>持有期收益率(HPR)</b>与年化;多期回报用<b>几何链接</b>((1+r1)(1+r2)…−1)。</span><span class="t-en"><b>🎯 Exam tip:</b> Distinguish <b>holding-period return</b> from annualized; chain multi-period returns <b>geometrically</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">持有期与多期回报</p><p><b>持有期收益率 HPR = (期末价 + 期间现金流 − 期初价) ÷ 期初价</b>,同时含<b>资本利得与收益</b>。</p><p class="ddh">多期链接</p><p>多期总回报用<b>几何链接</b>:(1+HPR) = (1+r1)(1+r2)…(1+rn)。年化则开 n 次方。</p><p class="ddh">易错对比</p><p>① HPR 含价差+现金流,别只算票息;② 多期用<b>几何</b>不用简单相加;③ 年化要用几何平均。</p></span><span class="t-en"><p class="ddh">Holding-period & multi-period return</p><p><b>HPR = (ending price + interim cash flow − beginning price) ÷ beginning price</b>, capturing gain and income.</p><p class="ddh">Chaining</p><p>Compound multi-period returns: (1+HPR) = Π(1+r_i); annualize by the n-th root.</p><p class="ddh">Common traps</p><p>① Include price change, not just coupon; ② chain <b>geometrically</b>; ③ annualize with the geometric mean.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -506,6 +508,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 
 <div class="tip"><span class="t-zh"><b>考点·利率换算与连续复利:</b><br>• <b>有效年利率 EAR = (1 + 名义/m)^m − 1</b>(m = 每年复利次数)。<br>• <b>连续复利(continuous compounding):EAR = e^(名义) − 1;反解 名义 = ln(1 + EAR)</b>。<br>• 复利越频繁,达到同一 EAR 所需名义利率越低;连续复利是其极限。</span><span class="t-en"><b>Exam - rate conversion & continuous compounding:</b><br>- <b>Effective annual rate EAR = (1 + nominal/m)^m − 1</b> (m = compounding periods per year).<br>- <b>Continuous compounding: EAR = e^(nominal) − 1; invert: nominal = ln(1 + EAR)</b>.<br>- The more frequent the compounding, the lower the nominal rate needed for a given EAR; continuous is the limit.</span></div>
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 给名义年利率与复利频率求 <b>EAR=(1+r/m)^m−1</b>;连续复利 e^r−1;比较不同频率产品用 EAR。</span><span class="t-en"><b>🎯 Exam tip:</b> Given a nominal rate and frequency, <b>EAR=(1+r/m)^m−1</b>; continuous e^r−1; compare products by EAR.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">实际年利率 EAR</p><p>名义年利率复利 m 次:<b>EAR = (1 + 名义/m)^m − 1</b>;连续复利 <b>EAR = e^r − 1</b>。</p><p class="ddh">机制</p><p>复利<b>频率越高,EAR 越大</b>(利滚利更频繁)。比较不同复利频率的产品必须换算成 EAR 再比。</p><p class="ddh">易错对比</p><p>① 别拿名义利率直接比,要用 <b>EAR</b>;② 频率↑ → EAR↑;③ 连续复利用 e^r−1。</p></span><span class="t-en"><p class="ddh">Effective annual rate (EAR)</p><p>Compounded m times: <b>EAR = (1 + nominal/m)^m − 1</b>; continuous <b>EAR = e^r − 1</b>.</p><p class="ddh">Mechanism</p><p>Higher <b>frequency → higher EAR</b>. Compare products across frequencies via EAR.</p><p class="ddh">Common traps</p><p>① Compare with <b>EAR</b>, not the nominal rate; ② frequency ↑ → EAR ↑; ③ continuous uses e^r−1.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -527,6 +530,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">名义回报未剔除通胀;<b>实际回报</b>反映购买力真实增长。精确式用连乘,粗略估计可直接相减。</span><span class="t-en">The nominal return does not strip out inflation; the <b>real return</b> reflects the true growth in purchasing power. The exact formula multiplies the factors; a rough estimate can simply subtract.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 费雪关系 <b>(1+名义)=(1+实际)(1+通胀)</b>,近似"名义≈实际+通胀"。</span><span class="t-en"><b>🎯 Exam tip:</b> Fisher: <b>(1+nominal)=(1+real)(1+inflation)</b>, approx "nominal ≈ real + inflation".</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">名义 vs 实际利率</p><p>费雪关系:<b>(1 + 名义) = (1 + 实际)(1 + 通胀)</b>。展开近似 <b>名义 ≈ 实际 + 通胀</b>(交叉项很小)。</p><p class="ddh">机制</p><p>实际利率反映真实购买力增长;通胀预期越高,名义利率越高以补偿。</p><p class="ddh">易错对比</p><p>① 精确用乘法、近似用加法;② 求实际 = (1+名义)/(1+通胀)−1;③ 别把税收与通胀调整混。</p></span><span class="t-en"><p class="ddh">Nominal vs real rates</p><p>Fisher: <b>(1 + nominal) = (1 + real)(1 + inflation)</b>, approx <b>nominal ≈ real + inflation</b>.</p><p class="ddh">Mechanism</p><p>The real rate is purchasing-power growth; higher expected inflation raises the nominal rate.</p><p class="ddh">Common traps</p><p>① Exact = multiply, approx = add; ② real = (1+nominal)/(1+inflation)−1.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -588,6 +592,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> <b>期初年金=普通年金×(1+r)</b>;永续=PMT/r;增长永续=PMT/(r−g)。</span><span class="t-en"><b>🎯 Exam tip:</b> <b>Annuity due = ordinary ×(1+r)</b>; perpetuity = PMT/r; growing = PMT/(r−g).</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">年金与永续年金</p><p><b>普通年金(期末)PV = PMT × [1 − (1+r)^−n] ÷ r</b>;<b>期初年金 = 普通 × (1+r)</b>。<b>永续年金 = PMT ÷ r</b>;<b>增长永续 = PMT ÷ (r−g)</b>。</p><p class="ddh">机制</p><p>永续是 n→∞ 的年金;增长永续要求 <b>r &gt; g</b>。</p><p class="ddh">易错对比</p><p>① 期初年金比期末多一期利息(×(1+r));② 永续 = PMT/r;③ 增长永续用<b>下一期</b> PMT 且 r&gt;g。</p></span><span class="t-en"><p class="ddh">Annuities & perpetuities</p><p><b>Ordinary annuity PV = PMT × [1 − (1+r)^−n] ÷ r</b>; <b>annuity due = ordinary × (1+r)</b>. <b>Perpetuity = PMT ÷ r</b>; <b>growing = PMT ÷ (r−g)</b>.</p><p class="ddh">Mechanism</p><p>A perpetuity is an annuity as n→∞; a growing one needs <b>r &gt; g</b>.</p><p class="ddh">Common traps</p><p>① Due = ordinary ×(1+r); ② perpetuity = PMT/r; ③ growing uses next-period PMT, r&gt;g.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 5 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -702,6 +707,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 
 <div class="tip"><span class="t-zh"><b>考点·稳健均值(降低离群值影响):</b><br>• <b>截尾均值(trimmed mean):</b>剔除两端各 x% 的极端值,再对剩余求均值。<br>• <b>缩尾均值(winsorized mean):</b>把两端极端值"替换"为某分位点的值(不剔除),再求均值。</span><span class="t-en"><b>Exam - robust means (reducing outlier impact):</b><br>- <b>Trimmed mean:</b> drop the top and bottom x% of extreme values, then average the rest.<br>- <b>Winsorized mean:</b> replace the extreme values with percentile values (do not drop them), then average.</span></div>
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 分清<b>均值/中位数/众数</b>;偏态数据下中位数更<b>抗极端值</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Distinguish <b>mean/median/mode</b>; the median <b>resists outliers</b> under skew.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">集中趋势的度量</p><p><b>均值</b>(受极端值影响)、<b>中位数</b>(抗极端、稳健)、<b>众数</b>;还有加权、几何、调和均值。</p><p class="ddh">机制</p><p>回报率的复合用<b>几何</b>均值;买入成本平均用<b>调和</b>均值。<b>调和 ≤ 几何 ≤ 算术</b>(数值不全同时)。</p><p class="ddh">易错对比</p><p>① 偏态数据用<b>中位数</b>更能代表;② 复合回报用几何;③ 三种均值大小顺序固定。</p></span><span class="t-en"><p class="ddh">Central tendency</p><p><b>Mean</b> (outlier-sensitive), <b>median</b> (robust), <b>mode</b>; plus weighted, geometric, harmonic means.</p><p class="ddh">Mechanism</p><p>Compound returns use the <b>geometric</b> mean; average cost uses the <b>harmonic</b> mean. <b>Harmonic ≤ geometric ≤ arithmetic</b>.</p><p class="ddh">Common traps</p><p>① Skewed data → median; ② compounding → geometric; ③ the ordering is fixed.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -776,6 +782,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>分位数</b>把排序数据分段:四分位(quartile)、五分位、十分位、百分位。<b>四分位距 IQR = Q3 − Q1</b>,衡量中间 50% 数据的离散度、抗极端值。箱线图用 Q1、中位数、Q3 直观展示分布。</span><span class="t-en"><b>Quantiles</b> divide sorted data into segments: quartiles, quintiles, deciles, percentiles. The <b>interquartile range IQR = Q3 − Q1</b> measures the dispersion of the middle 50% of the data and is robust to extremes. A box plot uses Q1, the median, and Q3 to display the distribution visually.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 四分位/百分位<b>定位</b>;<b>IQR=Q3−Q1</b>;注意分位数插值。</span><span class="t-en"><b>🎯 Exam tip:</b> Locate quartiles/percentiles; <b>IQR=Q3−Q1</b>; watch interpolation.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">分位数</p><p>四分位/五分位/百分位把有序数据分段;位置 ≈ <b>(n+1)×p</b>,非整数时插值。<b>IQR = Q3 − Q1</b>。</p><p class="ddh">机制</p><p>箱线图用 Q1/中位/Q3 与须显示分布与离群点;分位数不受极端值扭曲。</p><p class="ddh">易错对比</p><p>① 位置公式用 (n+1);② 非整数位置要<b>插值</b>;③ IQR 衡量中间 50% 的离散。</p></span><span class="t-en"><p class="ddh">Quantiles</p><p>Quartiles/percentiles split ordered data; position ≈ <b>(n+1)×p</b>, interpolate if non-integer. <b>IQR = Q3 − Q1</b>.</p><p class="ddh">Mechanism</p><p>Box plots use Q1/median/Q3; quantiles resist outliers.</p><p class="ddh">Common traps</p><p>① Use (n+1); ② interpolate non-integer positions; ③ IQR is the middle-50% spread.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -798,6 +805,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 加法/乘法法则;<b>独立≠互斥</b>(互斥事件必不独立)。</span><span class="t-en"><b>🎯 Exam tip:</b> Addition/multiplication rules; <b>independent ≠ mutually exclusive</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">概率基本规则</p><p><b>加法:</b> P(A∪B) = P(A)+P(B)−P(A∩B);<b>乘法(独立):</b> P(A∩B)=P(A)P(B);<b>条件:</b> P(A|B)=P(A∩B)/P(B)。</p><p class="ddh">机制</p><p>互斥 → P(A∩B)=0(故加法项去掉);独立 → 条件概率=无条件概率。</p><p class="ddh">易错对比</p><p>① <b>独立 ≠ 互斥</b>(互斥事件必<b>不</b>独立);② 加法别忘减交集;③ 条件概率分母是 P(B)。</p></span><span class="t-en"><p class="ddh">Basic probability rules</p><p><b>Addition:</b> P(A∪B)=P(A)+P(B)−P(A∩B); <b>multiplication (independent):</b> P(A∩B)=P(A)P(B); <b>conditional:</b> P(A|B)=P(A∩B)/P(B).</p><p class="ddh">Mechanism</p><p>Mutually exclusive → P(A∩B)=0; independent → conditional = unconditional.</p><p class="ddh">Common traps</p><p>① <b>Independent ≠ mutually exclusive</b>; ② subtract the intersection; ③ denominator is P(B).</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -883,6 +891,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <li><span class="t-zh">P(衰退且上涨) = 0.40 × 0.20 = 0.08。</span><span class="t-en">P(recession and rise) = 0.40 × 0.20 = 0.08.</span></li>
 <li><span class="t-zh">P(上涨) = 0.42 + 0.08 = 0.50。</span><span class="t-en">P(rise) = 0.42 + 0.08 = 0.50.</span></li>
 <li><span class="t-zh">P(扩张 | 上涨) = 0.42 / 0.50 = 84%。</span><span class="t-en">P(expansion | rise) = 0.42 / 0.50 = 84%.</span></li></ul></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">概率树与条件期望</p><p><b>概率树</b>把各情形按分支展开,末端=路径概率(相乘)。<b>条件期望</b>=在给定信息下按分支概率加权的期望值。</p><p class="ddh">机制</p><p>结合<b>全概率</b>(把各分支加总)与<b>贝叶斯</b>(用结果反推分支概率)分析。</p><p class="ddh">易错对比</p><p>① 路径概率<b>相乘</b>、跨路径<b>相加</b>;② 条件期望随新信息更新;③ 别漏某条分支。</p></span><span class="t-en"><p class="ddh">Probability trees & conditional expectations</p><p>A <b>tree</b> expands scenarios; end nodes = path probabilities (multiplied). A <b>conditional expectation</b> weights outcomes by branch probabilities given information.</p><p class="ddh">Mechanism</p><p>Combine <b>total probability</b> (sum branches) and <b>Bayes</b> (invert to branch probabilities).</p><p class="ddh">Common traps</p><p>① Multiply along a path, add across; ② update with new info; ③ don't drop a branch.</p></span></div></details>
 <h2 id="q2z"><span class="t-zh">全讲公式与要点总表</span><span class="t-en">Formula & Key-Point Summary</span></h2>
 <div class="tablewrap">
 <table class="data">
@@ -936,6 +945,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>离散型</b>(可数取值,如掷骰、违约次数)用概率质量函数;<b>连续型</b>(区间取值,如回报率)用概率密度函数。<b>累积分布函数 CDF</b> F(x)=P(X≤x)。均匀分布、二项分布是离散型;正态、对数正态是连续型。</span><span class="t-en"><b>Discrete</b> variables (countable values, e.g., dice rolls, number of defaults) use a probability mass function; <b>continuous</b> variables (interval values, e.g., return rates) use a probability density function. The <b>cumulative distribution function CDF</b> is F(x)=P(X≤x). The uniform and binomial are discrete; the normal and lognormal are continuous.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 离散 vs 连续随机变量;分清 <b>PMF/PDF 与 CDF</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Discrete vs continuous; distinguish <b>PMF/PDF from CDF</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">随机变量与分布类型</p><p><b>离散</b>随机变量用<b>PMF</b>(概率质量),<b>连续</b>用<b>PDF</b>(概率密度);两者都有<b>CDF</b>(累积分布)。</p><p class="ddh">机制</p><p>连续分布<b>某一点概率 = 0</b>,只有区间才有概率(PDF 积分或 CDF 之差)。</p><p class="ddh">易错对比</p><p>① 离散用 PMF、连续用 PDF;② 连续点概率为 0;③ P(a≤X≤b)=F(b)−F(a)。</p></span><span class="t-en"><p class="ddh">Random variables & distribution types</p><p><b>Discrete</b> use a <b>PMF</b>, <b>continuous</b> a <b>PDF</b>; both have a <b>CDF</b>.</p><p class="ddh">Mechanism</p><p>For a continuous variable a <b>single point has probability 0</b>; only intervals have probability.</p><p class="ddh">Common traps</p><p>① PMF vs PDF; ② point probability = 0; ③ P(a≤X≤b)=F(b)−F(a).</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -957,6 +967,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 二项:均值 <b>np</b>、方差 <b>np(1−p)</b>;给 n、p 求指定成功次数概率。</span><span class="t-en"><b>🎯 Exam tip:</b> Binomial: mean <b>np</b>, variance <b>np(1−p)</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">二项分布</p><p>n 次<b>独立、同概率 p</b> 的伯努利试验中成功次数:<b>P(X=x) = C(n,x)·p^x·(1−p)^(n−x)</b>;<b>均值 = np、方差 = np(1−p)</b>。</p><p class="ddh">机制</p><p>n 较大时二项可用<b>正态近似</b>(均值 np、方差 np(1−p))。</p><p class="ddh">易错对比</p><p>① 要求试验<b>独立且 p 恒定</b>;② 均值 np、方差 np(1−p);③ 组合数 C(n,x) 别漏。</p></span><span class="t-en"><p class="ddh">Binomial distribution</p><p>Successes in n <b>independent, constant-p</b> Bernoulli trials: <b>P(X=x)=C(n,x)·p^x·(1−p)^(n−x)</b>; <b>mean=np, variance=np(1−p)</b>.</p><p class="ddh">Mechanism</p><p>For large n the binomial is <b>approximately normal</b>.</p><p class="ddh">Common traps</p><p>① Needs <b>independence and constant p</b>; ② mean np, variance np(1−p); ③ include C(n,x).</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1000,6 +1011,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">若某变量的<b>自然对数服从正态分布</b>,则该变量服从<b>对数正态分布</b>:恒为正、右偏。<b>资产价格</b>常用对数正态刻画(价格不为负、可无限上涨),而<b>连续复合收益率</b>用正态。连续复合收益 = ln(1 + HPR)。</span><span class="t-en">If a variable's <b>natural log is normally distributed</b>, the variable is <b>lognormally distributed</b>: always positive, right-skewed. <b>Asset prices</b> are often modeled as lognormal (prices are non-negative and can rise without limit), while <b>continuously compounded returns</b> use the normal. Continuously compounded return = ln(1 + HPR).</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 股价常设<b>对数正态</b>(不为负、右偏);连续复利收益服从正态。</span><span class="t-en"><b>🎯 Exam tip:</b> Prices are often <b>lognormal</b> (non-negative, right-skewed); continuously-compounded returns are normal.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">对数正态分布</p><p>若 <b>ln(X) 服从正态</b>,则 X 服从<b>对数正态</b>:<b>不为负、右偏</b>。故资产<b>价格</b>常设为对数正态。</p><p class="ddh">推导</p><p><b>连续复利收益(对数收益)服从正态</b> ⇔ 价格服从对数正态。对数收益可跨期相加,故建模方便。</p><p class="ddh">易错对比</p><p>① <b>价格</b>对数正态、<b>对数收益</b>正态;② 对数正态不为负、右偏;③ 算术收益不能简单跨期相加。</p></span><span class="t-en"><p class="ddh">Lognormal distribution</p><p>If <b>ln(X) is normal</b>, X is <b>lognormal</b>: <b>non-negative, right-skewed</b>. Asset <b>prices</b> are often modeled lognormal.</p><p class="ddh">Derivation</p><p><b>Continuously-compounded (log) returns are normal</b> ⇔ prices are lognormal; log returns add across periods.</p><p class="ddh">Common traps</p><p>① Prices lognormal, log returns normal; ② lognormal is non-negative, right-skewed.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1021,6 +1033,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>区别:</b>蒙特卡洛依赖<b>预设分布假设</b>;自助法直接从<b>已有数据</b>重抽样,不需分布假设。两者都用于难以解析求解的问题。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 蒙特卡洛用<b>假设分布</b>模拟;<b>bootstrap</b> 从样本<b>有放回</b>重抽。</span><span class="t-en"><b>🎯 Exam tip:</b> Monte Carlo simulates from an <b>assumed</b> distribution; <b>bootstrap</b> resamples <b>with replacement</b> from data.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">蒙特卡洛与自助法</p><p><b>蒙特卡洛</b>:从<b>假设的分布</b>反复随机抽样,模拟出复杂量的分布(如期权价、VaR)。<b>自助法(bootstrap)</b>:从<b>已有样本有放回</b>重抽,估计统计量的抽样分布。</p><p class="ddh">机制</p><p>两者都在<b>无解析解</b>时用数值模拟;蒙特卡洛依赖分布假设,bootstrap 只依赖样本。</p><p class="ddh">易错对比</p><p>① 蒙特卡洛<b>靠假设分布</b>、bootstrap <b>靠数据</b>;② 都是数值方法;③ 模拟次数越多越稳定。</p></span><span class="t-en"><p class="ddh">Monte Carlo & bootstrap</p><p><b>Monte Carlo</b> samples repeatedly from an <b>assumed distribution</b> to simulate a complex quantity. <b>Bootstrap</b> resamples <b>with replacement</b> from the data to estimate a sampling distribution.</p><p class="ddh">Mechanism</p><p>Both are used when there is <b>no closed form</b>; Monte Carlo needs a distribution, bootstrap needs only data.</p><p class="ddh">Common traps</p><p>① Monte Carlo = assumption-based, bootstrap = data-based.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1128,6 +1141,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>Bootstrap</b> 从原样本中有放回地反复抽取同样大小的样本；<b>Jackknife</b> 每次删除一个观察值后重算统计量。二者均可估计抽样分布、标准误和偏差。</span><span class="t-en"><b>Bootstrap</b> repeatedly draws same-size samples with replacement from the original sample; <b>jackknife</b> recomputes the statistic after deleting one observation each time. Both can estimate the sampling distribution, standard error, and bias.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 简单随机/分层/整群/系统抽样;识别<b>抽样偏差</b>(生存者/回填/前视)。</span><span class="t-en"><b>🎯 Exam tip:</b> Simple/stratified/cluster/systematic sampling; spot <b>sampling biases</b> (survivorship/backfill/look-ahead).</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">抽样方法</p><p><b>简单随机/系统/分层/整群</b>抽样。<b>分层</b>按子群比例抽(降方差);<b>整群</b>随机抽整簇(方便但方差大)。</p><p class="ddh">机制</p><p>好样本要有代表性;常见<b>偏差</b>:生存者偏差、前视偏差、数据窥探(挖掘)。</p><p class="ddh">易错对比</p><p>① 分层<b>降方差</b>、整群<b>省成本但方差大</b>;② 分层≠整群;③ 警惕生存者/前视/数据窥探偏差。</p></span><span class="t-en"><p class="ddh">Sampling methods</p><p><b>Simple random/systematic/stratified/cluster</b>. <b>Stratified</b> samples subgroups (lowers variance); <b>cluster</b> samples whole clusters (cheap, higher variance).</p><p class="ddh">Mechanism</p><p>Watch <b>biases</b>: survivorship, look-ahead, data snooping.</p><p class="ddh">Common traps</p><p>① Stratified lowers variance, cluster is cheaper; ② beware survivorship/look-ahead/snooping.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1202,6 +1216,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 六步流程;先设 <b>H0/H1</b>,看清<b>单尾还是双尾</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Six steps; set <b>H0/H1</b> and identify <b>one- vs two-tailed</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">假设检验流程</p><p>① 设 <b>H0(含等号)与 H1</b>;② 选检验统计量;③ 定显著性 α;④ 定临界值/拒绝域;⑤ 计算;⑥ 决策并解释。</p><p class="ddh">机制</p><p>H1 是研究者想证明的(常为不等号);<b>单尾 vs 双尾</b>由 H1 决定。拒绝 H0 ≠ 证明 H1 为真,只是"证据不足以维持 H0"。</p><p class="ddh">易错对比</p><p>① <b>H0 总含等号</b>;② 方向决定单/双尾;③ "不拒绝"不等于"接受"H0。</p></span><span class="t-en"><p class="ddh">The hypothesis-testing procedure</p><p>① State <b>H0 (with equality) and H1</b>; ② choose a statistic; ③ set α; ④ set the critical value; ⑤ compute; ⑥ decide.</p><p class="ddh">Mechanism</p><p>H1 is what you want to show; <b>one- vs two-tailed</b> follows H1. Rejecting H0 isn't proving H1.</p><p class="ddh">Common traps</p><p>① <b>H0 always has equality</b>; ② direction sets tails; ③ "fail to reject" ≠ "accept".</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1247,6 +1262,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> <b>p&lt;α 则拒绝 H0</b>;p 值=观察到或更极端结果的概率。</span><span class="t-en"><b>🎯 Exam tip:</b> <b>Reject H0 if p&lt;α</b>; p-value = probability of a result this extreme or more.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">检验统计量、临界值与 p 值</p><p><b>统计量 = (估计值 − 假设值) ÷ 标准误</b>;与<b>临界值</b>比较,或算<b>p 值</b>(在 H0 下出现该极端或更极端结果的概率),<b>p &lt; α 拒绝 H0</b>。</p><p class="ddh">机制</p><p>临界值法与 p 值法结论<b>一致</b>。p 值越小,反对 H0 的证据越强。</p><p class="ddh">易错对比</p><p>① <b>p 值不是"H0 为真的概率"</b>;② 统计量分母是<b>标准误</b>;③ 双尾时 p 值要乘 2。</p></span><span class="t-en"><p class="ddh">Test statistic, critical value & p-value</p><p><b>Statistic = (estimate − hypothesized) ÷ standard error</b>; compare to the <b>critical value</b>, or use the <b>p-value</b> (probability of a result this extreme under H0), <b>reject if p &lt; α</b>.</p><p class="ddh">Mechanism</p><p>The two approaches agree; a smaller p-value is stronger evidence against H0.</p><p class="ddh">Common traps</p><p>① The <b>p-value is not P(H0 true)</b>; ② denominator is the SE; ③ double it for two tails.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1272,6 +1288,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 均值检验:<b>σ 已知用 z、未知用 t</b>;小样本必用 t。</span><span class="t-en"><b>🎯 Exam tip:</b> Mean tests: <b>z if σ known, t if unknown</b>; small samples use t.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">均值的 t/z 检验</p><p><b>σ 已知或大样本用 z、σ 未知小样本用 t</b>(自由度 n−1):<b>t = (x̄ − μ0) ÷ (s/√n)</b>。</p><p class="ddh">机制</p><p>比较两均值时分<b>配对</b>(同一对象前后)与<b>独立</b>样本;独立样本还要看方差是否相等。</p><p class="ddh">易错对比</p><p>① σ 未知优先用 <b>t</b>;② 配对 ≠ 独立;③ 大样本 t 与 z 趋近。</p></span><span class="t-en"><p class="ddh">t/z tests of the mean</p><p><b>z if σ known or large sample, t if σ unknown small sample</b> (df n−1): <b>t = (x̄ − μ0) ÷ (s/√n)</b>.</p><p class="ddh">Mechanism</p><p>For two means, distinguish <b>paired</b> vs <b>independent</b> samples.</p><p class="ddh">Common traps</p><p>① σ unknown → t; ② paired ≠ independent; ③ t → z for large n.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1296,6 +1313,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 
 <div class="tip"><span class="t-zh"><b>考点·假设检验方法怎么选:</b><br>• <b>均值:</b>方差未知用 t;独立样本用合并方差 t,<b>相依(配对)样本用配对比较 t</b>。<br>• <b>单个总体方差:卡方(chi-square);两方差之比:F</b>。<br>• <b>相关性:</b>参数法用皮尔逊 t(自由度 = n − 2);<b>非参数用斯皮尔曼(Spearman)秩相关</b>。<br>• <b>独立性(列联表):卡方,自由度 = (行−1)×(列−1)</b>。功效 = 1 − β;α 越小 β 越大。</span><span class="t-en"><b>Exam - choosing the hypothesis test:</b><br>- <b>Means:</b> unknown variance uses t; independent samples use the pooled-variance t, <b>dependent (paired) samples use the paired-comparisons t</b>.<br>- <b>A single variance: chi-square; a ratio of two variances: F</b>.<br>- <b>Correlation:</b> parametric uses the Pearson t (df = n − 2); <b>nonparametric uses the Spearman rank correlation</b>.<br>- <b>Independence (contingency table): chi-square, df = (rows−1)×(cols−1)</b>. Power = 1 − β; a smaller α raises β.</span></div>
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 相关系数检验用 <b>t</b>;<b>Spearman</b> 非参数;<b>卡方</b>检验独立性/方差。</span><span class="t-en"><b>🎯 Exam tip:</b> Correlation test uses <b>t</b>; <b>Spearman</b> is non-parametric; <b>chi-square</b> tests independence/variance.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">相关性、Spearman 与卡方检验</p><p>相关系数显著性用 <b>t 检验(df=n−2)</b>;非正态/秩数据用 <b>Spearman 秩相关</b>;<b>卡方</b>检验独立性(列联表)或单一方差。</p><p class="ddh">机制</p><p>相关只反映<b>线性</b>关联,<b>相关 ≠ 因果</b>;可能有虚假相关或遗漏变量。</p><p class="ddh">易错对比</p><p>① 相关检验用 <b>t</b>、独立性用<b>卡方</b>;② 非线性/异常值用 Spearman;③ 相关不等于因果。</p></span><span class="t-en"><p class="ddh">Correlation, Spearman & chi-square</p><p>Test correlation with a <b>t-test (df n−2)</b>; use <b>Spearman rank</b> for non-normal/ranked data; <b>chi-square</b> tests independence or a single variance.</p><p class="ddh">Mechanism</p><p>Correlation is <b>linear</b> only; <b>correlation ≠ causation</b>.</p><p class="ddh">Common traps</p><p>① t for correlation, chi-square for independence; ② Spearman for non-linear/outliers.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1353,6 +1371,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b><br>① <b>R² = 被解释的变动比例</b>,一元回归中 = 相关系数 r 的平方。<br>② 检验斜率是否显著用 <b>t = b₁ / SE(b₁)</b>。<br>③ 回归假设:线性、残差独立同方差、残差正态、X 非随机。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> <b>R²=解释方差比例</b>(一元=相关系数平方);<b>SEE 越小拟合越好</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> <b>R²=explained variance share</b> (=r² in simple regression); <b>smaller SEE = better fit</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">R² 与估计标准误 SEE</p><p><b>R² = 解释平方和 ÷ 总平方和 = 被解释的方差比例</b>(一元回归 = 相关系数²)。<b>SEE = 残差的标准差</b>,衡量拟合离散。</p><p class="ddh">机制</p><p>R² 越高、SEE 越小 → 拟合越好,但<b>不代表因果或样本外预测好</b>。</p><p class="ddh">易错对比</p><p>① 一元 <b>R² = r²</b>;② SEE 单位同 Y;③ 高 R² ≠ 因果/预测能力强。</p></span><span class="t-en"><p class="ddh">R² and the standard error of estimate</p><p><b>R² = SSR ÷ SST = share of variance explained</b> (= r² in simple regression). <b>SEE = standard deviation of residuals</b>.</p><p class="ddh">Mechanism</p><p>Higher R² / lower SEE = better fit, but <b>not causation or out-of-sample skill</b>.</p><p class="ddh">Common traps</p><p>① Simple regression <b>R² = r²</b>; ② SEE is in Y units; ③ high R² ≠ causation.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1383,6 +1402,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">F 检验判断整体回归是否有解释力。一元回归中，整体 F 统计量等于斜率 t 统计量的平方。</span><span class="t-en">The F-test judges whether the overall regression has explanatory power. In simple regression, the overall F-statistic equals the square of the slope t-statistic.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 检查<b>异方差/自相关</b>;<b>F 检验</b>整体显著性;ANOVA 分解方差。</span><span class="t-en"><b>🎯 Exam tip:</b> Check <b>heteroskedasticity/autocorrelation</b>; <b>F-test</b> for overall significance.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">回归假设、残差诊断与 ANOVA</p><p>四假设:<b>线性、残差独立、同方差、正态</b>。<b>ANOVA</b>:SST = SSR + SSE,<b>F = MSR/MSE</b> 检验整体显著性。</p><p class="ddh">机制</p><p><b>异方差/自相关</b>会使标准误失真、t 检验失效;需诊断残差。</p><p class="ddh">易错对比</p><p>① 违反<b>同方差/独立</b> → t 检验不可靠;② F 检验<b>整体</b>、t 检验<b>单系数</b>;③ SST=SSR+SSE。</p></span><span class="t-en"><p class="ddh">Regression assumptions, residuals & ANOVA</p><p>Four assumptions: <b>linearity, independent residuals, homoskedasticity, normality</b>. <b>ANOVA</b>: SST = SSR + SSE, <b>F = MSR/MSE</b> for overall significance.</p><p class="ddh">Mechanism</p><p><b>Heteroskedasticity/autocorrelation</b> distort SEs and invalidate t-tests.</p><p class="ddh">Common traps</p><p>① Violations → unreliable t-tests; ② F is overall, t is per-coefficient.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1507,6 +1527,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b>"TR 最大化的点"是 MR = 0 的点(需求弹性恰为 1),它<b>不是</b>利润最大化的点。利润最大化永远看 MR = MC。选择题最爱在这里挖坑。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 完全竞争 <b>P=MR=</b>水平需求线;不完全竞争需求向下倾斜、<b>MR&lt;P</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Perfect competition <b>P=MR=</b> a flat demand line; imperfect competition slopes down with <b>MR&lt;P</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">竞争与收入函数</p><p><b>完全竞争</b>厂商是<b>价格接受者</b>:P=MR=AR=水平需求线;<b>不完全竞争</b>需求向下倾斜,<b>MR&lt;P</b>(多卖须降价)。</p><p class="ddh">易错对比</p><p>① 完全竞争 <b>P=MR</b>、其余市场 <b>MR&lt;P</b>;② 边际收入随产量递减;③ 供给决策看 MR 与 MC。</p></span><span class="t-en"><p class="ddh">Competition & revenue</p><p><b>Perfect competition</b> firms are <b>price takers</b>: P=MR=AR; <b>imperfect</b> demand slopes down, <b>MR&lt;P</b>.</p><p class="ddh">Common traps</p><p>① Perfect: P=MR; others MR&lt;P; ② MR falls with output.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1719,6 +1740,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">分析师视角的对照框架——<em class="term">波特五力(Porter's five forces)</em>:<br>① 进入威胁;<br>② 供应商议价能力;<br>③ 买方(客户)议价能力;<br>④ 替代品威胁;<br>⑤ 现有竞争者之间的竞争。其中"供应商议价能力"是经济学市场结构理论中没有直接对应、但实务分析权重很大的一项。股票分析师说的<em class="term">经济护城河(economic moat)</em>:保护企业盈利能力的因素,类似城堡的护城河——进入威胁小、客户因高转换成本被锁定。</span><span class="t-en">The analyst's comparative framework — <em class="term">Porter's five forces</em>:<br>① threat of entry;<br>② supplier bargaining power;<br>③ buyer (customer) bargaining power;<br>④ threat of substitutes;<br>⑤ rivalry among existing competitors. 'Supplier bargaining power' has no direct counterpart in the economics theory of market structure but carries great weight in practical analysis. What equity analysts call an <em class="term">economic moat</em>: the factors that protect a firm's profitability, like a castle's moat — a small threat of entry, customers locked in by high switching costs.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 按<b>厂商数/进入壁垒/定价力/产品差异</b>对号入座:完全竞争无定价力、垄断最强。</span><span class="t-en"><b>🎯 Exam tip:</b> Match by <b>number of firms/barriers/pricing power/differentiation</b>: none for perfect competition, most for monopoly.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">四种市场结构</p><p>按<b>厂商数量、产品差异、进入壁垒、定价力</b>排列:<b>完全竞争 → 垄断竞争 → 寡头 → 垄断</b>,定价力递增、竞争递减。</p><p class="ddh">易错对比</p><p>① 垄断竞争=<b>多厂商+差异+易进入</b>;② 寡头=<b>少数、相互依存</b>;③ 垄断=<b>单一、高壁垒</b>。</p></span><span class="t-en"><p class="ddh">Four market structures</p><p>By <b>number of firms, differentiation, barriers, pricing power</b>: <b>perfect → monopolistic → oligopoly → monopoly</b>, pricing power rising.</p><p class="ddh">Common traps</p><p>① Monopolistic = many + differentiated + easy entry; ② oligopoly = few, interdependent; ③ monopoly = one, high barriers.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1753,6 +1775,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </ul>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 垄断竞争=多厂商+产品差异,<b>长期经济利润≈0</b>(自由进入)。</span><span class="t-en"><b>🎯 Exam tip:</b> Monopolistic competition = many firms + differentiation, <b>long-run economic profit ≈ 0</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">垄断竞争</p><p>多厂商、<b>产品差异</b>、低进入壁垒。短期可有经济利润,长期因自由进入趋于 <b>0</b>;存在<b>过剩产能</b>、价格 &gt; 边际成本。</p><p class="ddh">易错对比</p><p>① 长期经济利润 = 0,但 <b>P &gt; MC</b>(非完全效率);② 靠差异化(广告/品牌)获定价力;③ 与完全竞争的区别在产品差异。</p></span><span class="t-en"><p class="ddh">Monopolistic competition</p><p>Many firms, <b>differentiation</b>, low barriers. Short-run profit possible; long-run → <b>0</b> with entry; <b>excess capacity</b>, P &gt; MC.</p><p class="ddh">Common traps</p><p>① Long-run profit 0 but <b>P &gt; MC</b>; ② pricing power via differentiation.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1966,6 +1989,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b>"衰退何时开始"的简易规则:<b>实际 GDP 连续两个季度负增长</b>。但该规则可能误导(负、微正、负的序列就漏判),所以美国由 NBER 商业周期测定委员会综合就业、工业生产、销售等多个变量判定峰谷——由于数据发布滞后且会被修订,NBER 的判定往往在拐点发生<b>很久之后</b>才公布。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 区分<b>古典/增长/增长率</b>三种周期概念。</span><span class="t-en"><b>🎯 Exam tip:</b> Distinguish <b>classical/growth/growth-rate</b> cycle concepts.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">三种周期概念</p><p><b>古典周期</b>(经济活动水平的绝对涨跌)、<b>增长周期</b>(围绕长期趋势的偏离)、<b>增长率周期</b>(增长速度的拐点)。</p><p class="ddh">易错对比</p><p>① 三者定义的<b>拐点</b>不同;② 现代多用增长率/增长周期;③ 别与信贷周期混。</p></span><span class="t-en"><p class="ddh">Three cycle concepts</p><p><b>Classical</b> (absolute level), <b>growth</b> (deviation from trend), <b>growth-rate</b> (turning points in the growth rate).</p><p class="ddh">Common traps</p><p>① They define turning points differently.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2020,6 +2044,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>投资者关注信贷周期的三个理由:</b><br>① 帮助理解住房与建筑市场;<br>② 帮助评估商业周期扩张/收缩的幅度(若衰退与信贷收缩期叠加,衰退更严重);<br>③ 帮助预判政策当局行动——除传统的货币/财政政策外,旨在抑制金融繁荣的<em class="term">宏观审慎稳定政策(macroprudential stabilization policies)</em>地位日益上升。</span><span class="t-en"><b>Three reasons investors watch the credit cycle:</b> <br>① it helps understand the housing and construction markets;<br>② it helps gauge the magnitude of the business cycle's expansion/contraction (a recession overlapping a credit contraction is more severe);<br>③ it helps anticipate policymakers' actions — beyond traditional monetary/fiscal policy, <em class="term">macroprudential stabilization policies</em> aimed at curbing financial booms are increasingly prominent.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 信贷周期与经济周期<b>相互放大</b>;宽松信贷→资产泡沫。</span><span class="t-en"><b>🎯 Exam tip:</b> The credit cycle <b>amplifies</b> the business cycle; easy credit → asset bubbles.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">信贷周期</p><p>信贷扩张 → 资产价格↑ → 抵押价值↑ → 更多信贷(<b>顺周期、自我强化</b>);逆转时信贷收缩<b>放大</b>衰退。</p><p class="ddh">易错对比</p><p>① 信贷周期<b>放大</b>经济周期;② 宽松信贷 → 资产<b>泡沫</b>;③ 与货币政策松紧相关。</p></span><span class="t-en"><p class="ddh">The credit cycle</p><p>Credit expansion → higher asset prices → more collateral → more credit (<b>pro-cyclical, self-reinforcing</b>); reversal <b>amplifies</b> downturns.</p><p class="ddh">Common traps</p><p>① It <b>amplifies</b> the business cycle; ② easy credit → bubbles.</p></span></div></details>
 <h2 id="s11"><span class="t-zh">LM2 §4 资源使用的周期波动</span><span class="t-en">LM2 §4 Cyclical Fluctuation of Resource Use</span></h2>
 
 <div class="los"><b><span class="t-zh">LOS 对应:</span><span class="t-en">LOS: </span></b>describe how resource use, consumer and business activity, housing sector activity, and external trade sector activity vary over the business cycle and describe their measurement using economic indicators。 <span class="kptag" title="重要度 / Importance">★★</span></div>
@@ -2082,6 +2107,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </ul>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 产能利用率、失业的<b>周期性波动</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Cyclical swings in <b>capacity utilization and unemployment</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">资源使用的周期波动</p><p><b>产能利用率、劳动力使用</b>随周期波动。失业分<b>摩擦性/结构性/周期性</b>;自然失业率 = 摩擦 + 结构(不含周期)。</p><p class="ddh">易错对比</p><p>① 自然失业率<b>不含周期性</b>;② 奥肯定律:产出缺口与失业反向;③ 隐性失业/打击性失业别漏。</p></span><span class="t-en"><p class="ddh">Cyclical resource use</p><p><b>Capacity utilization and labor use</b> swing with the cycle. Unemployment: <b>frictional/structural/cyclical</b>; natural rate = frictional + structural.</p><p class="ddh">Common traps</p><p>① Natural rate excludes cyclical; ② Okun's law links output gap and unemployment.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2218,6 +2244,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b>问"哪个不是财政政策目标"——<b>维护货币购买力稳定</b>是货币政策的目标,不是财政政策的;问"哪个不是财政工具"——<b>提高购房首付比例要求</b>属于(宏观审慎/货币类)工具,不是财政工具;<b>央行购买国债</b>是货币政策(公开市场操作),不是财政政策。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 谁管什么:<b>央行→货币政策、政府→财政政策</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Who does what: <b>central bank → monetary, government → fiscal</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">货币政策与财政政策</p><p><b>财政政策</b>=政府支出/税收,<b>货币政策</b>=央行利率/货币供应,二者调节<b>总需求</b>以稳增长、稳物价。</p><p class="ddh">易错对比</p><p>① <b>央行管货币、政府管财政</b>;② 目标是充分就业+物价稳定;③ 两者可配合或对冲。</p></span><span class="t-en"><p class="ddh">Monetary vs fiscal policy</p><p><b>Fiscal</b> = government spending/taxes; <b>monetary</b> = central-bank rates/money, both steering <b>aggregate demand</b>.</p><p class="ddh">Common traps</p><p>① Central bank = money, government = fiscal.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2343,6 +2370,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>相对效力:</b>政府<b>直接支出</b>对总支出和产出的拉动远大于减税或增加转移支付;但若转移支付<b>定向给最穷的人</b>(边际消费倾向≈1,收入全花掉),刺激力度也相对较强。</span><span class="t-en"><b>Relative potency:</b> government <b>direct spending</b> boosts total spending and output far more than tax cuts or higher transfers; but if transfers are <b>targeted at the poorest</b> (marginal propensity to consume ≈ 1, spending all their income), the stimulus is also relatively strong.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 财政工具=支出/税收/转移;各有<b>时滞与优缺点</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Tools = spending/taxes/transfers; each has <b>lags and trade-offs</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">财政工具及优缺点</p><p><b>支出</b>(转移/资本/购买)与<b>税收</b>(直接/间接)。各有<b>认知、行动、影响</b>三重时滞与不同乘数。</p><p class="ddh">易错对比</p><p>① <b>转移支付乘数 &lt; 直接支出</b>(部分被储蓄);② 自动稳定器无需立法;③ 时滞使财政政策难精准。</p></span><span class="t-en"><p class="ddh">Fiscal tools & trade-offs</p><p><b>Spending</b> (transfers/capital/purchases) and <b>taxes</b> (direct/indirect), each with recognition/action/impact <b>lags</b>.</p><p class="ddh">Common traps</p><p>① <b>Transfer multiplier &lt; direct spending</b>; ② stabilizers need no legislation.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2437,6 +2465,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">其他困难:<br>① 经济的独立走向不可预知(刺激可能恰逢出口或投资的意外回升),宏观预测模型准确率不佳;<br>② 若同时担心通胀,接近充分就业时加码会推高工资物价;<br>③ 赤字已高时,再扩张可能被金融市场"否决"(国债利率上升);<br>④ <b>充分就业水平本身难以测量</b>;<br>⑤ 若闲置资源源于劳动供给不足而非需求不足,财政扩张无效、只添通胀;<br>⑥ 挤出效应。<b>结论:财政政策无法完全稳定总需求。</b>(注:这三种时滞同样存在于相机抉择的货币政策。)</span><span class="t-en">Other difficulties:<br>① the economy's independent path is unknowable (a stimulus may coincide with an unexpected pickup in exports or investment), and macro forecasting models are not very accurate;<br>② if inflation is also a concern, adding stimulus near full employment pushes up wages and prices;<br>③ when the deficit is already high, further expansion may be 'vetoed' by financial markets (government-bond rates rise);<br>④ <b>the full-employment level itself is hard to measure</b>;<br>⑤ if idle resources stem from insufficient labor supply rather than insufficient demand, fiscal expansion is ineffective and only adds inflation;<br>⑥ crowding out. <b>Conclusion: fiscal policy cannot fully stabilize aggregate demand.</b> (Note: these three lags also afflict discretionary monetary policy.)</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 区分<b>结构性 vs 周期性</b>赤字;实施有认知/行动/影响<b>三重时滞</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Structural vs cyclical deficit; three <b>lags</b> (recognition/action/impact).</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">财政立场的衡量</p><p>用<b>结构性(充分就业)预算差额</b>衡量主动立场,剔除<b>周期性</b>成分。实施受时滞与预测不确定影响。</p><p class="ddh">易错对比</p><p>① <b>周期性赤字 ≠ 主动扩张</b>;② 结构性差额才反映政策意图;③ 时滞与政治约束限制效果。</p></span><span class="t-en"><p class="ddh">Measuring the fiscal stance</p><p>Use the <b>structural (full-employment) budget balance</b>, stripping the <b>cyclical</b> part.</p><p class="ddh">Common traps</p><p>① A cyclical deficit isn't active stimulus; ② the structural balance shows intent.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2469,6 +2498,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh"><b>总目标:</b>各国央行目标表述不一(巴西:货币购买力稳定+金融体系稳健;欧央行:价格稳定优先;美联储:<b>最大就业、物价稳定、温和长期利率</b>三重使命;澳储行:货币稳定+充分就业+繁荣福利;韩国银行:价格稳定),但几乎都承认一个压倒性目标——<b>价格稳定(price stability)/控制通胀</b>。</span><span class="t-en"><b>Overall objective:</b> central banks phrase their objectives differently (Brazil: stable purchasing power + a sound financial system; ECB: price stability first; the Fed: a triple mandate of <b>maximum employment, stable prices, and moderate long-term interest rates</b>; the RBA: currency stability + full employment + prosperity and welfare; the Bank of Korea: price stability), but almost all acknowledge one overriding goal — <b>price stability / controlling inflation</b>.</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 央行职能:发钞/最后贷款人/监管/<b>物价稳定</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Central-bank roles: issue currency/lender of last resort/regulate/<b>price stability</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">央行的职能</p><p>发行货币、<b>银行的银行、最后贷款人</b>、监管、管理外储、执行货币政策(以<b>物价稳定</b>为核心)。</p><p class="ddh">易错对比</p><p>① <b>独立性</b>提升可信度;② 最后贷款人应对流动性危机;③ 目标多为通胀锚定。</p></span><span class="t-en"><p class="ddh">Central-bank functions</p><p>Issue currency, <b>bank of banks, lender of last resort</b>, regulate, manage reserves, run monetary policy for <b>price stability</b>.</p><p class="ddh">Common traps</p><p>① Independence boosts credibility.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2544,6 +2574,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </ul>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 通胀目标制三支柱:<b>独立性/可信度/透明度</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Inflation targeting rests on <b>independence/credibility/transparency</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">通胀目标制</p><p>公开的通胀目标 + <b>独立、可信、透明</b>的央行,用以<b>锚定通胀预期</b>。</p><p class="ddh">易错对比</p><p>① 靠<b>可信度</b>锚定预期(非固定汇率);② 独立性与透明缺一不可;③ 目标通常为中期通胀率。</p></span><span class="t-en"><p class="ddh">Inflation targeting</p><p>A public target plus an <b>independent, credible, transparent</b> central bank <b>anchors expectations</b>.</p><p class="ddh">Common traps</p><p>① Anchors via credibility, not a peg.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2751,6 +2782,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b>判断"是否属于政治合作"——凡涉及<b>规则与标准化的协议</b>就是合作(engages and reciprocates in rules standardization);而"充当贸易通道"(如巴拿马利用地理位置当杠杆)、"选用软实力而非军事报复"都属于<b>非合作</b>行为(软实力只是较温和的非合作)。注意:合作型国家必须<b>既参与又对等回报</b>——只参与不回报不算合作。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 地缘政治:<b>合作 vs 非合作</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Geopolitics: <b>cooperative vs non-cooperative</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">地缘政治:合作 vs 非合作</p><p><b>合作</b>(贸易、条约、标准)降低交易成本;<b>非合作</b>(制裁、冲突)增不确定,由<b>利益一致度</b>驱动。</p><p class="ddh">易错对比</p><p>① 合作提升效率、非合作增风险;② 取决于各方利益是否一致;③ 与全球化程度相关。</p></span><span class="t-en"><p class="ddh">Cooperative vs non-cooperative</p><p><b>Cooperation</b> (trade/treaties/standards) lowers costs; <b>non-cooperation</b> (sanctions/conflict) raises uncertainty.</p><p class="ddh">Common traps</p><p>① Driven by alignment of interests.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2814,6 +2846,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b><br>① 最能<b>增加</b>地缘政治风险的行为是<b>限制外汇兑换</b>(反全球化特征);增加资本流动、增加商品服务贸易都<b>降低</b>风险。<br>② 区分三回流策略:在<b>现有</b>加拿大工厂扩大关键零件产能供应本国市场 = <b>回流(reshoring)</b>(USMCA 下美加经济紧密整合,等同迁回本国降低制造风险),不是"再全球化"(那要复制/新建供应链),也不是"加倍押注"(那要扩大在该市场的销售存在)。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 全球化的<b>动因、收益与成本</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Globalization: <b>drivers, benefits, costs</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">全球化</p><p>贸易/资本/技术/人口流动加深带来<b>效率与增长</b>,但也有<b>不平等、趋同风险、监管套利</b>等成本。</p><p class="ddh">易错对比</p><p>① 全球化<b>整体获益但有输家</b>;② 收益与成本并存;③ 反全球化源于分配不均。</p></span><span class="t-en"><p class="ddh">Globalization</p><p>Deeper flows bring <b>efficiency and growth</b> but also <b>inequality, contagion risk, regulatory arbitrage</b>.</p><p class="ddh">Common traps</p><p>① Net gains but with losers.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2840,6 +2873,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 三大组织分工:<b>IMF/世界银行/WTO</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Three bodies: <b>IMF/World Bank/WTO</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">三大国际贸易/金融组织</p><p><b>IMF</b>(国际收支与汇率稳定)、<b>世界银行</b>(发展与减贫融资)、<b>WTO</b>(贸易规则与争端解决)。</p><p class="ddh">易错对比</p><p>① 三者<b>职能别混</b>:IMF 稳汇率、世行搞发展、WTO 管贸易规则。</p></span><span class="t-en"><p class="ddh">Three international bodies</p><p><b>IMF</b> (balance of payments/FX stability), <b>World Bank</b> (development finance), <b>WTO</b> (trade rules/disputes).</p><p class="ddh">Common traps</p><p>① Don't confuse their roles.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 2 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2867,6 +2901,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b><br>① 两坐标都是<b>连续谱</b>,国家很少处于极端,且位置是<b>移动的目标</b>——地缘政治风险分析本质上是<b>动态</b>的(地理因素相对恒久并<b>不</b>意味着分析稳定)。风险分析不仅看当前在哪个象限,还看在该象限内的<b>稳定性</b>。<br>② 行为差异最大的一对原型:<b>多边主义 vs 自给自足</b>(在两个坐标轴上都相距最远)。双边主义与自给自足共享"反全球化"倾向、但在合作维度分歧;多边主义与霸权共享"全球化"倾向、但在合作维度分歧。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 国家行为原型:<b>自给自足/霸权/多边/双边</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Country archetypes: <b>autarky/hegemony/multilateral/bilateral</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">四种国家行为原型</p><p><b>自给自足(封闭)、霸权(主导)、多边(合作)、双边</b>,由<b>资源禀赋 + 标准化 + 软实力</b>决定。</p><p class="ddh">易错对比</p><p>① 按<b>合作程度与主导地位</b>分类;② 霸权≠多边;③ 会随实力变化切换。</p></span><span class="t-en"><p class="ddh">Four country archetypes</p><p><b>Autarky, hegemony, multilateral, bilateral</b>, shaped by <b>resource endowment + standardization + soft power</b>.</p><p class="ddh">Common traps</p><p>① Classified by cooperation and dominance.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2892,6 +2927,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b><br>① 国家安全工具<b>并非只能非合作</b>——NATO 等集体安全协议是合作用法(所以"国家安全工具本质上是非合作的"是<b>错误</b>表述)。<br>② 金融工具的双刃性:合作性金融工具若鼓励安全/经济/金融合作可降低风险,但过度依赖也会制造脆弱性——<b>美元主导地位</b>就是例子:既促进金融活动,又使他国易受美国货币政策变化冲击(美国收紧货币政策会使无法维持美元储备的国家出现流动性短缺)。<br>③ 工具与例子配对题(高频):金融↔货币自由跨境兑换;经济↔国有化;国家安全↔间谍活动。<br>④ <em class="term">多面工具</em>例:cabotage(沿海运输权,外国公司在他国境内运输的权利)牵涉物理安全与经济协调,是高度多边的过程。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 地缘政治工具:<b>国家安全/经济/金融</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Geopolitical tools: <b>national-security/economic/financial</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">地缘政治的三类工具</p><p><b>国家安全</b>(军事/联盟)、<b>经济</b>(关税/制裁/贸易)、<b>金融</b>(汇率/资本管制/援助)。</p><p class="ddh">易错对比</p><p>① <b>制裁属经济工具</b>;② 三类工具可组合;③ 与国家行为原型对应。</p></span><span class="t-en"><p class="ddh">Three types of geopolitical tools</p><p><b>National-security</b> (military/alliances), <b>economic</b> (tariffs/sanctions), <b>financial</b> (FX/capital controls/aid).</p><p class="ddh">Common traps</p><p>① Sanctions are an economic tool.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -2968,6 +3004,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>核心考点:</b>贸易提高<b>整体</b>福利,<b>不等于</b>每个消费者和生产者都受益。它的真正含义是:<b>赢家在理论上可以补偿输家后仍有剩余</b>(winners could compensate the losers and still be better off)。即使长期,留在进口竞争行业的工人也可能因行业专用技能贬值而<b>永久受损</b>——所以贸易未必让每个利益相关者都更好,但整体福利效应为正。国际贸易的成本正确表述:资源需在行业间重新配置、低效企业被迫退出、可能导致更高失业与再培训需求。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 比较优势带来收益,但有<b>赢家与输家</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Comparative advantage brings gains but <b>winners and losers</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">国际贸易的收益与成本</p><p><b>比较优势</b> → 专业化 → 总产出增加、消费者受益;但有<b>分配效应</b>:受进口冲击的行业受损。</p><p class="ddh">易错对比</p><p>① 整体<b>获益但有输家</b>;② 依据<b>比较</b>优势(非绝对);③ 贸易条件影响收益分配。</p></span><span class="t-en"><p class="ddh">Benefits & costs of trade</p><p><b>Comparative advantage</b> → specialization → higher output; but <b>distributional</b> effects hurt import-competing sectors.</p><p class="ddh">Common traps</p><p>① Net gains, some losers; ② based on comparative (not absolute) advantage.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -3109,6 +3146,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </ul>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 一体化递进:<b>FTA→关税同盟→共同市场→经济联盟</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Integration ladder: <b>FTA→customs union→common market→economic union</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">贸易集团与区域一体化</p><p>递进:<b>自由贸易区(内部免税)→ 关税同盟(共同对外关税)→ 共同市场(要素自由流动)→ 经济联盟(统一政策)</b>。</p><p class="ddh">易错对比</p><p>① 逐级更深;② 关注<b>贸易创造 vs 贸易转移</b>;③ 共同市场加了要素流动。</p></span><span class="t-en"><p class="ddh">Trading blocs</p><p>Ladder: <b>FTA → customs union → common market → economic union</b>.</p><p class="ddh">Common traps</p><p>① Progressive depth; ② trade creation vs diversion.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -3202,6 +3240,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <p><span class="t-zh">两者互为倒数。直接/间接取决于"你在哪":对伦敦人 GBP 是本币,对巴黎人 EUR 是本币,所以专业市场不用这套约定,改用固定的货币对约定。<b>本币升值 → 直接报价下降</b>(买 1 单位外币需要的本币变少)。</span><span class="t-en">The two are reciprocals. Direct vs indirect depends on 'where you are': for a Londoner GBP is home, for a Parisian EUR is home, so the professional market does not use this convention and instead uses fixed currency-pair conventions. <b>Home-currency appreciation → the direct quote falls</b> (fewer units of home currency are needed to buy 1 unit of foreign currency).</span></p>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 直接/间接标价;认清 <b>base/price</b> 货币。</span><span class="t-en"><b>🎯 Exam tip:</b> Direct/indirect quotes; identify the <b>base/price</b> currency.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">外汇市场与报价</p><p><b>直接标价</b>(本币/外币)vs <b>间接</b>;报价 P/B 表示 1 单位 <b>base(基准)</b> 货币值多少 <b>price(报价)</b> 货币。</p><p class="ddh">易错对比</p><p>① 认清 <b>base</b>(斜杠左边);② 直接与间接互为倒数;③ 报价方向决定升贬值计算。</p></span><span class="t-en"><p class="ddh">The FX market & quotes</p><p><b>Direct</b> vs <b>indirect</b> quotes; P/B means one unit of the <b>base</b> is worth this many of the <b>price</b> currency.</p><p class="ddh">Common traps</p><p>① Identify the base (left of the slash).</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -3354,6 +3393,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="tip"><b>考点提示:</b><br>① <b>货币局</b> = 法律要求 100% 外币储备支持本币发行,难以放弃平价(风险最小);<b>固定平价</b>无立法承诺、储备可裁量,额外承担"平价可能不被维持"的风险。<br>② 汇率风险排序(对美国投资者):美元化(如巴拿马,<b>零</b>汇率风险)< 货币局(如香港,小幅波动)< 自由浮动(如加拿大)。<br>③ <b>波动带的作用</b>是让货币当局能行使<b>更多货币政策裁量</b>(带越宽裁量越大),不是为了赚价差或少干预。<br>④ 只有独立浮动能让央行行使独立货币政策、隔离美国货币政策的通胀/通缩传导——美元化和货币局都不能。</div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 汇率制度谱系:从<b>美元化</b>到<b>自由浮动</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Regime spectrum: from <b>dollarization</b> to a <b>free float</b>.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">汇率制度分类</p><p>谱系:<b>美元化/货币局 → 固定 → 爬行 → 管理浮动 → 自由浮动</b>,灵活性与货币政策独立性递增。</p><p class="ddh">易错对比</p><p>① 固定汇率<b>放弃独立货币政策</b>(不可能三角);② 越自由浮动、独立性越强;③ 中间制度易受投机冲击。</p></span><span class="t-en"><p class="ddh">Exchange-rate regimes</p><p>Spectrum: <b>dollarization/currency board → fixed → crawling → managed float → free float</b>, flexibility rising.</p><p class="ddh">Common traps</p><p>① A peg gives up monetary independence (the trilemma).</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 5 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -3406,6 +3446,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 资本管制:限制资本流动的<b>工具与代价</b>。</span><span class="t-en"><b>🎯 Exam tip:</b> Capital controls: the <b>tools and costs</b> of restricting flows.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">资本管制</p><p>限制跨境资本流动(<b>税、额度、审批</b>),可稳定汇率与金融,但<b>降低效率、招致规避</b>。</p><p class="ddh">易错对比</p><p>① 管制是<b>政策工具、有代价</b>;② 常用于应对热钱与危机;③ 长期可能扭曲配置。</p></span><span class="t-en"><p class="ddh">Capital controls</p><p>Restrict cross-border flows (taxes/quotas/approvals) to stabilize FX and finance, but <b>reduce efficiency and invite avoidance</b>.</p><p class="ddh">Common traps</p><p>① A costly policy tool.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 1 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -3483,6 +3524,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </div>
 
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> <b>远期点÷现汇=升贴水%</b>;换算看标价方向。</span><span class="t-en"><b>🎯 Exam tip:</b> <b>Forward points ÷ spot = premium/discount %</b>; mind the quote direction.</span></div>
+<details class="deepdive" open><summary><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></summary><div class="dd"><span class="t-zh"><p class="ddh">远期汇率、远期点与升贴水</p><p><b>远期汇率 = 现汇 + 远期点</b>;<b>升贴水% = 远期点 ÷ 现汇</b>。<b>高利率货币远期贴水</b>、低利率升水。</p><p class="ddh">易错对比</p><p>① 标价方向决定<b>加/减</b>远期点;② 高息货币<b>贴水</b>(不是升水);③ 换算注意点数的小数位与天数。</p></span><span class="t-en"><p class="ddh">Forward rate, points & premium/discount</p><p><b>Forward = spot + forward points</b>; <b>premium/discount % = points ÷ spot</b>. The <b>higher-rate currency trades at a discount</b>.</p><p class="ddh">Common traps</p><p>① Quote direction sets the sign; ② high-rate currency is at a discount.</p></span></div></details>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 3 题 <span class="parrow">▾</span></button>
 <div class="pbody">

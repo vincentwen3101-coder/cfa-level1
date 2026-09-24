@@ -13446,3 +13446,170 @@ function setSize(s){
 </script>
 <!-- ============ /无障碍增强 ============ -->
 
+<!-- ============ 学习中心:错题本+薄弱知识点+间隔复习(运行时,独立localStorage) ============ -->
+<style id="cs-style">
+#cs_tab{position:fixed;right:0;top:57%;z-index:2147482000;writing-mode:vertical-rl;text-orientation:mixed;
+ background:linear-gradient(180deg,#2b6b57,#194a3c);color:#e9f5ef;border:1px solid #10362a;border-right:0;
+ border-radius:12px 0 0 12px;padding:13px 7px;font-size:13px;font-weight:800;letter-spacing:.2em;cursor:pointer;
+ box-shadow:-4px 4px 14px -6px rgba(0,0,0,.5);display:flex;align-items:center;gap:7px}
+#cs_tab .cs_ic{writing-mode:horizontal-tb;font-size:16px}
+#cs_tab .cs_badge{writing-mode:horizontal-tb;background:#e0533b;color:#fff;border-radius:9px;padding:0 5px;font-size:10px;min-width:16px;text-align:center;display:none}
+#cs_tab.has .cs_badge{display:inline-block}
+#cs_tab:hover{filter:brightness(1.1)}#cs_tab:focus-visible{outline:2px solid #7fd8b6;outline-offset:2px}
+#cs_scrim{position:fixed;inset:0;background:rgba(6,8,10,.5);z-index:2147483210;opacity:0;pointer-events:none;transition:opacity .25s}
+#cs_drawer{position:fixed;top:0;right:0;height:100%;width:min(430px,96vw);z-index:2147483310;
+ background:var(--card,#fff);color:var(--fg,#1e2430);transform:translateX(102%);transition:transform .28s cubic-bezier(.4,.9,.3,1);
+ box-shadow:-16px 0 40px -18px rgba(0,0,0,.6);display:flex;flex-direction:column;overscroll-behavior:contain;
+ border-left:1px solid var(--line,#e5e7eb)}
+#cfa-study[data-open="true"] #cs_drawer{transform:translateX(0)}
+#cfa-study[data-open="true"] #cs_scrim{opacity:1;pointer-events:auto}
+#cfa-study[data-open="true"] #cs_tab{display:none}
+.cs_head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line,#e5e7eb);flex:0 0 auto}
+.cs_head b{font-size:15px}.cs_head b i{color:#2b8a63;font-style:normal}
+.cs_x{background:none;border:0;color:var(--muted,#6b7280);font-size:20px;cursor:pointer;line-height:1;padding:4px 6px;border-radius:8px}
+.cs_x:hover{background:rgba(127,127,127,.14)}
+.cs_body{flex:1 1 auto;overflow:auto;padding:14px 15px 24px}
+.cs_due{background:rgba(224,83,59,.1);border:1px solid rgba(224,83,59,.35);border-radius:10px;padding:10px 12px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.cs_due b{color:#c2412e}
+.cs_btn{font:inherit;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--accent,#2b8a63);color:#fff;background:var(--accent,#2b8a63);border-radius:8px;padding:5px 11px}
+.cs_btn.ghost{background:transparent;color:var(--accent,#2b8a63)}
+.cs_btn:active{transform:translateY(1px)}
+.cs_sec{margin:0 0 20px}
+.cs_sec>h4{font-size:13px;font-weight:800;margin:0 0 9px;display:flex;align-items:center;gap:7px;color:var(--fg,#1e2430)}
+.cs_sec>h4 .n{background:rgba(127,127,127,.16);border-radius:9px;padding:0 7px;font-size:11px;font-weight:700}
+.cs_los{border:1px solid var(--line,#e5e7eb);border-radius:10px;margin:0 0 9px;overflow:hidden}
+.cs_los>.h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 11px;cursor:pointer;background:rgba(127,127,127,.05)}
+.cs_los>.h .t{font-size:12.5px;font-weight:700;flex:1 1 auto;min-width:0}
+.cs_los>.h .acc{font-size:11px;font-weight:800;padding:1px 7px;border-radius:8px;white-space:nowrap}
+.cs_los>.h .acc.lo{background:rgba(224,83,59,.16);color:#c2412e}.cs_los>.h .acc.mi{background:rgba(217,160,49,.18);color:#a4730f}.cs_los>.h .acc.hi{background:rgba(43,138,99,.16);color:#1f6b48}
+.cs_los>.b{display:none;padding:4px 11px 10px}.cs_los.open>.b{display:block}
+.cs_q{border-top:1px dashed var(--line,#e5e7eb);padding:8px 0}
+.cs_q .stemx{font-size:12px;line-height:1.5;color:var(--fg,#1e2430);margin-bottom:6px}
+.cs_q .row{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.cs_tag{font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;border:1px solid var(--line,#d5d8dd);background:transparent;color:var(--muted,#6b7280);border-radius:999px;padding:2px 8px}
+.cs_tag.on{background:var(--accent,#2b8a63);border-color:var(--accent,#2b8a63);color:#fff}
+.cs_q .act{margin-left:auto;display:flex;gap:5px}
+.cs_lnk{font:inherit;font-size:11px;font-weight:700;cursor:pointer;background:none;border:0;color:var(--accent,#2b8a63);text-decoration:underline;padding:2px 3px}
+.cs_empty{font-size:12.5px;color:var(--muted,#6b7280);line-height:1.6;padding:6px 0}
+.cs_note{font-size:11px;color:var(--muted,#6b7280);line-height:1.5;margin-top:4px}
+.cs_wk{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border:1px solid var(--line,#e5e7eb);border-radius:9px;margin:0 0 7px}
+.cs_wk .t{font-size:12px;font-weight:700;flex:1 1 auto;min-width:0}
+.cs_barw{height:5px;border-radius:4px;background:rgba(127,127,127,.16);overflow:hidden;flex:0 0 60px}
+.cs_barw>i{display:block;height:100%;background:var(--accent,#2b8a63)}
+.cs_hi{outline:3px solid var(--accent,#2b8a63)!important;outline-offset:2px;border-radius:6px}
+</style>
+<div id="cfa-study" data-open="false">
+ <button id="cs_tab" type="button" aria-controls="cs_drawer" aria-expanded="false"><span class="cs_ic">📚</span>学习中心<span class="cs_badge" id="cs_badge">0</span></button>
+ <div id="cs_scrim"></div>
+ <aside id="cs_drawer" role="dialog" aria-modal="true" aria-label="学习中心" aria-hidden="true">
+   <div class="cs_head"><b>学习<i>中心</i> · 错题本 / 薄弱 / 复习</b><button class="cs_x" id="cs_close" aria-label="收起">✕</button></div>
+   <div class="cs_body" id="cs_bodyEl"></div>
+ </aside>
+</div>
+<script>
+(function(){
+ if(window.__cfaStudy)return; window.__cfaStudy=true;
+ var root=document.getElementById('cfa-study'); if(!root)return;
+ var KEY='cfa_study_v1', DAY=86400000;
+ var MT=[['concept','概念','Concept'],['formula','公式','Formula'],['unit','单位','Unit'],['direction','方向','Direction'],['careless','粗心','Careless']];
+ function lang(){return document.documentElement.getAttribute('data-lang')==='en'?'en':'zh';}
+ function L(zh,en){return lang()==='en'?en:zh;}
+ function loadS(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+ function saveS(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+ var S=loadS();
+ function txt(el){if(!el)return'';var s=el.querySelector('.t-'+lang());return (s?s.textContent:el.textContent).replace(/\s+/g,' ').trim();}
+ function h2Of(el){var lec=el.closest('.lecture')||document,all=lec.querySelectorAll('h2'),best=null;
+   for(var i=0;i<all.length;i++){ if(all[i].compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING) best=all[i]; }
+   return best;}
+ function losOf(mcq){var h=h2Of(mcq); return h?{id:h.id||'',zh:txt(h)}:{id:'',zh:L('未分类','Uncategorized')};}
+ /* ---- record on grade (runs after grading handler) ---- */
+ document.addEventListener('click',function(e){
+   var li=e.target.closest?e.target.closest('.mcq .opts li'):null; if(!li)return;
+   var mcq=li.closest('.mcq'); if(!mcq||!mcq.classList.contains('done'))return;
+   var qid=mcq.getAttribute('data-qid'); if(!qid){qid='h'+Math.abs(hashStr(txt(mcq.querySelector('.stem'))));mcq.setAttribute('data-qid',qid);}
+   var ok=li.getAttribute('data-c')==='1';
+   var los=losOf(mcq), now=Date.now();
+   var r=S[qid]||{att:0,wrong:0,mt:null,ivl:0};
+   r.att++; r.los=los.id; r.losLabel=los.zh; r.qtype=mcq.getAttribute('data-qtype')||'';
+   r.stem=txt(mcq.querySelector('.stem')).slice(0,80); r.lec=mcq.getAttribute('data-lec')||''; r.ts=now; r.lastOk=ok;
+   if(ok){ if(r.wrong>0){ r.ivl=r.ivl?Math.min(r.ivl*2.2,60):1; r.next=now+r.ivl*DAY; if(r.ivl>=16)r.wrong=0; } }
+   else { r.wrong++; r.ivl=1; r.next=now; }
+   S[qid]=r; saveS(S); updateBadge();
+ });
+ function hashStr(s){var h=0,i;for(i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0;}return h;}
+ /* ---- badge (due count) ---- */
+ function dueList(){var now=Date.now(),a=[];for(var q in S){if(S[q].wrong>0&&(S[q].next||0)<=now)a.push(q);}return a;}
+ function wrongList(){var a=[];for(var q in S){if(S[q].wrong>0)a.push(q);}return a;}
+ function updateBadge(){var n=dueList().length,b=document.getElementById('cs_badge'),t=document.getElementById('cs_tab');if(b){b.textContent=n;t.classList.toggle('has',n>0);}}
+ /* ---- navigation ---- */
+ function gotoQid(qid){
+   var el=document.querySelector('[data-qid="'+qid.replace(/"/g,'\\"')+'"]'); if(!el){toast(L('本会话未加载该题','Question not loaded this session'));return;}
+   var vol=el.closest('.volume'); if(vol&&!vol.classList.contains('active')){var vn=+vol.id.replace('vol','');try{window.showVolume(vn);}catch(e){}}
+   var lec=el.closest('.lecture');
+   if(lec&&vol){var lecs=[].slice.call(vol.querySelectorAll('.lecture')),idx=lecs.indexOf(lec);if(idx>=0){try{window.showLecture(idx+1);}catch(e){}}}
+   var blk=el.closest('.practice')||el.closest('.mock'); if(blk)blk.classList.add('open');
+   close();
+   setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('cs_hi');setTimeout(function(){el.classList.remove('cs_hi');},2200);},160);
+ }
+ function redoQid(qid){var el=document.querySelector('[data-qid="'+qid.replace(/"/g,'\\"')+'"]');if(!el)return;
+   el.classList.remove('done');var lis=el.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].classList.remove('correct','wrong');lis[i].setAttribute('aria-checked','false');lis[i].removeAttribute('aria-disabled');lis[i].setAttribute('tabindex',i===0?'0':'-1');}
+   gotoQid(qid);
+ }
+ function toast(m){var t=document.createElement('div');t.textContent=m;t.style.cssText='position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:8px;z-index:2147483600;font-size:13px';document.body.appendChild(t);setTimeout(function(){t.remove();},1800);}
+ /* ---- render ---- */
+ function render(){
+   var body=document.getElementById('cs_bodyEl');
+   var due=dueList(), wrong=wrongList();
+   var html='';
+   // due banner
+   html+='<div class="cs_due"><span>'+L('今日待复习','Due for review')+' <b>'+due.length+'</b> '+L('题','Q')+'</span>'+(due.length?'<button class="cs_btn" id="cs_startReview">'+L('开始复习','Start')+'</button>':'')+'</div>';
+   // 错题本 grouped by LOS
+   html+='<div class="cs_sec"><h4>📕 '+L('错题本','Wrong-answer log')+' <span class="n">'+wrong.length+'</span></h4>';
+   if(!wrong.length){html+='<div class="cs_empty">'+L('还没有错题。做题答错后会自动收进这里，可按错误类型打标签、随时重做。','No wrong answers yet. Miss a question and it lands here — tag the error type and redo anytime.')+'</div>';}
+   else{
+     var byLos={};wrong.forEach(function(q){var k=S[q].losLabel||L('未分类','Uncategorized');(byLos[k]=byLos[k]||[]).push(q);});
+     Object.keys(byLos).forEach(function(k){var qs=byLos[k];
+       html+='<div class="cs_los"><div class="h" data-toggle="1"><span class="t">'+esc(k)+'</span><span class="acc lo">'+qs.length+' '+L('题','Q')+'</span></div><div class="b">';
+       qs.forEach(function(q){var r=S[q];
+         html+='<div class="cs_q"><div class="stemx">'+esc(r.stem||q)+'</div><div class="row">';
+         MT.forEach(function(m){html+='<button class="cs_tag'+(r.mt===m[0]?' on':'')+'" data-mt="'+m[0]+'" data-q="'+q+'">'+L(m[1],m[2])+'</button>';});
+         html+='<span class="act"><button class="cs_lnk" data-goto="'+q+'">'+L('跳转','Go')+'</button><button class="cs_lnk" data-redo="'+q+'">'+L('重做','Redo')+'</button></span></div></div>';
+       });
+       html+='</div></div>';
+     });
+   }
+   html+='</div>';
+   // 薄弱知识点
+   var losStat={};
+   for(var q in S){var r=S[q];if(!r.att)continue;var k=r.losLabel||L('未分类','Uncategorized');var o=losStat[k]=losStat[k]||{att:0,ok:0,ex:q};o.att++;if(r.lastOk)o.ok++;}
+   var rows=Object.keys(losStat).map(function(k){var o=losStat[k];return {k:k,acc:o.ok/o.att,att:o.att,ex:o.ex};}).sort(function(a,b){return a.acc-b.acc;});
+   html+='<div class="cs_sec"><h4>🎯 '+L('薄弱知识点','Weak sections')+' <span class="n">'+rows.length+'</span></h4>';
+   if(!rows.length){html+='<div class="cs_empty">'+L('做题后这里按小节正确率排序，最弱的排最前。','After you answer, sections rank here by accuracy — weakest first.')+'</div>';}
+   else{rows.slice(0,12).forEach(function(r){var pct=Math.round(r.acc*100);
+     html+='<div class="cs_wk"><span class="t">'+esc(r.k)+'</span><span class="cs_barw"><i style="width:'+pct+'%"></i></span><b style="font-size:12px;min-width:34px;text-align:right">'+pct+'%</b><button class="cs_lnk" data-goto="'+r.ex+'">'+L('去练','Study')+'</button></div>';
+   });}
+   html+='<div class="cs_note">'+L('正确率按每题最近一次作答统计。间隔复习：答错的题按 1→3→7→16 天逐步延后，答对到 16 天以上即毕业。','Accuracy uses each question’s latest attempt. Spaced review: missed questions resurface after 1→3→7→16 days; graduate past 16 days.')+'</div></div>';
+   body.innerHTML=html;
+ }
+ function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ /* ---- panel events ---- */
+ document.getElementById('cs_bodyEl').addEventListener('click',function(e){
+   var t=e.target;
+   if(t.getAttribute('data-toggle')||t.closest('.cs_los>.h')){var h=t.closest('.cs_los>.h')||t;var box=h.closest('.cs_los');if(box)box.classList.toggle('open');return;}
+   var mt=t.getAttribute('data-mt'); if(mt){var q=t.getAttribute('data-q');S[q].mt=(S[q].mt===mt?null:mt);saveS(S);render();return;}
+   var go=t.getAttribute('data-goto'); if(go){gotoQid(go);return;}
+   var rd=t.getAttribute('data-redo'); if(rd){redoQid(rd);return;}
+   if(t.id==='cs_startReview'){var d=dueList();if(d.length){redoQid(d[0]);}return;}
+ });
+ /* ---- open/close ---- */
+ function open(){root.setAttribute('data-open','true');document.getElementById('cs_tab').setAttribute('aria-expanded','true');document.getElementById('cs_drawer').setAttribute('aria-hidden','false');render();}
+ function close(){root.setAttribute('data-open','false');document.getElementById('cs_tab').setAttribute('aria-expanded','false');document.getElementById('cs_drawer').setAttribute('aria-hidden','true');}
+ document.getElementById('cs_tab').addEventListener('click',open);
+ document.getElementById('cs_close').addEventListener('click',close);
+ document.getElementById('cs_scrim').addEventListener('click',close);
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&root.getAttribute('data-open')==='true')close();});
+ updateBadge();
+})();
+</script>
+<!-- ============ /学习中心 ============ -->
+

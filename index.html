@@ -13677,3 +13677,69 @@ function setSize(s){
 </script>
 <!-- ============ /导航修复 ============ -->
 
+<!-- ============ 窄屏整改:浮层收进工具菜单/讲导航单行/表格横滚 ============ -->
+<style id="mobile-fix-style">
+#toolfab,#toolmenu{display:none}
+@media (max-width:640px){
+ /* 1 顶部:卷导航不再吸顶(切卷入口进工具菜单),讲导航改为吸顶的单行横滚条 */
+ .volnav{position:static}
+ .lecnav{top:0;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:.4rem .75rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .lecnav::-webkit-scrollbar{display:none}
+ .lecnav button{flex:0 0 auto;white-space:nowrap;font-size:.84rem;padding:.3rem .85rem}
+ .volume [id]{scroll-margin-top:3.6rem}
+ /* 2 右侧竖条+书签并入一个工具按钮,底部只留 刷题条 + 工具钮 */
+ #fc_tab,#cs_tab,.bmwrap{display:none!important}
+ #cfaPanel{max-width:calc(100% - 84px)}
+ #toolfab{display:flex;position:fixed;right:12px;bottom:12px;z-index:9999;width:52px;height:52px;border-radius:50%;border:0;background:var(--accent,#2f7d5b);color:#fff;font-size:22px;align-items:center;justify-content:center;box-shadow:0 5px 18px rgba(0,0,0,.32);cursor:pointer}
+ #toolfab .tf-dot{position:absolute;top:6px;right:6px;width:11px;height:11px;border-radius:50%;background:#e0533b;border:2px solid var(--paper,#fff);display:none}
+ #toolfab.has .tf-dot{display:block}
+ #toolfab:focus-visible{outline:3px solid var(--paper,#fff);outline-offset:2px}
+ #toolmenu{position:fixed;right:12px;bottom:74px;z-index:9999;background:var(--card,#fff);color:var(--ink,#222);border:1px solid var(--line,#ddd);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:6px;min-width:190px;flex-direction:column;gap:2px}
+ #toolmenu.open{display:flex}
+ #toolmenu button{font:inherit;font-size:.92rem;text-align:left;background:none;border:0;color:inherit;padding:.65rem .8rem;border-radius:9px;cursor:pointer;display:flex;gap:.55rem;align-items:center}
+ #toolmenu button:active,#toolmenu button:focus-visible{background:rgba(127,127,127,.16);outline:none}
+ #toolmenu button[hidden]{display:none}
+ /* 3 表格:不再等宽挤压中文,列有最小宽度,超出时横向滚动,首列固定 */
+ table{display:block;overflow-x:auto;max-width:100%;table-layout:auto;-webkit-overflow-scrolling:touch}
+ .tablewrap table{display:table;width:max-content;min-width:100%}
+ table th,table td{min-width:5.2em;overflow-wrap:break-word;word-break:normal}
+ table.data th,table.data td{padding:.55rem .7rem}
+ table.data td:first-child{position:sticky;left:0;z-index:1;background:var(--card,#fff);box-shadow:1px 0 0 var(--line,#ddd)}
+ table.data th:first-child{position:sticky;left:0;z-index:2;background:linear-gradient(var(--accent-soft,transparent),var(--accent-soft,transparent)),var(--card,#fff)}
+}
+</style>
+<button id="toolfab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="toolmenu" aria-label="工具菜单 / Tools"><span aria-hidden="true">⚙</span><i class="tf-dot"></i></button>
+<div id="toolmenu" role="menu" aria-label="工具 / Tools">
+ <button type="button" role="menuitem" data-act="calc">🧮 <span class="t-zh">金融计算器</span><span class="t-en">Calculator</span></button>
+ <button type="button" role="menuitem" data-act="study">📚 <span class="t-zh">学习中心</span><span class="t-en">Study center</span></button>
+ <button type="button" role="menuitem" data-act="mark">📌 <span class="t-zh">标记此处为书签</span><span class="t-en">Bookmark this spot</span></button>
+ <button type="button" role="menuitem" data-act="go" hidden>📖 <span class="t-zh">回到书签</span><span class="t-en">Go to bookmark</span></button>
+ <button type="button" role="menuitem" data-act="vols">☰ <span class="t-zh">切换卷</span><span class="t-en">Switch volume</span></button>
+</div>
+<script>
+(function(){
+ if(window.__mobileFix)return; window.__mobileFix=true;
+ var fab=document.getElementById('toolfab'), menu=document.getElementById('toolmenu'); if(!fab||!menu)return;
+ function setOpen(o){menu.classList.toggle('open',o);fab.setAttribute('aria-expanded',o?'true':'false');
+   if(o){var go=menu.querySelector('[data-act="go"]'),g=document.querySelector('.bmwrap .bmbtn.go');go.hidden=!(g&&g.classList.contains('show'));}}
+ fab.addEventListener('click',function(e){e.stopPropagation();setOpen(!menu.classList.contains('open'));});
+ document.addEventListener('click',function(e){if(menu.classList.contains('open')&&!menu.contains(e.target))setOpen(false);});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setOpen(false);fab.focus();}});
+ menu.addEventListener('click',function(e){
+   var b=e.target.closest('button[data-act]'); if(!b)return; var a=b.getAttribute('data-act'); setOpen(false);
+   var q=function(s){return document.querySelector(s);};
+   if(a==='calc'){var t=q('#fc_tab');if(t)t.click();}
+   else if(a==='study'){var t2=q('#cs_tab');if(t2)t2.click();}
+   else if(a==='mark'){var m=q('.bmwrap .bmbtn.mark');if(m)m.click();}
+   else if(a==='go'){var g=q('.bmwrap .bmbtn.go');if(g)g.click();}
+   else if(a==='vols'){window.scrollTo(0,0);var n=q('.volnav');if(n){n.classList.add('open');var t3=n.querySelector('.vn-toggle');if(t3)t3.setAttribute('aria-expanded','true');}}
+ });
+ /* mirror the study-center "due" badge on the tool button */
+ var cs=document.getElementById('cs_tab');
+ function sync(){fab.classList.toggle('has',!!(cs&&cs.classList.contains('has')));}
+ if(cs&&window.MutationObserver){new MutationObserver(sync).observe(cs,{attributes:true,attributeFilter:['class']});}
+ sync();
+})();
+</script>
+<!-- ============ /窄屏整改 ============ -->
+

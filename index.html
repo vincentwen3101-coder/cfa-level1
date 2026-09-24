@@ -13478,6 +13478,7 @@ function setSize(s){
 <!-- ============ /无障碍增强 ============ -->
 
 <!-- ============ 学习中心:错题本+薄弱知识点+间隔复习(运行时,独立localStorage) ============ -->
+<style id="cs-cov-style">.cs_covsum{cursor:pointer;font-weight:800;font-size:13px;padding:2px 0}.cs_covtabs{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.cs_cv{border:1px solid var(--line,#e5e7eb);border-radius:9px;padding:7px 10px;margin:0 0 7px}.cs_cv.mid{border-color:#d9a031}.cs_cv.bad{border-color:#e0533b}.cs_cv .cs_lnk{text-align:left;font-size:12px;padding:0}.cs_los_t{font-size:11px;color:var(--muted,#6b7280);margin:2px 0 4px;line-height:1.4}.cs_chips{display:flex;flex-wrap:wrap;gap:4px}.cs_chip{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;background:rgba(43,138,99,.16);color:#1f6b48}.cs_chip.z{background:rgba(127,127,127,.15);color:var(--muted,#6b7280)}</style>
 <style id="cs-style">
 #cs_tab{position:fixed;right:0;top:57%;z-index:2147482000;writing-mode:vertical-rl;text-orientation:mixed;
  background:linear-gradient(180deg,#2b6b57,#194a3c);color:#e9f5ef;border:1px solid #10362a;border-right:0;
@@ -13623,6 +13624,7 @@ function setSize(s){
      html+='<div class="cs_wk"><span class="t">'+esc(r.k)+'</span><span class="cs_barw"><i style="width:'+pct+'%"></i></span><b style="font-size:12px;min-width:34px;text-align:right">'+pct+'%</b><button class="cs_lnk" data-goto="'+r.ex+'">'+L('去练','Study')+'</button></div>';
    });}
    html+='<div class="cs_note">'+L('正确率按每题最近一次作答统计。间隔复习：答错的题按 1→3→7→16 天逐步延后，答对到 16 天以上即毕业。','Accuracy uses each question’s latest attempt. Spaced review: missed questions resurface after 1→3→7→16 days; graduate past 16 days.')+'</div></div>';
+   html+=covShell();
    body.innerHTML=html;
  }
  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -13642,6 +13644,47 @@ function setSize(s){
  document.getElementById('cs_close').addEventListener('click',close);
  document.getElementById('cs_scrim').addEventListener('click',close);
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&root.getAttribute('data-open')==='true')close();});
+ /* ---- 学习目标覆盖表:运行时扫描每个小节,始终与内容同步 ---- */
+ var covVol=null;
+ function covShell(){return '<div class="cs_sec"><details id="cs_cov"><summary class="cs_covsum">📋 '+L('学习目标覆盖表','Learning-objective coverage')+'</summary><div id="cs_covBody"></div></details></div>';}
+ function depthOf(los){var s=(los||'').toLowerCase();
+   if(/calculate|compute|determine the (value|price)/.test(s))return L('计算','Calculate');
+   if(/compare|distinguish|contrast|differentiate/.test(s))return L('区分','Distinguish');
+   if(/evaluate|analy[sz]e|justify|recommend|interpret|assess|critique/.test(s))return L('分析','Analyze');
+   if(/explain|describe|define|identify|state|list|discuss|summari[sz]e|understand/.test(s))return L('解释','Explain');
+   return '—';}
+ function covRows(vid){
+   var vol=document.getElementById(vid),rows=[]; if(!vol)return rows;
+   [].forEach.call(vol.querySelectorAll('h2'),function(h){
+     var r={id:h.id,title:txt(h).replace(/🔥.*$/,'').replace(/High-Yield.*$/,'').trim(),los:'',ex:0,dd:0,pr:0,mk:0},n=h.nextElementSibling,g=0;
+     while(n&&n.tagName!=='H2'&&g<600){g++;
+       var c=n.classList;
+       if(c.contains('los')&&!r.los){var b=n.cloneNode(true);var bb=b.querySelector('b');if(bb)bb.remove();var st=b.querySelector('.kptag');if(st)st.remove();r.los=b.textContent.replace(/[。\s]+$/,'').trim();}
+       if(c.contains('example'))r.ex++; else r.ex+=n.querySelectorAll('.example').length;
+       if(c.contains('deepdive'))r.dd++; else r.dd+=n.querySelectorAll('.deepdive').length;
+       if(c.contains('practice'))r.pr+=n.querySelectorAll('.mcq').length;
+       if(c.contains('mock'))r.mk+=n.querySelectorAll('.mcq').length;
+       n=n.nextElementSibling;}
+     rows.push(r);});
+   return rows;}
+ function covStatus(r){var q=r.pr+r.mk; if(!r.ex&&!r.dd&&!q)return 'bad'; if(q&&(r.ex||r.dd))return 'ok'; return 'mid';}
+ function renderCov(){
+   var body=document.getElementById('cs_covBody'); if(!body)return;
+   var vols=[].map.call(document.querySelectorAll('.volume'),function(v){return v.id;});
+   if(!covVol)covVol=vols[0];
+   var h='<div class="cs_covtabs">'; vols.forEach(function(v){h+='<button class="cs_tag'+(v===covVol?' on':'')+'" data-cov="'+v+'">V'+v.replace('vol','')+'</button>';}); h+='</div>';
+   var rows=covRows(covVol).filter(function(r){return !/总表|Summary/.test(r.title);});
+   var cnt={ok:0,mid:0,bad:0}; rows.forEach(function(r){cnt[covStatus(r)]++;});
+   h+='<div class="cs_note">'+rows.length+L(' 个小节 · 完整 ',' sections · complete ')+cnt.ok+L(' · 缺示范或缺练习 ',' · missing example or practice ')+cnt.mid+L(' · 只有正文 ',' · text only ')+cnt.bad+'</div>';
+   rows.forEach(function(r){var s=covStatus(r);
+     h+='<div class="cs_cv '+s+'"><button class="cs_lnk" data-sec="'+r.id+'">'+esc(r.title)+'</button>'+(r.los?'<div class="cs_los_t">'+esc(r.los)+'</div>':'')+'<div class="cs_chips"><span class="cs_chip">'+depthOf(r.los)+'</span><span class="cs_chip'+(r.ex?'':' z')+'">'+L('示范 ','Example ')+r.ex+'</span><span class="cs_chip'+(r.dd?'':' z')+'">'+L('深入 ','Deep ')+r.dd+'</span><span class="cs_chip'+(r.pr?'':' z')+'">'+L('练习 ','Practice ')+r.pr+'</span><span class="cs_chip'+(r.mk?'':' z')+'">'+L('真题 ','Mock ')+r.mk+'</span></div></div>';});
+   body.innerHTML=h;}
+ (function(){var cb=document.getElementById('cs_bodyEl');
+   cb.addEventListener('toggle',function(e){if(e.target&&e.target.id==='cs_cov'&&e.target.open)renderCov();},true);
+   cb.addEventListener('click',function(e){var t=e.target;
+     var cv=t.getAttribute&&t.getAttribute('data-cov'); if(cv){covVol=cv;renderCov();return;}
+     var sec=t.getAttribute&&t.getAttribute('data-sec'); if(sec){close();try{history.replaceState(null,'','#');}catch(x){}setTimeout(function(){location.hash='#'+sec;},120);}
+   });})();
  setTimeout(function(){S=loadS();migrateS();updateBadge();},300);
 })();
 </script>

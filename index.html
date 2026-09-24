@@ -13344,3 +13344,66 @@ function setSize(s){
 })();
 </script>
 
+<!-- ============ 无障碍增强:选项键盘/读屏(运行时注入,不改题目HTML) ============ -->
+<style id="a11y-style">
+.mcq .opts li:focus-visible,.mcq .opts li:focus{outline:3px solid var(--accent,#4a9);outline-offset:2px;border-radius:6px}
+.mcq .opts li[aria-checked="true"]{box-shadow:inset 0 0 0 2px var(--accent,#4a9)}
+.a11y-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:no-preference){.mcq .opts li{transition:box-shadow .1s}}
+</style>
+<script>
+(function(){
+ if(window.__a11yMcq) return; window.__a11yMcq=true;
+ function stemId(mcq){var s=mcq&&mcq.querySelector?mcq.querySelector('.stem'):null;if(!s)return null;if(!s.id){window.__a11ySid=(window.__a11ySid||0)+1;s.id='mcqstem-'+window.__a11ySid;}return s.id;}
+ function liList(ul){return Array.prototype.filter.call(ul.children,function(n){return n.tagName==='LI';});}
+ function enhance(root){
+   var groups=(root||document).querySelectorAll('.opts');
+   for(var g=0;g<groups.length;g++){
+     var ul=groups[g]; if(ul.getAttribute('role')) continue;
+     ul.setAttribute('role','radiogroup');
+     var mcq=ul.closest?ul.closest('.mcq'):null;
+     var id=stemId(mcq);
+     if(id) ul.setAttribute('aria-labelledby',id); else ul.setAttribute('aria-label','答案选项 / Answer options');
+     var lis=liList(ul),first=true;
+     for(var i=0;i<lis.length;i++){var li=lis[i];
+       li.setAttribute('role','radio'); li.setAttribute('aria-checked','false');
+       li.setAttribute('tabindex',first?'0':'-1'); first=false;}
+     if(mcq&&mcq.classList.contains('done')) reflectDone(mcq);
+   }
+ }
+ function focusIdx(list,idx){if(idx<0)idx=list.length-1;if(idx>=list.length)idx=0;
+   for(var i=0;i<list.length;i++)list[i].setAttribute('tabindex',i===idx?'0':'-1');
+   list[idx].focus();}
+ /* keyboard: arrows move focus, Enter/Space selects (grades via native click) */
+ document.addEventListener('keydown',function(e){
+   var li=e.target.closest?e.target.closest('.opts li'):null; if(!li)return;
+   var mcq=li.closest('.mcq'); if(mcq&&mcq.classList.contains('done'))return;
+   var list=liList(li.parentNode),idx=list.indexOf(li),k=e.key;
+   if(k==='ArrowDown'||k==='ArrowRight'){focusIdx(list,idx+1);e.preventDefault();}
+   else if(k==='ArrowUp'||k==='ArrowLeft'){focusIdx(list,idx-1);e.preventDefault();}
+   else if(k==='Home'){focusIdx(list,0);e.preventDefault();}
+   else if(k==='End'){focusIdx(list,list.length-1);e.preventDefault();}
+   else if(k===' '||k==='Spacebar'||k==='Enter'){e.preventDefault();li.click();}
+ });
+ var live=null;
+ function announce(msg){if(!live){live=document.createElement('div');live.setAttribute('aria-live','assertive');live.setAttribute('role','status');live.className='a11y-sr';document.body.appendChild(live);}live.textContent='';setTimeout(function(){live.textContent=msg;},40);}
+ function reflectDone(mcq){var lis=mcq.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1')lis[i].setAttribute('aria-checked','true');}}
+ /* runs AFTER the grading click handler (registered earlier) */
+ document.addEventListener('click',function(e){
+   var li=e.target.closest?e.target.closest('.opts li'):null; if(!li)return;
+   var mcq=li.closest('.mcq'); if(!mcq||!mcq.classList.contains('done'))return;
+   var correct=li.getAttribute('data-c')==='1';
+   li.setAttribute('aria-checked','true');
+   var lis=mcq.querySelectorAll('.opts li');
+   for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1')lis[i].setAttribute('aria-checked','true');}
+   var cl=mcq.querySelector('.opts li[data-c="1"] .lab');
+   var lab=cl?cl.textContent.replace(/\s+/g,''):'';
+   var en=document.documentElement.getAttribute('data-lang')==='en';
+   announce(correct?(en?'Correct. Explanation shown.':'回答正确。解析已显示。')
+                   :(en?('Incorrect. Correct answer is '+lab+'. Explanation shown.'):('回答错误，正确答案 '+lab+'。解析已显示。')));
+ });
+ if(document.readyState!=='loading') enhance(); else document.addEventListener('DOMContentLoaded',function(){enhance();});
+})();
+</script>
+<!-- ============ /无障碍增强 ============ -->
+

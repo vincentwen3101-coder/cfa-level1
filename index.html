@@ -345,7 +345,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <li><a href="#q1b"><span class="t-zh">§2 持有期回报与多期回报</span><span class="t-en">§2 Holding Period Return & Multi-Period Return</span></a></li>
 <li><a href="#q1c"><span class="t-zh">§3 算术平均 vs 几何平均(必考)</span><span class="t-en">§3 Arithmetic vs Geometric Mean (key)</span></a></li>
 <li><a href="#q1d"><span class="t-zh">§4 资金加权 vs 时间加权回报(必考)</span><span class="t-en">§4 Money-Weighted vs Time-Weighted Return (key)</span></a></li>
-<li><a href="#q1e"><span class="t-zh">§5 年化与实际年利率 EAR</span><span class="t-en">§5 Annualization & the Effective Annual Rate (EAR)</span></a></li>
+<li><a href="#q1e"><span class="t-zh">§5 年化与有效年利率 EAR</span><span class="t-en">§5 Annualization & the Effective Annual Rate (EAR)</span></a></li>
 <li><a href="#q1f"><span class="t-zh">§6 名义 vs 实际利率</span><span class="t-en">§6 Nominal vs Real Interest Rates</span></a></li>
 <li><a href="#q1g"><span class="t-zh">§7 货币时间价值:PV 与 FV(必考)</span><span class="t-en">§7 Time Value of Money: PV & FV (key)</span></a></li>
 <li><a href="#q1h"><span class="t-zh">§8 年金与永续年金</span><span class="t-en">§8 Annuities & Perpetuities</span></a></li>
@@ -489,10 +489,10 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 
 
 <div class="mock"><button class="mkbtn" onclick="toggleMock(this)"><span class="t-zh">📝 真题模考 · 本节 3 题 ▾</span><span class="t-en">📝 Mock Exam · 3 Q ▾</span></button><div class="mkbody"><div class="mcq"><div class="stem"><span class="t-zh">1. 下列哪项陈述最准确?资金加权收益率:</span><span class="t-en">1. Which of the following statements is most accurate? The money-weighted return:</span> <span class="qsrc official"><span class="t-zh">真题模考</span><span class="t-en">Mock</span></span></div><ul class="opts"><li data-c="0"><span class="lab">A.</span> <span class="t-zh">忽略现金的提取与追加投资。</span><span class="t-en">ignores cash withdrawals and additional cash investments.</span></li><li data-c="1"><span class="lab">B.</span> <span class="t-zh">衡量投资者对所投资金实际赚取的回报。</span><span class="t-en">measures what the investor actually earned on the funds invested.</span></li><li data-c="0"><span class="lab">C.</span> <span class="t-zh">应被用于比较不同投资经理的业绩。</span><span class="t-en">should be used to compare the performance of different investment managers.</span></li></ul><div class="exp"><span class="t-zh"><span class="tag">答案 B。</span><b>资金加权收益率(MWRR)= 考虑现金进出的内部收益率,衡量投资者对"实际投入资金"赚得的回报</b>。它对申赎时点敏感,故<b>不适合</b>比较经理业绩(那用时间加权)。</span><span class="t-en"><span class="tag">Answer B. </span>The <b>money-weighted return (MWRR) is the IRR accounting for cash flows, measuring the return actually earned on the money invested</b>. It is sensitive to the timing of flows, so it is <b>not</b> suitable for comparing managers (use time-weighted for that).</span></div></div><div class="mcq"><div class="stem"><span class="t-zh">2. 某投资者观察到以下对冲基金数据:<table><tr><th>年</th><th>年初余额</th><th>净收益</th></tr><tr><td>1</td><td>$30 百万</td><td>10%</td></tr><tr><td>2</td><td>$40 百万</td><td>−5%</td></tr><tr><td>3</td><td>$30 百万</td><td>−5%</td></tr></table>其资金加权收益率最接近于:</span><span class="t-en">2. An investor observed the following hedge fund data:<table><tr><th>Year</th><th>Beginning-of-year balance</th><th>Net return</th></tr><tr><td>1</td><td>$30 million</td><td>10%</td></tr><tr><td>2</td><td>$40 million</td><td>−5%</td></tr><tr><td>3</td><td>$30 million</td><td>−5%</td></tr></table>The money-weighted return is closest to:</span> <span class="qsrc official"><span class="t-zh">真题模考</span><span class="t-en">Mock</span></span></div><ul class="opts"><li data-c="0"><span class="lab">A.</span> <span class="t-zh">−1.523%</span><span class="t-en">−1.523%</span></li><li data-c="0"><span class="lab">B.</span> <span class="t-zh">−0.749%</span><span class="t-en">−0.749%</span></li><li data-c="1"><span class="lab">C.</span> <span class="t-zh">−0.524%</span><span class="t-en">−0.524%</span></li></ul><div class="exp"><span class="t-zh"><span class="tag">答案 C。</span><b>方法:MWRR = 使"各期现金流现值之和 = 0"的内部收益率(IRR)</b>。把初始投入、各期申赎与期末值代入解 IRR ≈ <b>−0.524%</b>。</span><span class="t-en"><span class="tag">Answer C. </span><b>Method: MWRR = the IRR that sets the sum of the present values of all cash flows to zero</b>. Solving with the initial outlay, subscriptions/redemptions, and ending value ≈ <b>−0.524%</b>.</span></div></div><div class="mcq"><div class="stem"><span class="t-zh">3. 关于组合收益度量,下列哪项陈述最准确?</span><span class="t-en">3. With respect to portfolio return measures, which of the following statements is most accurate?</span> <span class="qsrc official"><span class="t-zh">真题模考</span><span class="t-en">Mock</span></span></div><ul class="opts"><li data-c="0"><span class="lab">A.</span> <span class="t-zh">时间加权收益对资金的追加与提取敏感。</span><span class="t-en">The time-weighted return is sensitive to additions and withdrawals of funds.</span></li><li data-c="1"><span class="lab">B.</span> <span class="t-zh">资金加权收益与内部收益率的计算方式相似。</span><span class="t-en">The calculations of the money-weighted return and internal rate of return are similar.</span></li><li data-c="0"><span class="lab">C.</span> <span class="t-zh">评价组合经理业绩时资金加权收益是首选度量。</span><span class="t-en">The money-weighted return is the preferred measure when evaluating a portfolio manager.</span></li></ul><div class="exp"><span class="t-zh"><span class="tag">答案 B。</span><b>资金加权收益率与"内部收益率(IRR)"算法相同</b>。时间加权对申赎<b>不</b>敏感(A 错);比较经理业绩首选<b>时间加权</b>(C 错)。</span><span class="t-en"><span class="tag">Answer B. </span>The <b>money-weighted return is computed like the IRR</b>. The time-weighted return is <b>not</b> sensitive to flows (A wrong); the preferred measure for comparing managers is the <b>time-weighted</b> return (C wrong).</span></div></div></div></div>
-<h2 id="q1e"><span class="t-zh">§5 年化与实际年利率 EAR</span><span class="t-en">§5 Annualization & the Effective Annual Rate (EAR)</span></h2>
+<h2 id="q1e"><span class="t-zh">§5 年化与有效年利率 EAR</span><span class="t-en">§5 Annualization & the Effective Annual Rate (EAR)</span></h2>
 <div class="los"><b><span class="t-zh">LOS 对应:</span><span class="t-en">LOS: </span></b>calculate and interpret the effective annual rate。 <span class="kptag" title="重要度 / Importance">★★</span></div>
 <div class="formula">
-<div class="fx">实际年利率 EAR = (1 + 周期利率)<sup>m</sup> − 1,m = 每年复利次数</div>
+<div class="fx">有效年利率 EAR = (1 + 周期利率)<sup>m</sup> − 1,m = 每年复利次数</div>
 <div class="fx">连续复利:EAR = e<sup>r</sup> − 1</div>
 <table>
 <tr><th><span class="t-zh">符号</span><span class="t-en">Symbol</span></th><th><span class="t-zh">含义</span><span class="t-en">Meaning</span></th></tr>
@@ -508,7 +508,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 
 <div class="tip"><span class="t-zh"><b>考点·利率换算与连续复利:</b><br>• <b>有效年利率 EAR = (1 + 名义/m)^m − 1</b>(m = 每年复利次数)。<br>• <b>连续复利(continuous compounding):EAR = e^(名义) − 1;反解 名义 = ln(1 + EAR)</b>。<br>• 复利越频繁,达到同一 EAR 所需名义利率越低;连续复利是其极限。</span><span class="t-en"><b>Exam - rate conversion & continuous compounding:</b><br>- <b>Effective annual rate EAR = (1 + nominal/m)^m − 1</b> (m = compounding periods per year).<br>- <b>Continuous compounding: EAR = e^(nominal) − 1; invert: nominal = ln(1 + EAR)</b>.<br>- The more frequent the compounding, the lower the nominal rate needed for a given EAR; continuous is the limit.</span></div>
 <div class="kptip"><span class="t-zh"><b>🎯 备考小贴士:</b> 给名义年利率与复利频率求 <b>EAR=(1+r/m)^m−1</b>;连续复利 e^r−1;比较不同频率产品用 EAR。</span><span class="t-en"><b>🎯 Exam tip:</b> Given a nominal rate and frequency, <b>EAR=(1+r/m)^m−1</b>; continuous e^r−1; compare products by EAR.</span></div>
-<div class="deepdive"><div class="ddhead"><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></div><div class="dd"><span class="t-zh"><p class="ddh">实际年利率 EAR</p><p>名义年利率复利 m 次:<b>EAR = (1 + 名义/m)^m − 1</b>;连续复利 <b>EAR = e^r − 1</b>。</p><p class="ddh">机制</p><p>复利<b>频率越高,EAR 越大</b>(利滚利更频繁)。比较不同复利频率的产品必须换算成 EAR 再比。</p><p class="ddh">易错对比</p><p>① 别拿名义利率直接比,要用 <b>EAR</b>;② 频率↑ → EAR↑;③ 连续复利用 e^r−1。</p></span><span class="t-en"><p class="ddh">Effective annual rate (EAR)</p><p>Compounded m times: <b>EAR = (1 + nominal/m)^m − 1</b>; continuous <b>EAR = e^r − 1</b>.</p><p class="ddh">Mechanism</p><p>Higher <b>frequency → higher EAR</b>. Compare products across frequencies via EAR.</p><p class="ddh">Common traps</p><p>① Compare with <b>EAR</b>, not the nominal rate; ② frequency ↑ → EAR ↑; ③ continuous uses e^r−1.</p></span></div></div>
+<div class="deepdive"><div class="ddhead"><span class="t-zh">🔬 深入讲解</span><span class="t-en">🔬 Deep Dive</span></div><div class="dd"><span class="t-zh"><p class="ddh">有效年利率 EAR</p><p>名义年利率复利 m 次:<b>EAR = (1 + 名义/m)^m − 1</b>;连续复利 <b>EAR = e^r − 1</b>。</p><p class="ddh">机制</p><p>复利<b>频率越高,EAR 越大</b>(利滚利更频繁)。比较不同复利频率的产品必须换算成 EAR 再比。</p><p class="ddh">易错对比</p><p>① 别拿名义利率直接比,要用 <b>EAR</b>;② 频率↑ → EAR↑;③ 连续复利用 e^r−1。</p></span><span class="t-en"><p class="ddh">Effective annual rate (EAR)</p><p>Compounded m times: <b>EAR = (1 + nominal/m)^m − 1</b>; continuous <b>EAR = e^r − 1</b>.</p><p class="ddh">Mechanism</p><p>Higher <b>frequency → higher EAR</b>. Compare products across frequencies via EAR.</p><p class="ddh">Common traps</p><p>① Compare with <b>EAR</b>, not the nominal rate; ② frequency ↑ → EAR ↑; ③ continuous uses e^r−1.</p></span></div></div>
 <div class="practice">
 <button class="pbtn" onclick="togglePractice(this)">🎯 随堂练习 · 本节 4 题 <span class="parrow">▾</span></button>
 <div class="pbody">
@@ -1944,7 +1944,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="fx">HHI = <i>s</i><sub>1</sub><sup>2</sup> + <i>s</i><sub>2</sub><sup>2</sup> + … + <i>s</i><sub><i>N</i></sub><sup>2</sup></div>
 <table>
 <tr><th><span class="t-zh">符号</span><span class="t-en">Symbol</span></th><th><span class="t-zh">含义</span><span class="t-en">Meaning</span></th></tr>
-<tr><td>HHI</td><td><span class="t-zh">Herfindahl–Hirschman index:前 N 家市场份额(用小数表示)的<b>平方和</b>。垄断时 = 1;M 家等份额企业时 = 1/M</span><span class="t-en">Herfindahl–Hirschman index: the <b>sum of squares</b> of the top N firms' market shares (expressed as decimals). Under monopoly = 1; with M equal-share firms = 1/M</span></td></tr>
+<tr><td>HHI</td><td><span class="t-zh">Herfindahl–Hirschman index:市场内<b>所有</b>企业市场份额(用小数表示)的<b>平方和</b>(很多小企业份额接近0时常只取前N家近似)。垄断时 = 1;M 家等份额企业全部纳入时 = 1/M</span><span class="t-en">Herfindahl–Hirschman index: the <b>sum of squares</b> of <b>all</b> firms' market shares in the market (expressed as decimals); using only the top N is a practical approximation when the rest are negligible. Under monopoly = 1; with M equal-share firms, summing all M, = 1/M</span></td></tr>
 <tr><td>s<sub>i</sub></td><td><span class="t-zh">第 i 家企业市场份额,以小数表示(35% 记 0.35)再平方</span><span class="t-en">The i-th firm's market share, expressed as a decimal (35% as 0.35) and squared</span></td></tr>
 <tr><td>M</td><td><span class="t-zh">等份额情形下的企业家数;HHI = 0.20 相当于 5 家企业均分市场</span><span class="t-en">The number of firms in the equal-share case; HHI = 0.20 corresponds to 5 firms splitting the market equally</span></td></tr>
 </table>
@@ -3679,7 +3679,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <div class="los"><b><span class="t-zh">LOS 对应:</span><span class="t-en">LOS: </span></b>compare the organizational forms of businesses。 <span class="kptag" title="重要度 / Importance">★★★</span></div>
 <div class="beginner">
 <span class="bh">🔰 零基础讲解:开公司的三种"法律外壳"</span>
-<p><span class="t-zh"><span class="story" tabindex="0">组织形式<span class="pop">🏪 一个人摆摊卖奶茶=独资(赚的都归你,但欠债你个人也得还,无限责任)。几个人合伙开店=合伙(共担盈亏)。注册成一家有限公司=法人(公司是独立"法律人",股东只以出资为限担责,老板破产不牵连公司)。规模越大越倾向公司制,因为能有限责任+方便融资。</span></span>:独资、合伙、公司,责任与融资能力递增。</span><span class="t-en"><span class="story" tabindex="0">Organizational form<span class="pop">🏪 One person selling bubble tea from a stall = a sole proprietorship (you keep all the profit, but you personally repay the debts too — unlimited liability). A few people running a shop together = a partnership (sharing profit and loss). Registering as a limited company = a legal person (the company is an independent 'legal person,' shareholders are liable only up to their contribution, and the owner's bankruptcy does not drag in the company). The larger the scale, the more it tends toward the corporate form, because of limited liability + easier financing.</span></span>: sole proprietorship, partnership, corporation, in increasing order of liability protection and financing ability.</span></p>
+<p><span class="t-zh"><span class="story" tabindex="0">组织形式<span class="pop">🏪 一个人摆摊卖奶茶=独资(赚的都归你,但欠债你个人也得还,无限责任)。几个人合伙开店=合伙(共担盈亏)。注册成一家有限公司=法人(公司是独立"法律人",股东只以出资为限担责,老板破产不牵连公司)。规模越大越倾向公司制,因为能有限责任+方便融资。</span></span>:独资、合伙、公司:个人责任依次递减(独资无限→合伙人比例或无限→公司股东有限),可获取外部融资的能力依次递增。</span><span class="t-en"><span class="story" tabindex="0">Organizational form<span class="pop">🏪 One person selling bubble tea from a stall = a sole proprietorship (you keep all the profit, but you personally repay the debts too — unlimited liability). A few people running a shop together = a partnership (sharing profit and loss). Registering as a limited company = a legal person (the company is an independent 'legal person,' shareholders are liable only up to their contribution, and the owner's bankruptcy does not drag in the company). The larger the scale, the more it tends toward the corporate form, because of limited liability + easier financing.</span></span>: sole proprietorship, partnership, corporation: personal liability decreases in that order (unlimited → partners’ shared or unlimited → shareholders’ limited), while access to outside financing increases in that order.</span></p>
 </div>
 <div class="tablewrap">
 <table class="data">
@@ -9458,7 +9458,7 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 </ol>
 </div>
 
-<details class="examtips" open><summary><span class="t-zh">🎯 衍生品做题技巧 · 提分策略</span><span class="t-en">🎯 Derivatives Exam Tactics · Score Boosters </span></summary><ul><li><span class="t-zh"><b>收益/价值/利润三者分清</b>(最大陷阱):到期收益(payoff)=Max 公式本身;价值=同收益;利润=收益 − 已付权利金(买方)或 + 已收权利金(卖方)。问"价值"别减权利金,问"利润"必须减。</span><span class="t-en"><b>Separate payoff / value / profit</b> (the top trap): payoff = the Max formula; value = the payoff; profit = payoff − premium paid (buyer) or + premium received (seller). If asked for "value" don't subtract the premium; if "profit," you must.</span></li><li><span class="t-zh"><span class="etk">买卖方互为镜像</span> 卖方收益 = −(买方收益)。看涨买方 Max(0,ST−X)、卖方 −Max(0,ST−X);看跌买方 Max(0,X−ST)、卖方 −Max(0,X−ST)。买方最大亏损=权利金,卖方最大盈利=权利金。</span><span class="t-en"><span class="etk">Buyer and seller mirror</span> seller payoff = −(buyer payoff). Call buyer Max(0,ST−X), seller −Max(0,ST−X); put buyer Max(0,X−ST), seller −Max(0,X−ST). Buyer's max loss = premium; seller's max gain = premium.</span></li><li><span class="t-zh"><span class="etk">远期承诺 vs 或有权益</span> 远期/期货/互换=义务、线性对称收益、起始价值为 0;期权=权利、非线性收益、要付权利金。看到"权利/可选择"就是期权。</span><span class="t-en"><b>Forward commitment vs contingent claim</b>: forwards/futures/swaps = obligation, linear symmetric payoff, zero value at initiation; options = right, non-linear payoff, pay a premium. "Right / optional" → option.</span></li><li><span class="t-zh"><span class="etk">持有成本口诀</span> 成本−收益。持有收益(股息、便利收益)会<b>降低</b>远期/期货价;持有成本(储存费)会<b>抬高</b>它。F₀=S₀(1+r)^T,再按此加减。</span><span class="t-en"><span class="etk">Carry mnemonic</span> costs − benefits. Carry benefits (dividends, convenience yield) <b>lower</b> the forward/futures price; carry costs (storage) <b>raise</b> it. Start from F₀=S₀(1+r)^T and adjust.</span></li><li><span class="t-zh"><span class="etk">期货 vs 远期</span> 期货每日盯市+保证金 → 对手方信用风险更低、透明度更高;远期 OTC 可定制但信用风险高。远期价与期货价有差,仅当"利率有波动 且 与期货价相关"。</span><span class="t-en"><span class="etk">Futures vs forwards</span> futures have daily mark-to-market + margin → lower counterparty credit risk, higher transparency; forwards are OTC/customizable but higher credit risk. Forward and futures prices differ only when rates are volatile AND correlated with the futures price.</span></li><li><span class="t-zh"><span class="etk">期权价格上下界背下来</span> 看涨上界=S₀、下界=Max(0, S₀−PV(X));看跌上界=X(欧式为 PV(X))、下界=Max(0, PV(X)−S₀)。"折现行权价"是关键,因为 X 到期才付。</span><span class="t-en"><span class="etk">Memorize option bounds</span> call upper = S₀, lower = Max(0, S₀−PV(X)); put upper = X (European: PV(X)), lower = Max(0, PV(X)−S₀). The key is discounting the strike, since X is paid at expiry.</span></li><li><span class="t-zh"><span class="etk">期权价值方向表</span> 标的价↑→看涨↑看跌↓;行权价↑→看涨↓看跌↑;到期时间↑、波动率↑→看涨↕看跌都↑;无风险利率↑→看涨↑看跌↓。做"正相关/负相关"题直接查表。</span><span class="t-en"><span class="etk">Option value direction table</span> underlying↑→call↑ put↓; strike↑→call↓ put↑; more time / higher volatility → both↑; risk-free rate↑→call↑ put↓. For "positively/negatively related" questions, read straight off this table.</span></li><li><span class="t-zh"><span class="etk">平价公式会"搬项"就够用</span> 看涨-看跌平价 S₀+P₀=C₀+X/(1+r)^T;看涨-看跌-远期平价 P₀−C₀=[X−F₀(T)]/(1+r)^T。合成某头寸=把它单独移到等号一边,读各项符号(+多头/−空头)。</span><span class="t-en"><span class="etk">Parity = just move terms</span> put-call parity S₀+P₀=C₀+X/(1+r)^T; put-call-forward parity P₀−C₀=[X−F₀(T)]/(1+r)^T. To synthesize a position, isolate it on one side and read the signs (+ = long, − = short).</span></li><li><span class="t-zh"><span class="etk">单期二叉树</span> 上行风险中性概率 π=(1+r−R_d)/(R_u−R_d),R 是"总回报倍数"。期权价只依赖无风险利率与上/下行幅度(波动率),<b>与投资者风险偏好、标的预期回报无关</b>——这是高频考点。</span><span class="t-en"><span class="etk">One-period binomial</span> up risk-neutral probability π=(1+r−R_d)/(R_u−R_d), where R is the gross return. The option value depends only on the risk-free rate and the up/down moves (volatility), and is <b>independent of investor risk preferences or the underlying's expected return</b> — a frequent test point.</span></li><li><span class="t-zh"><span class="etk">套期会计对号入座</span> 对冲已持有资产价值→公允价值套期;对冲未来可变现金流(预期销售)→现金流套期;对冲境外经营权益的汇率→净投资套期。</span><span class="t-en"><span class="etk">Match hedge-accounting types</span> hedge the value of an asset already held → fair-value hedge; hedge a variable future cash flow (forecast sale) → cash-flow hedge; hedge a foreign operation's FX → net-investment hedge.</span></li></ul></details>
+<details class="examtips" open><summary><span class="t-zh">🎯 衍生品做题技巧 · 提分策略</span><span class="t-en">🎯 Derivatives Exam Tactics · Score Boosters </span></summary><ul><li><span class="t-zh"><b>收益/价值/利润三者分清</b>(最大陷阱):到期收益(payoff)=Max 公式本身;<b>仅到期时</b>期权价值=该payoff(到期前价值还含时间价值,不能直接用Max公式);利润=收益 − 已付权利金(买方)或 + 已收权利金(卖方)。问"价值"别减权利金,问"利润"必须减。</span><span class="t-en"><b>Separate payoff / value / profit</b> (the top trap): payoff = the Max formula; <b>only at expiration</b> is option value equal to that payoff (before expiration, value also includes time value, so it isn’t just the Max formula); profit = payoff − premium paid (buyer) or + premium received (seller). If asked for "value" don't subtract the premium; if "profit," you must.</span></li><li><span class="t-zh"><span class="etk">买卖方互为镜像</span> 卖方收益 = −(买方收益)。看涨买方 Max(0,ST−X)、卖方 −Max(0,ST−X);看跌买方 Max(0,X−ST)、卖方 −Max(0,X−ST)。买方最大亏损=权利金,卖方最大盈利=权利金。</span><span class="t-en"><span class="etk">Buyer and seller mirror</span> seller payoff = −(buyer payoff). Call buyer Max(0,ST−X), seller −Max(0,ST−X); put buyer Max(0,X−ST), seller −Max(0,X−ST). Buyer's max loss = premium; seller's max gain = premium.</span></li><li><span class="t-zh"><span class="etk">远期承诺 vs 或有权益</span> 远期/期货/互换=义务、线性对称收益、起始价值为 0;期权=权利、非线性收益、要付权利金。看到"权利/可选择"就是期权。</span><span class="t-en"><b>Forward commitment vs contingent claim</b>: forwards/futures/swaps = obligation, linear symmetric payoff, zero value at initiation; options = right, non-linear payoff, pay a premium. "Right / optional" → option.</span></li><li><span class="t-zh"><span class="etk">持有成本口诀</span> 成本−收益。持有收益(股息、便利收益)会<b>降低</b>远期/期货价;持有成本(储存费)会<b>抬高</b>它。F₀=S₀(1+r)^T,再按此加减。</span><span class="t-en"><span class="etk">Carry mnemonic</span> costs − benefits. Carry benefits (dividends, convenience yield) <b>lower</b> the forward/futures price; carry costs (storage) <b>raise</b> it. Start from F₀=S₀(1+r)^T and adjust.</span></li><li><span class="t-zh"><span class="etk">期货 vs 远期</span> 期货每日盯市+保证金 → 对手方信用风险更低、透明度更高;远期 OTC 可定制但信用风险高。远期价与期货价有差,仅当"利率有波动 且 与期货价相关"。</span><span class="t-en"><span class="etk">Futures vs forwards</span> futures have daily mark-to-market + margin → lower counterparty credit risk, higher transparency; forwards are OTC/customizable but higher credit risk. Forward and futures prices differ only when rates are volatile AND correlated with the futures price.</span></li><li><span class="t-zh"><span class="etk">期权价格上下界背下来</span> 看涨上界=S₀、下界=Max(0, S₀−PV(X));看跌上界=X(欧式为 PV(X))、下界=Max(0, PV(X)−S₀)。"折现行权价"是关键,因为 X 到期才付。</span><span class="t-en"><span class="etk">Memorize option bounds</span> call upper = S₀, lower = Max(0, S₀−PV(X)); put upper = X (European: PV(X)), lower = Max(0, PV(X)−S₀). The key is discounting the strike, since X is paid at expiry.</span></li><li><span class="t-zh"><span class="etk">期权价值方向表</span> 标的价↑→看涨↑看跌↓;行权价↑→看涨↓看跌↑;到期时间↑、波动率↑→看涨↕看跌都↑;无风险利率↑→看涨↑看跌↓。做"正相关/负相关"题直接查表。</span><span class="t-en"><span class="etk">Option value direction table</span> underlying↑→call↑ put↓; strike↑→call↓ put↑; more time / higher volatility → both↑; risk-free rate↑→call↑ put↓. For "positively/negatively related" questions, read straight off this table.</span></li><li><span class="t-zh"><span class="etk">平价公式会"搬项"就够用</span> 看涨-看跌平价 S₀+P₀=C₀+X/(1+r)^T;看涨-看跌-远期平价 P₀−C₀=[X−F₀(T)]/(1+r)^T。合成某头寸=把它单独移到等号一边,读各项符号(+多头/−空头)。</span><span class="t-en"><span class="etk">Parity = just move terms</span> put-call parity S₀+P₀=C₀+X/(1+r)^T; put-call-forward parity P₀−C₀=[X−F₀(T)]/(1+r)^T. To synthesize a position, isolate it on one side and read the signs (+ = long, − = short).</span></li><li><span class="t-zh"><span class="etk">单期二叉树</span> 上行风险中性概率 π=(1+r−R_d)/(R_u−R_d),R 是"总回报倍数"。期权价只依赖无风险利率与上/下行幅度(波动率),<b>与投资者风险偏好、标的预期回报无关</b>——这是高频考点。</span><span class="t-en"><span class="etk">One-period binomial</span> up risk-neutral probability π=(1+r−R_d)/(R_u−R_d), where R is the gross return. The option value depends only on the risk-free rate and the up/down moves (volatility), and is <b>independent of investor risk preferences or the underlying's expected return</b> — a frequent test point.</span></li><li><span class="t-zh"><span class="etk">套期会计对号入座</span> 对冲已持有资产价值→公允价值套期;对冲未来可变现金流(预期销售)→现金流套期;对冲境外经营权益的汇率→净投资套期。</span><span class="t-en"><span class="etk">Match hedge-accounting types</span> hedge the value of an asset already held → fair-value hedge; hedge a variable future cash flow (forecast sale) → cash-flow hedge; hedge a foreign operation's FX → net-investment hedge.</span></li></ul></details>
 <h2 id="d1a"><span class="t-zh">§1 什么是衍生品</span><span class="t-en">§1 What Is a Derivative</span></h2>
 <div class="los"><b><span class="t-zh">LOS 对应:</span><span class="t-en">LOS: </span></b>define a derivative and describe basic features of a derivative instrument。 <span class="kptag" title="重要度 / Importance">★★</span></div>
 <div class="beginner">
@@ -12814,10 +12814,10 @@ function setSize(s){
   function buildControls(){
     var wrap=document.createElement('div'); wrap.className='bmwrap';
     var mark=document.createElement('button'); mark.className='bmbtn mark'; mark.type='button';
-    mark.innerHTML='📌 标记此处为书签';
+    mark.innerHTML='📌 <span class="t-zh">标记此处为书签</span><span class="t-en">Bookmark this spot</span>';
     mark.onclick=saveHere;
     goBtn=document.createElement('button'); goBtn.className='bmbtn go'; goBtn.type='button';
-    goBtn.innerHTML='📖 <span class="lbl">回到书签</span>';
+    goBtn.innerHTML='📖 <span class="lbl"><span class="t-zh">回到书签</span><span class="t-en">Go to bookmark</span></span>';
     goBtn.onclick=function(){ jump(read()); };
     wrap.appendChild(goBtn); wrap.appendChild(mark);
     document.body.appendChild(wrap);
@@ -12827,9 +12827,9 @@ function setSize(s){
     var d=read(); if(!d || !d.secId) return;
     var bar=document.createElement('div'); bar.className='resumebar';
     var txt=document.createElement('span'); txt.className='rb-txt';
-    txt.innerHTML='📖 继续上次的书签:<b>'+d.volLabel+'</b> · '+d.lecLabel+' · '+d.label;
-    var go=document.createElement('button'); go.className='rb-go'; go.type='button'; go.textContent='继续 →';
-    var x=document.createElement('button'); x.className='rb-x'; x.type='button'; x.setAttribute('aria-label','关闭'); x.textContent='×';
+    txt.innerHTML='📖 <span class="t-zh">继续上次的书签:</span><span class="t-en">Resume your bookmark: </span><b>'+d.volLabel+'</b> · '+d.lecLabel+' · '+d.label;
+    var go=document.createElement('button'); go.className='rb-go'; go.type='button'; go.innerHTML='<span class="t-zh">继续 →</span><span class="t-en">Continue →</span>';
+    var x=document.createElement('button'); x.className='rb-x'; x.type='button'; x.setAttribute('aria-label','关闭 / Close'); x.textContent='×';
     bar.appendChild(txt); bar.appendChild(go); bar.appendChild(x);
     document.body.appendChild(bar);
     go.onclick=function(){ jump(d); bar.remove(); };
@@ -12916,12 +12916,12 @@ function setSize(s){
 </style>
 
 <div id="fincalc-root" data-open="false">
- <button id="fc_tab" type="button" aria-expanded="false" aria-controls="fc_drawer"><span class="fc_ic">🧮</span>金融计算器</button>
+ <button id="fc_tab" type="button" aria-expanded="false" aria-controls="fc_drawer" aria-label="金融计算器 / Financial calculator"><span class="fc_ic">🧮</span><span class="t-zh">金融计算器</span><span class="t-en">Calculator</span></button>
  <div id="fc_scrim"></div>
- <aside id="fc_drawer" role="dialog" aria-modal="true" aria-label="金融计算器" aria-hidden="true">
-   <div class="fc_head"><b>金融计算器 · BA II <i>PLUS</i> PRO</b><button class="fc_x" id="fc_close" type="button" aria-label="收起">✕</button></div>
+ <aside id="fc_drawer" role="dialog" aria-modal="true" aria-label="金融计算器 / Financial calculator" aria-hidden="true">
+   <div class="fc_head"><b><span class="t-zh">金融计算器</span><span class="t-en">Calculator</span> · BA II <i>PLUS</i> PRO</b><button class="fc_x" id="fc_close" type="button" aria-label="收起 / Close">✕</button></div>
    <div class="fc_body">
-     <div class="fc_calc" role="application" aria-label="BA II Plus Professional 键盘">
+     <div class="fc_calc" role="application" aria-label="BA II Plus Professional keypad">
        <div class="fc_brand"><b>BA <i>II</i> Plus</b><span>PROFESSIONAL</span></div>
        <div class="fc_lcd">
          <div class="fc_ind" id="fc_ind">
@@ -12935,19 +12935,19 @@ function setSize(s){
        </div>
        <div class="fc_pad" id="fc_pad"></div>
      </div>
-     <p class="fc_note"><button type="button" id="fc_decbtn" class="fc_decbtn" title="点击切换显示小数位:0-9 或 FLOAT(全精度)。等同真机 2ND · (FORMAT)">小数位 DEC: 2 ▸</button> · <code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</p>
+     <p class="fc_note"><button type="button" id="fc_decbtn" class="fc_decbtn" title="Click to cycle decimal places: 0-9 or FLOAT. Same as real 2ND · (FORMAT). / 点击切换小数位"><span class="t-zh">小数位 DEC</span><span class="t-en">DEC places</span>: 2 ▸</button> · <span class="t-zh"><code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</span><span class="t-en"><code>CPT</code> compute · <code>2ND</code>→ gold-print function · <code>2ND CPT</code>=QUIT exit worksheet</span></p>
      <details class="fc_guide">
-       <summary>使用说明 / 全部功能</summary>
+       <summary><span class="t-zh">使用说明 / 全部功能</span><span class="t-en">Guide / full feature list</span></summary>
        <div class="gg">
-         <p>与真机 BA II Plus Professional 键位、按键顺序完全一致。黄字为 <b>2ND</b> 二级功能：先按 <code>2ND</code> 再按该键。</p>
+         <p><span class="t-zh">与真机 BA II Plus Professional 键位、按键顺序完全一致。黄字为 <b>2ND</b> 二级功能：先按 <code>2ND</code> 再按该键。</span><span class="t-en">Key layout and press order exactly match the real BA II Plus Professional. Gold print is the <b>2ND</b> secondary function: press <code>2ND</code> then that key.</span></p>
          <ul>
-           <li><b>TVM</b>：N I/Y PV PMT FV 输四求一 → <code>CPT</code>+第五键；<code>2ND I/Y</code>=P/Y、<code>2ND PMT</code>=BGN、<code>2ND FV</code>=清TVM</li>
-           <li><b>现金流</b>：<code>CF</code> 录入 → <code>NPV</code> 输 I ↓ <code>CPT</code>；<code>IRR CPT</code></li>
-           <li><b>工作表</b>：AMORT(2ND PV)、BOND(2ND 9)、DEPR(2ND 4)、DATA/STAT(2ND 7/8)、ICONV(2ND 2)、DATE(2ND 1)、PROFIT(2ND 3)、BRKEVN(2ND 6)、MEM(2ND 0)</li>
-           <li><b>数学</b>：√x x² 1/x yˣ LN、eˣ(2ND LN)、x!(2ND ×)、nPr(2ND −)、nCr(2ND +)、SIN/COS/TAN(2ND ( ) yˣ)</li>
-           <li><b>设置</b>：FORMAT(2ND ·)小数位、RESET(2ND +/−)、CLR Work(2ND CE\|C)、退出工作表 QUIT(2ND CPT)</li>
+           <li><b>TVM</b>：<span class="t-zh">N I/Y PV PMT FV 输四求一 → <code>CPT</code>+第五键；<code>2ND I/Y</code>=P/Y、<code>2ND PMT</code>=BGN、<code>2ND FV</code>=清TVM</span><span class="t-en">enter 4 of N I/Y PV PMT FV → <code>CPT</code>+5th key; <code>2ND I/Y</code>=P/Y, <code>2ND PMT</code>=BGN, <code>2ND FV</code>=clear TVM</span></li>
+           <li><b><span class="t-zh">现金流</span><span class="t-en">Cash flow</span></b>：<span class="t-zh"><code>CF</code> 录入 → <code>NPV</code> 输 I ↓ <code>CPT</code>；<code>IRR CPT</code></span><span class="t-en"><code>CF</code> enter → <code>NPV</code> enter I ↓ <code>CPT</code>; <code>IRR CPT</code></span></li>
+           <li><b><span class="t-zh">工作表</span><span class="t-en">Worksheets</span></b>：AMORT(2ND PV), BOND(2ND 9), DEPR(2ND 4), DATA/STAT(2ND 7/8), ICONV(2ND 2), DATE(2ND 1), PROFIT(2ND 3), BRKEVN(2ND 6), MEM(2ND 0)</li>
+           <li><b><span class="t-zh">数学</span><span class="t-en">Math</span></b>：√x x² 1/x yˣ LN, eˣ(2ND LN), x!(2ND ×), nPr(2ND −), nCr(2ND +), SIN/COS/TAN(2ND ( ) yˣ)</li>
+           <li><b><span class="t-zh">设置</span><span class="t-en">Settings</span></b>：FORMAT(2ND ·) <span class="t-zh">小数位</span><span class="t-en">decimal places</span>, RESET(2ND +/−), CLR Work(2ND CE\|C), <span class="t-zh">退出工作表</span><span class="t-en">exit worksheet</span> QUIT(2ND CPT)</li>
          </ul>
-         <p>日期 <code>MM.DDYYYY</code>；流入正、流出负。教学仿真，非 TI 官方软件。</p>
+         <p><span class="t-zh">日期 <code>MM.DDYYYY</code>；流入正、流出负。教学仿真，非 TI 官方软件。</span><span class="t-en">Date format <code>MM.DDYYYY</code>; inflows positive, outflows negative. Teaching simulation, not official TI software.</span></p>
        </div>
      </details>
    </div>
@@ -13035,22 +13035,22 @@ function setSize(s){
  function showValue(x){S.disp=x;S.entering=false;render();}
  function out(label,val){R('#fc_fname').innerHTML=label;R('#fc_readout').textContent=(typeof val==='number')?fmt(val):val;S.disp=(typeof val==='number')?val:0;S.entering=false;setInd();}
  function curVal(){return S.entering?(parseFloat(S.entry)||0):(typeof S.disp==='number'?S.disp:0);}
- function digit(d){if(S.justEq){S.tok=[];S.justEq=false;}if(!S.entering){S.entry='';S.entering=true;}if(d==='.'&&S.entry.indexOf('.')>=0)return;if(S.entry==='0'&&d!=='.')S.entry=d;else S.entry=(S.entry||'')+d;S.fname='';render();}
+ function digit(d){if(S.justEq){S.tok=[];S.justEq=false;}if(!S.entering){S.entry='';S.entering=true;}if(d==='.'&&S.entry.indexOf('.')>=0)return;if(S.entry==='0'&&d!=='.')S.entry=d;else S.entry=(S.entry||'')+d;S.pend=true;S.fname='';render();}
  function neg(){if(S.entering){S.entry=S.entry.charAt(0)==='-'?S.entry.slice(1):('-'+(S.entry||''));}else S.disp=-(+S.disp);render();}
- function clearEA(){if(S.entering&&S.entry!==''&&S.entry!=='0'){S.entry='0';render();return;}S.entering=false;S.tok=[];S.disp=0;S.fname='';render();}
+ function clearEA(){if(S.entering&&S.entry!==''&&S.entry!=='0'){S.entry='0';render();return;}S.entering=false;S.tok=[];S.disp=0;S.pend=false;S.fname='';render();}
  /* AOS arithmetic with precedence + parentheses */
  var PREC={'P':4,'C':4,'^':3,'*':2,'/':2,'+':1,'-':1};
- function commitNum(){S.tok.push({t:'n',v:curVal()});S.entering=false;}
+ function commitNum(){S.tok.push({t:'n',v:curVal()});S.entering=false;S.pend=false;}
  function lastTok(){return S.tok[S.tok.length-1];}
  function operator(o){if(S.ws)return;if(S.justEq){S.justEq=false;}
   var lt=lastTok();
-  if(S.entering){commitNum();}
+  if(S.pend){commitNum();}
   else if(!lt){S.tok.push({t:'n',v:curVal()});}
   else if(lt.t==='o'){S.tok[S.tok.length-1]={t:'o',v:o};render();return;}
   S.tok.push({t:'o',v:o});S.fname='';render();}
- function lparen(){if(S.ws)return;if(S.justEq){S.tok=[];S.justEq=false;}var lt=lastTok();if(lt&&(lt.t==='n'||lt.t===')'))S.tok.push({t:'o',v:'*'});S.tok.push({t:'(',v:'('});S.entering=false;render();}
- function rparen(){if(S.ws)return;if(S.entering)commitNum();S.tok.push({t:')',v:')'});render();}
- function evalTokens(){var q=S.tok.slice();if(S.entering)q.push({t:'n',v:curVal()});
+ function lparen(){if(S.ws)return;if(S.justEq){S.tok=[];S.justEq=false;}if(S.pend){commitNum();S.tok.push({t:'o',v:'*'});}else{var lt=lastTok();if(lt&&lt.t===')')S.tok.push({t:'o',v:'*'});}S.tok.push({t:'(',v:'('});S.entering=false;S.pend=false;render();}
+ function rparen(){if(S.ws)return;if(S.pend)commitNum();S.tok.push({t:')',v:')'});render();}
+ function evalTokens(){var q=S.tok.slice();if(S.pend)q.push({t:'n',v:curVal()});
   var out=[],ops=[];for(var i=0;i<q.length;i++){var tk=q[i];
    if(tk.t==='n')out.push(tk.v);
    else if(tk.t==='('){ops.push('(');}
@@ -13061,9 +13061,8 @@ function setSize(s){
    if(typeof x==='number')st.push(x);
    else{var b=st.pop(),a=st.pop();st.push(x==='+'?a+b:x==='-'?a-b:x==='*'?a*b:x==='/'?a/b:x==='^'?Math.pow(a,b):x==='P'?nPr(a,b):x==='C'?nCr(a,b):b);}}
   return st.length?st[st.length-1]:curVal();}
- function equals(){if(S.ws)return;var r=evalTokens();S.tok=[{t:'n',v:r}];S.disp=r;S.entering=false;S.justEq=true;S.ans=r;S.fname='';render();}
- function unary(fn){var x=curVal(),r;try{r=fn(x);}catch(e){r=NaN;}if(S.justEq){S.justEq=false;}S.disp=r;S.entering=false;
-  if(S.tok.length&&lastTok().t==='n'){S.tok[S.tok.length-1]={t:'n',v:r};}render();}
+ function equals(){if(S.ws)return;var r=evalTokens();S.tok=[{t:'n',v:r}];S.disp=r;S.entering=false;S.pend=false;S.justEq=true;S.ans=r;S.fname='';render();}
+ function unary(fn){var x=curVal(),r;try{r=fn(x);}catch(e){r=NaN;}if(S.justEq){S.justEq=false;}S.disp=r;S.entering=false;S.pend=true;render();}
  function trig(kind){var toR=S.angleRad?1:Math.PI/180,x=curVal(),r;
   if(S.invMode){var v=S.hypMode?(kind==='sin'?Math.asinh(x):kind==='cos'?Math.acosh(x):Math.atanh(x)):(kind==='sin'?Math.asin(x):kind==='cos'?Math.acos(x):Math.atan(x));r=S.hypMode?v:v/toR;}
   else{var a=S.hypMode?x:x*toR;r=S.hypMode?(kind==='sin'?Math.sinh(x):kind==='cos'?Math.cosh(x):Math.tanh(x)):(kind==='sin'?Math.sin(a):kind==='cos'?Math.cos(a):Math.tan(a));}
@@ -13272,7 +13271,7 @@ function setSize(s){
   }
   window.__cfaRecord=function(box,ok){
     var qid=box.getAttribute('data-qid'); if(!qid)return;
-    var s=stats[qid]||{att:0,ok:false}; s.att++; s.ok=!!ok; stats[qid]=s; save(stats);
+    var s=stats[qid]||{att:0,ok:false}; if(s.att===0)s.firstOk=!!ok; s.att++; s.ok=!!ok; stats[qid]=s; save(stats);
     refresh(); checkComplete(box.getAttribute('data-lec'),box.getAttribute('data-qtype'));
   };
   function shownEl(el){try{return el&&getComputedStyle(el).display!=='none';}catch(e){return true;}}
@@ -13309,8 +13308,8 @@ function setSize(s){
     var ms=typeMcqs(lec,curType);
     var done=0,correct=0; each(ms,function(m){if(m.classList.contains('done')){done++;if(!m.querySelector('.opts li.wrong'))correct++;}});
     var total=ms.length; var acc=done?Math.round(correct/done*100):0;
-    var tAtt=0,tOk=0,tAns=0; each(document.querySelectorAll('.mcq[data-qtype="'+curType+'"]'),function(m){var q=m.getAttribute('data-qid');var s=stats[q];if(s){tAtt+=s.att;tAns++;if(s.ok)tOk++;}});
-    var cumAcc=tAns?Math.round(tOk/tAns*100):0;
+    var tAtt=0,tOk=0,tAns=0,tFirstAns=0,tFirstOk=0; each(document.querySelectorAll('.mcq[data-qtype="'+curType+'"]'),function(m){var q=m.getAttribute('data-qid');var s=stats[q];if(s){tAtt+=s.att;tAns++;if(s.ok)tOk++;if(s.firstOk!==undefined){tFirstAns++;if(s.firstOk)tFirstOk++;}}});
+    var cumAcc=tAns?Math.round(tOk/tAns*100):0; var firstAcc=tFirstAns?Math.round(tFirstOk/tFirstAns*100):null;
     var ac=accentColor();
     document.getElementById('cfaTitle').textContent=(L==='en'?'\u{1F4CA} Quiz · ':'\u{1F4CA} 刷题 · ')+lecName(lec);
     panel.querySelector('.cfaHead').style.background=ac;
@@ -13325,7 +13324,9 @@ function setSize(s){
     document.getElementById('cfaProg').innerHTML=
       '<div class="cfaStat"><span>'+(L==='en'?'This lecture · ':'本讲进度 · ')+typeLabel(curType,L)+'</span><b>'+done+' / '+total+'</b></div>'+
       '<div class="cfaStat"><span>'+(L==='en'?'Accuracy':'本讲正确率')+'</span><b>'+(done?acc+'%':'—')+'</b></div>'+
-      '<div class="cfaStat"><small>'+(L==='en'?'Cumulative ('+typeLabel(curType,L)+')':'累计('+typeLabel(curType,L)+')')+'</small><small>'+tAtt+' ('+(L==='en'?'acc ':'正确率 ')+cumAcc+'%)</small></div>';
+      '<div class="cfaStat"><small>'+(L==='en'?'Questions tried / total attempts':'已练题数 / 总作答次数')+'</small><small>'+tAns+' / '+tAtt+'</small></div>'+
+      '<div class="cfaStat"><small>'+(L==='en'?'First-try accuracy':'首答正确率')+'</small><small>'+(firstAcc===null?'—':firstAcc+'%')+'</small></div>'+
+      '<div class="cfaStat"><small>'+(L==='en'?'Latest-attempt accuracy':'最近一次正确率')+'</small><small>'+cumAcc+'%</small></div>';
     var fill=document.getElementById('cfaBarFill'); fill.style.width=(total?Math.round(done/total*100):0)+'%'; fill.style.background=ac;
     var allDone=total>0&&done===total;
     document.getElementById('cfaGen').disabled=!allDone;
@@ -13364,7 +13365,7 @@ function setSize(s){
     var html='<h4>'+(L==='en'?'AI Review · ':'AI 做题点评 · ')+typeLabel(curType,L)+' · '+lecName(lec)+'</h4>';
     html+='<p>'+(L==='en'?'This lecture: <b>'+total+'</b> answered, <b>'+wrongTotal+'</b> wrong (accuracy <b>'+acc+'%</b>).':'本讲共作答 <b>'+total+'</b> 题,答错 <b>'+wrongTotal+'</b> 题(正确率 <b>'+acc+'%</b>)。')+'</p>';
     if(weak.length===0){
-      html+='<p class="cfaGood">'+(L==='en'?'No weak knowledge points in this lecture — every question was correct.':'本讲没有不牢固的知识点 —— 每道题都答对了。')+'</p>';
+      html+='<p class="cfaGood">'+(L==='en'?'No misses among the questions answered so far this session (not proof of lasting mastery — retry after a day or with a different-phrased question to confirm).':'本次已作答的题目未发现错题(不代表永久掌握。建议隔天或换题干重新作答,再确认)。')+'</p>';
     }else{
       html+='<p>'+(L==='en'?'Weak knowledge points in this lecture (most-missed first):':'本讲不牢固的知识点(按错题数排序):')+'</p>';
       each(weak,function(s){var d=secMap[s];var qs=d.wq.filter(Boolean);
@@ -13427,7 +13428,7 @@ function setSize(s){
  });
  var live=null;
  function announce(msg){if(!live){live=document.createElement('div');live.setAttribute('aria-live','assertive');live.setAttribute('role','status');live.className='a11y-sr';document.body.appendChild(live);}live.textContent='';setTimeout(function(){live.textContent=msg;},40);}
- function reflectDone(mcq){var lis=mcq.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1')lis[i].setAttribute('aria-checked','true');}}
+ function reflectDone(mcq){var lis=mcq.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');}}
  /* runs AFTER the grading click handler (registered earlier) */
  document.addEventListener('click',function(e){
    var li=e.target.closest?e.target.closest('.opts li'):null; if(!li)return;
@@ -13435,7 +13436,7 @@ function setSize(s){
    var correct=li.getAttribute('data-c')==='1';
    li.setAttribute('aria-checked','true');
    var lis=mcq.querySelectorAll('.opts li');
-   for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1')lis[i].setAttribute('aria-checked','true');}
+   for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1'&&lis[i]!==li){lis[i].setAttribute('aria-label',(lis[i].textContent||'').replace(/\s+/g,' ').trim()+(document.documentElement.getAttribute('data-lang')==='en'?' (correct answer)':'（正确答案）'));}}
    var cl=mcq.querySelector('.opts li[data-c="1"] .lab');
    var lab=cl?cl.textContent.replace(/\s+/g,''):'';
    var en=document.documentElement.getAttribute('data-lang')==='en';
@@ -13553,7 +13554,7 @@ function setSize(s){
    setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('cs_hi');setTimeout(function(){el.classList.remove('cs_hi');},2200);},160);
  }
  function redoQid(qid){var el=document.querySelector('[data-qid="'+qid.replace(/"/g,'\\"')+'"]');if(!el)return;
-   el.classList.remove('done');var lis=el.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].classList.remove('correct','wrong');lis[i].setAttribute('aria-checked','false');lis[i].removeAttribute('aria-disabled');lis[i].setAttribute('tabindex',i===0?'0':'-1');}
+   el.classList.remove('done');var lis=el.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].classList.remove('correct','wrong');lis[i].setAttribute('aria-checked','false');lis[i].removeAttribute('aria-disabled');lis[i].removeAttribute('aria-label');lis[i].setAttribute('tabindex',i===0?'0':'-1');}
    gotoQid(qid);
  }
  function toast(m){var t=document.createElement('div');t.textContent=m;t.style.cssText='position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:8px;z-index:2147483600;font-size:13px';document.body.appendChild(t);setTimeout(function(){t.remove();},1800);}

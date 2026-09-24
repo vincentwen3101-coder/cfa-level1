@@ -13254,13 +13254,21 @@ function setSize(s){
   function lang(){return document.documentElement.getAttribute('data-lang')==='en'?'en':'zh';}
   function txt(el,which){var s=el&&el.querySelector?el.querySelector('span.t-'+which):null;return (s?s.textContent:(el?el.textContent:'')).trim();}
   function each(list,fn){Array.prototype.forEach.call(list,fn);}
+  function qhash(s){var h1=0xdeadbeef,h2=0x41c6ce57,i,c;for(i=0;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677);}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(36);}
+  function qfp(m){var st=m.querySelector('.stem'),se=st?st.querySelector('.t-en'):null;
+    var s=(se?se.textContent:(st?st.textContent:'')).replace(/^\s*\d+\.\s*/,'').replace(/\s+/g,' ').trim();
+    var o=Array.prototype.map.call(m.querySelectorAll('.opts li'),function(li){var e=li.querySelector('.t-en');return (e?e.textContent:li.textContent).replace(/^\s*[A-C]\.\s*/,'').replace(/\s+/g,' ').trim();}).join('|');
+    return s+'||'+o;}
   function tag(){
-    var counters={};
+    var counters={},used={},dirty=false; window.__cfaQidMap={};
     each(document.querySelectorAll('.mcq'),function(m){
       var lec=m.closest?m.closest('.lecture'):null; var vol=m.closest?m.closest('.volume'):null;
       var lid=lec?lec.id:(vol?vol.id:'root');
       counters[lid]=(counters[lid]||0)+1;
-      m.setAttribute('data-qid',lid+':'+counters[lid]);
+      var oldId=lid+':'+counters[lid], hh='q'+qhash(qfp(m)); used[hh]=(used[hh]||0)+1; var newId=used[hh]>1?hh+'-'+used[hh]:hh;
+      window.__cfaQidMap[oldId]=newId;
+      if(stats[oldId]&&!stats[newId]){stats[newId]=stats[oldId];delete stats[oldId];dirty=true;}
+      m.setAttribute('data-qid',newId);
       m.setAttribute('data-lec',lid);
       m.setAttribute('data-qtype',(m.closest&&m.closest('.mock'))?'mock':'practice');
       var sec=null;
@@ -13268,6 +13276,7 @@ function setSize(s){
       m.setAttribute('data-seczh',sec?txt(sec,'zh'):'');
       m.setAttribute('data-secen',sec?txt(sec,'en'):'');
     });
+    if(dirty){save(stats);}
   }
   window.__cfaRecord=function(box,ok){
     var qid=box.getAttribute('data-qid'); if(!qid)return;
@@ -13362,7 +13371,7 @@ function setSize(s){
     var weak=order.filter(function(s){return secMap[s].w>0;}).sort(function(a,b){return secMap[b].w-secMap[a].w;});
     var round=0; try{round=parseInt(localStorage.getItem('cfa_round_'+lec.id+'_'+curType)||'0',10)+1;}catch(e){}
     var now=new Date();
-    var html='<h4>'+(L==='en'?'AI Review · ':'AI 做题点评 · ')+typeLabel(curType,L)+' · '+lecName(lec)+'</h4>';
+    var html='<h4>'+(L==='en'?'Practice diagnosis · ':'练习诊断 · ')+typeLabel(curType,L)+' · '+lecName(lec)+'</h4>';
     html+='<p>'+(L==='en'?'This lecture: <b>'+total+'</b> answered, <b>'+wrongTotal+'</b> wrong (accuracy <b>'+acc+'%</b>).':'本讲共作答 <b>'+total+'</b> 题,答错 <b>'+wrongTotal+'</b> 题(正确率 <b>'+acc+'%</b>)。')+'</p>';
     if(weak.length===0){
       html+='<p class="cfaGood">'+(L==='en'?'No misses among the questions answered so far this session (not proof of lasting mastery — retry after a day or with a different-phrased question to confirm).':'本次已作答的题目未发现错题(不代表永久掌握。建议隔天或换题干重新作答,再确认)。')+'</p>';
@@ -13518,6 +13527,7 @@ function setSize(s){
  function L(zh,en){return lang()==='en'?en:zh;}
  function loadS(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
  function saveS(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+ function migrateS(){var mp=window.__cfaQidMap;if(!mp)return;var ch=false;for(var o in mp){if(S[o]){if(!S[mp[o]])S[mp[o]]=S[o];delete S[o];ch=true;}}if(ch)saveS(S);}
  var S=loadS();
  function txt(el){if(!el)return'';var s=el.querySelector('.t-'+lang());return (s?s.textContent:el.textContent).replace(/\s+/g,' ').trim();}
  function h2Of(el){var lec=el.closest('.lecture')||document,all=lec.querySelectorAll('h2'),best=null;
@@ -13528,6 +13538,7 @@ function setSize(s){
  document.addEventListener('click',function(e){
    var li=e.target.closest?e.target.closest('.mcq .opts li'):null; if(!li)return;
    var mcq=li.closest('.mcq'); if(!mcq||!mcq.classList.contains('done'))return;
+   S=loadS();migrateS();
    var qid=mcq.getAttribute('data-qid'); if(!qid){qid='h'+Math.abs(hashStr(txt(mcq.querySelector('.stem'))));mcq.setAttribute('data-qid',qid);}
    var ok=li.getAttribute('data-c')==='1';
    var los=losOf(mcq), now=Date.now();
@@ -13561,6 +13572,7 @@ function setSize(s){
  /* ---- render ---- */
  function render(){
    var body=document.getElementById('cs_bodyEl');
+   S=loadS();migrateS();
    var due=dueList(), wrong=wrongList();
    var html='';
    // due banner
@@ -13610,8 +13622,58 @@ function setSize(s){
  document.getElementById('cs_close').addEventListener('click',close);
  document.getElementById('cs_scrim').addEventListener('click',close);
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&root.getAttribute('data-open')==='true')close();});
- updateBadge();
+ setTimeout(function(){S=loadS();migrateS();updateBadge();},300);
 })();
 </script>
 <!-- ============ /学习中心 ============ -->
+
+<!-- ============ 导航修复:深链接/触屏卷选择/锚点避让固定导航 ============ -->
+<style id="nav-fix-style">
+.volume [id]{scroll-margin-top:5.5rem}
+.volnav .vn-toggle{display:inline-block!important;opacity:1;border-color:rgba(255,255,255,.4);font-size:.85rem;padding:.4rem .9rem}
+.volnav.open button{display:inline-block!important}
+.volnav.open{padding-top:.5rem!important;padding-bottom:.5rem!important}
+.volnav::after,:root[data-lang="en"] .volnav::after{content:none!important}
+</style>
+<script>
+(function(){
+ if(window.__navFix)return; window.__navFix=true;
+ function shown(el){try{return getComputedStyle(el).display!=='none';}catch(e){return true;}}
+ function openAnc(el){var p=el;while(p&&p!==document.body){if(p.tagName==='DETAILS')p.open=true;if(p.classList&&(p.classList.contains('practice')||p.classList.contains('mock')))p.classList.add('open');p=p.parentElement;}}
+ function reveal(id){
+   var el=document.getElementById(id); if(!el)return false;
+   var vol=el.closest('.volume'), lec=el.closest('.lecture');
+   if(vol&&!shown(vol)){var n=parseInt(vol.id.replace('vol',''),10);try{showVolume(n);}catch(e){}}
+   if(vol&&lec&&!shown(lec)){var lecs=[].slice.call(vol.querySelectorAll('.lecture'));try{showLecture(lecs.indexOf(lec)+1);}catch(e){}}
+   openAnc(el);
+   setTimeout(function(){el.scrollIntoView({behavior:'auto',block:'start'});},60);
+   return true;
+ }
+ function fromHash(){var h=location.hash;if(h.length>1){try{reveal(decodeURIComponent(h.slice(1)));}catch(e){}}}
+ document.addEventListener('click',function(e){
+   var a=e.target.closest?e.target.closest('a[href^="#"]'):null; if(!a)return;
+   var href=a.getAttribute('href'); if(!href||href.length<2)return;
+   var id; try{id=decodeURIComponent(href.slice(1));}catch(x){return;}
+   var el=document.getElementById(id); if(!el)return;
+   var vol=el.closest('.volume'), lec=el.closest('.lecture');
+   var hidden=(vol&&!shown(vol))||(lec&&!shown(lec));
+   if(hidden||el.closest('details')||el.closest('.practice,.mock')){e.preventDefault();reveal(id);try{history.replaceState(null,'','#'+id);}catch(x){}}
+ });
+ window.addEventListener('hashchange',fromHash);
+ if(document.readyState==='complete')setTimeout(fromHash,120); else window.addEventListener('load',function(){setTimeout(fromHash,120);});
+ /* touch/keyboard volume selector: a real button that expands the nav */
+ var nav=document.querySelector('.volnav');
+ if(nav&&!nav.querySelector('.vn-toggle')){
+   var t=document.createElement('button'); t.type='button'; t.className='vn-toggle';
+   t.setAttribute('aria-expanded','false'); t.setAttribute('aria-label','展开/收起全部卷 / Toggle all volumes');
+   t.innerHTML='<span class="t-zh">☰ 全部卷</span><span class="t-en">☰ All volumes</span>';
+   nav.insertBefore(t,nav.firstChild);
+   function setOpen(o){nav.classList.toggle('open',o);t.setAttribute('aria-expanded',o?'true':'false');}
+   t.addEventListener('click',function(){setOpen(!nav.classList.contains('open'));});
+   nav.addEventListener('click',function(e){var b=e.target.closest('button[data-vol]');if(b)setOpen(false);});
+   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setOpen(false);t.focus();}});
+ }
+})();
+</script>
+<!-- ============ /导航修复 ============ -->
 

@@ -314,12 +314,35 @@ code{background:var(--code-bg); border-radius:4px; padding:.1em .35em; font-size
 <button data-vol="8" onclick="showVolume(8)">🏗️ Volume 8 · 另类投资</button>
 <button data-vol="9" onclick="showVolume(9)">📐 Volume 9 · 组合管理</button>
 <button data-vol="10" onclick="showVolume(10)">⚖️ Volume 10 · 职业伦理</button>
+<style id="focus-style">
+:root[data-focus="read"] .examtips,:root[data-focus="read"] .tip,:root[data-focus="read"] .kptip,:root[data-focus="read"] .practice,:root[data-focus="read"] .mock{display:none!important}
+#focus-toggle button{position:relative}
+#focus-toggle button.active{background:var(--accent,#2f7d5b);color:#fff;border-color:var(--accent,#2f7d5b)}
+</style>
 <div id="uictrls">
 <div class="uiseg" id="langtoggle"><button id="lang-zh" class="active" onclick="setLang('zh')">中文</button><button id="lang-en" onclick="setLang('en')">EN</button></div>
 <div class="uiseg"><span class="seglbl"><span class="t-zh">字体</span><span class="t-en">Font</span></span><button id="font-def" onclick="setFont('def')"><span class="t-zh">默认</span><span class="t-en">Default</span></button><button id="font-serif" onclick="setFont('serif')"><span class="t-zh">宋体</span><span class="t-en">Serif</span></button><button id="font-sans" onclick="setFont('sans')"><span class="t-zh">黑体</span><span class="t-en">Sans</span></button><button id="font-kai" onclick="setFont('kai')"><span class="t-zh">楷体</span><span class="t-en">Kai</span></button></div>
 <div class="uiseg"><span class="seglbl"><span class="t-zh">字号</span><span class="t-en">Size</span></span><button id="size-sm" onclick="setSize('sm')"><span class="t-zh">小</span><span class="t-en">S</span></button><button id="size-md" onclick="setSize('md')"><span class="t-zh">标准</span><span class="t-en">M</span></button><button id="size-lg" onclick="setSize('lg')"><span class="t-zh">大</span><span class="t-en">L</span></button><button id="size-xl" onclick="setSize('xl')"><span class="t-zh">特大</span><span class="t-en">XL</span></button></div>
+<div class="uiseg" id="focus-toggle"><span class="seglbl"><span class="t-zh">阅读</span><span class="t-en">Read</span></span><button id="focus-off" class="active" onclick="setFocus(false)" aria-pressed="true"><span class="t-zh">完整</span><span class="t-en">Full</span></button><button id="focus-on" onclick="setFocus(true)" aria-pressed="false"><span class="t-zh">📖 专注阅读</span><span class="t-en">📖 Focus reading</span></button></div>
 </div>
 </div>
+<script id="focus-script">
+(function(){
+ function setFocus(on){
+   document.documentElement.setAttribute("data-focus", on?"read":"");
+   try{localStorage.setItem("cfa_focus", on?"read":"");}catch(e){}
+   var onBtn=document.getElementById("focus-on"), offBtn=document.getElementById("focus-off");
+   if(onBtn){onBtn.classList.toggle("active",!!on);onBtn.setAttribute("aria-pressed",on?"true":"false");}
+   if(offBtn){offBtn.classList.toggle("active",!on);offBtn.setAttribute("aria-pressed",on?"false":"true");}
+ }
+ window.setFocus=setFocus;
+ window.__cfaExitFocusIfHidden=function(el){
+   if(document.documentElement.getAttribute("data-focus")!=="read")return;
+   if(el&&el.closest&&el.closest(".practice,.mock,.examtips,.tip,.kptip")){setFocus(false);}
+ };
+ try{ if(localStorage.getItem("cfa_focus")==="read") setFocus(true); }catch(e){}
+})();
+</script>
 <div class="volume v1theme" id="vol1">
 <div class="lecnav">
 <button class="active" onclick="showLecture(1)">第一讲 · 利率、回报与货币时间价值</button>
@@ -13683,6 +13706,7 @@ function setSize(s){
    var lec=el.closest('.lecture');
    if(lec&&vol){var lecs=[].slice.call(vol.querySelectorAll('.lecture')),idx=lecs.indexOf(lec);if(idx>=0){try{window.showLecture(idx+1);}catch(e){}}}
    var blk=el.closest('.practice')||el.closest('.mock'); if(blk)blk.classList.add('open');
+   if(window.__cfaExitFocusIfHidden)window.__cfaExitFocusIfHidden(el);
    close();
    setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('cs_hi');setTimeout(function(){el.classList.remove('cs_hi');},2200);},160);
  }
@@ -13809,6 +13833,7 @@ function setSize(s){
    var vol=el.closest('.volume'), lec=el.closest('.lecture');
    if(vol&&!shown(vol)){var n=parseInt(vol.id.replace('vol',''),10);try{showVolume(n);}catch(e){}}
    if(vol&&lec&&!shown(lec)){var lecs=[].slice.call(vol.querySelectorAll('.lecture'));try{showLecture(lecs.indexOf(lec)+1);}catch(e){}}
+   if(window.__cfaExitFocusIfHidden)window.__cfaExitFocusIfHidden(el);
    openAnc(el);
    setTimeout(function(){el.scrollIntoView({behavior:'auto',block:'start'});},60);
    return true;

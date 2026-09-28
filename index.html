@@ -12838,6 +12838,7 @@ document.addEventListener('click', function(e){
   for(var i=0;i<items.length;i++){ if(items[i].getAttribute('data-c')==='1') items[i].classList.add('correct'); }
   if(li.getAttribute('data-c')!=='1') li.classList.add('wrong');
   try{ if(window.__cfaRecord) window.__cfaRecord(box, li.getAttribute('data-c')==='1'); }catch(err){}
+  try{ document.dispatchEvent(new CustomEvent('cfamcqgraded',{detail:{mcq:box,li:li,ok:li.getAttribute('data-c')==='1'}})); }catch(err){}
 });
 
 /* ===== 随堂练习:点按钮展开/收起本节习题 ===== */
@@ -13180,7 +13181,7 @@ function setSize(s){
  function out(label,val){R('#fc_fname').innerHTML=label;R('#fc_readout').textContent=(typeof val==='number')?fmt(val):val;S.disp=(typeof val==='number')?val:0;S.entering=false;setInd();}
  function curVal(){return S.entering?(parseFloat(S.entry)||0):(typeof S.disp==='number'?S.disp:0);}
  function digit(d){if(S.justEq){S.tok=[];S.justEq=false;}if(!S.entering){S.entry='';S.entering=true;}if(d==='.'&&S.entry.indexOf('.')>=0)return;if(S.entry==='0'&&d!=='.')S.entry=d;else S.entry=(S.entry||'')+d;S.pend=true;S.fname='';render();}
- function neg(){if(S.entering){S.entry=S.entry.charAt(0)==='-'?S.entry.slice(1):('-'+(S.entry||''));}else S.disp=-(+S.disp);render();}
+ function neg(){if(S.entering){S.entry=S.entry.charAt(0)==='-'?S.entry.slice(1):('-'+(S.entry||''));render();}else{unary(function(x){return -x;});}}
  function clearEA(){if(S.entering&&S.entry!==''&&S.entry!=='0'){S.entry='0';render();return;}S.entering=false;S.tok=[];S.disp=0;S.pend=false;S.fname='';render();}
  /* AOS arithmetic with precedence + parentheses */
  var PREC={'P':4,'C':4,'^':3,'*':2,'/':2,'+':1,'-':1};
@@ -13193,9 +13194,15 @@ function setSize(s){
   else if(lt.t==='o'){S.tok[S.tok.length-1]={t:'o',v:o};render();return;}
   S.tok.push({t:'o',v:o});S.fname='';render();}
  function lparen(){if(S.ws)return;if(S.justEq){S.tok=[];S.justEq=false;}if(S.pend){commitNum();S.tok.push({t:'o',v:'*'});}else{var lt=lastTok();if(lt&&lt.t===')')S.tok.push({t:'o',v:'*'});}S.tok.push({t:'(',v:'('});S.entering=false;S.pend=false;render();}
- function rparen(){if(S.ws)return;if(S.pend)commitNum();S.tok.push({t:')',v:')'});render();}
- function evalTokens(){var q=S.tok.slice();if(S.pend)q.push({t:'n',v:curVal()});
-  var out=[],ops=[];for(var i=0;i<q.length;i++){var tk=q[i];
+ function rparen(){if(S.ws)return;if(S.pend)commitNum();
+  var depth=0,openIdx=-1,i;
+  for(i=S.tok.length-1;i>=0;i--){var tt=S.tok[i].t;if(tt===')')depth++;else if(tt==='('){if(depth===0){openIdx=i;break;}depth--;}}
+  if(openIdx>=0){
+   var inner=S.tok.slice(openIdx+1),val=evalTokenList(inner,NaN);
+   if(!isNaN(val)){S.tok=S.tok.slice(0,openIdx);S.tok.push({t:'n',v:val});S.disp=val;S.pend=false;render();return;}
+  }
+  S.tok.push({t:')',v:')'});render();}
+ function evalTokenList(q,fallback){var out=[],ops=[];for(var i=0;i<q.length;i++){var tk=q[i];
    if(tk.t==='n')out.push(tk.v);
    else if(tk.t==='('){ops.push('(');}
    else if(tk.t===')'){while(ops.length&&ops[ops.length-1]!=='(')out.push(ops.pop());ops.pop();}
@@ -13204,9 +13211,14 @@ function setSize(s){
   var st=[];for(var j=0;j<out.length;j++){var x=out[j];
    if(typeof x==='number')st.push(x);
    else{var b=st.pop(),a=st.pop();st.push(x==='+'?a+b:x==='-'?a-b:x==='*'?a*b:x==='/'?a/b:x==='^'?Math.pow(a,b):x==='P'?nPr(a,b):x==='C'?nCr(a,b):b);}}
-  return st.length?st[st.length-1]:curVal();}
+  return st.length?st[st.length-1]:fallback;}
+ function evalTokens(){var q=S.tok.slice();if(S.pend)q.push({t:'n',v:curVal()});
+  return evalTokenList(q,curVal());}
  function equals(){if(S.ws)return;var r=evalTokens();S.tok=[{t:'n',v:r}];S.disp=r;S.entering=false;S.pend=false;S.justEq=true;S.ans=r;S.fname='';render();}
- function unary(fn){var x=curVal(),r;try{r=fn(x);}catch(e){r=NaN;}if(S.justEq){S.justEq=false;}S.disp=r;S.entering=false;S.pend=true;render();}
+ function unary(fn){var x=curVal(),r;try{r=fn(x);}catch(e){r=NaN;}if(S.justEq){S.justEq=false;}S.entering=false;
+  if(!S.pend&&S.tok.length&&lastTok().t==='n'){S.tok[S.tok.length-1]={t:'n',v:r};}
+  else{S.pend=true;}
+  S.disp=r;render();}
  function trig(kind){var toR=S.angleRad?1:Math.PI/180,x=curVal(),r;
   if(S.invMode){var v=S.hypMode?(kind==='sin'?Math.asinh(x):kind==='cos'?Math.acosh(x):Math.atanh(x)):(kind==='sin'?Math.asin(x):kind==='cos'?Math.acos(x):Math.atan(x));r=S.hypMode?v:v/toR;}
   else{var a=S.hypMode?x:x*toR;r=S.hypMode?(kind==='sin'?Math.sinh(x):kind==='cos'?Math.cosh(x):Math.tanh(x)):(kind==='sin'?Math.sin(a):kind==='cos'?Math.cos(a):Math.tan(a));}
@@ -13404,14 +13416,17 @@ function setSize(s){
     var o=Array.prototype.map.call(m.querySelectorAll('.opts li'),function(li){var e=li.querySelector('.t-en');return (e?e.textContent:li.textContent).replace(/^\s*[A-C]\.\s*/,'').replace(/\s+/g,' ').trim();}).join('|');
     return s+'||'+o;}
   function tag(){
-    var counters={},used={},dirty=false; window.__cfaQidMap={};
+    var counters={},used={}; window.__cfaQidMap={};
     each(document.querySelectorAll('.mcq'),function(m){
       var lec=m.closest?m.closest('.lecture'):null; var vol=m.closest?m.closest('.volume'):null;
       var lid=lec?lec.id:(vol?vol.id:'root');
       counters[lid]=(counters[lid]||0)+1;
       var oldId=lid+':'+counters[lid], hh='q'+qhash(qfp(m)); used[hh]=(used[hh]||0)+1; var newId=used[hh]>1?hh+'-'+used[hh]:hh;
-      window.__cfaQidMap[oldId]=newId;
-      if(stats[oldId]&&!stats[newId]){stats[newId]=stats[oldId];delete stats[oldId];dirty=true;}
+      var stemEl=m.querySelector('.stem');
+      /* record a content preview alongside the ordinal mapping so downstream consumers can verify
+         the old-position record actually belongs to this question before migrating (NEW-05 fix):
+         a silent ordinal-only match is not trustworthy once questions are reordered/replaced. */
+      window.__cfaQidMap[oldId]={id:newId, zh:txt(stemEl,'zh'), en:txt(stemEl,'en')};
       m.setAttribute('data-qid',newId);
       m.setAttribute('data-lec',lid);
       m.setAttribute('data-qtype',(m.closest&&m.closest('.mock'))?'mock':'practice');
@@ -13420,7 +13435,6 @@ function setSize(s){
       m.setAttribute('data-seczh',sec?txt(sec,'zh'):'');
       m.setAttribute('data-secen',sec?txt(sec,'en'):'');
     });
-    if(dirty){save(stats);}
   }
   window.__cfaRecord=function(box,ok){
     var qid=box.getAttribute('data-qid'); if(!qid)return;
@@ -13583,10 +13597,8 @@ function setSize(s){
  function announce(msg){if(!live){live=document.createElement('div');live.setAttribute('aria-live','assertive');live.setAttribute('role','status');live.className='a11y-sr';document.body.appendChild(live);}live.textContent='';setTimeout(function(){live.textContent=msg;},40);}
  function reflectDone(mcq){var lis=mcq.querySelectorAll('.opts li');for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');}}
  /* runs AFTER the grading click handler (registered earlier) */
- document.addEventListener('click',function(e){
-   var li=e.target.closest?e.target.closest('.opts li'):null; if(!li)return;
-   var mcq=li.closest('.mcq'); if(!mcq||!mcq.classList.contains('done'))return;
-   var correct=li.getAttribute('data-c')==='1';
+ document.addEventListener('cfamcqgraded',function(e){
+   var mcq=e.detail&&e.detail.mcq,li=e.detail&&e.detail.li,correct=e.detail&&e.detail.ok; if(!mcq||!li)return;
    li.setAttribute('aria-checked','true');
    var lis=mcq.querySelectorAll('.opts li');
    for(var i=0;i<lis.length;i++){lis[i].setAttribute('aria-disabled','true');if(lis[i].getAttribute('data-c')==='1'&&lis[i]!==li){lis[i].setAttribute('aria-label',(lis[i].textContent||'').replace(/\s+/g,' ').trim()+(document.documentElement.getAttribute('data-lang')==='en'?' (correct answer)':'（正确答案）'));}}
@@ -13672,7 +13684,13 @@ function setSize(s){
  function L(zh,en){return lang()==='en'?en:zh;}
  function loadS(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
  function saveS(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
- function migrateS(){var mp=window.__cfaQidMap;if(!mp)return;var ch=false;for(var o in mp){if(S[o]){if(!S[mp[o]])S[mp[o]]=S[o];delete S[o];ch=true;}}if(ch)saveS(S);}
+ function normStem(s){return (s||'').replace(/^\s*\d+[.．]\s*/,'').slice(0,40);}
+ function migrateS(){var mp=window.__cfaQidMap;if(!mp)return;var ch=false;for(var o in mp){
+   if(!S[o])continue; var cand=mp[o],newId=cand&&cand.id; if(!newId||S[newId])continue;
+   var oldStem=normStem(S[o].stem);
+   var matched=oldStem&&(oldStem===normStem(cand.zh)||oldStem===normStem(cand.en));
+   if(matched){S[newId]=S[o];delete S[o];ch=true;} /* else: cannot verify content match, keep the old record under its old key rather than silently misattaching it */
+ }if(ch)saveS(S);}
  var S=loadS();
  function txt(el){if(!el)return'';var s=el.querySelector('.t-'+lang());return (s?s.textContent:el.textContent).replace(/\s+/g,' ').trim();}
  function h2Of(el){var lec=el.closest('.lecture')||document,all=lec.querySelectorAll('h2'),best=null;
@@ -13680,18 +13698,17 @@ function setSize(s){
    return best;}
  function losOf(mcq){var h=h2Of(mcq); return h?{id:h.id||'',zh:txt(h)}:{id:'',zh:L('未分类','Uncategorized')};}
  /* ---- record on grade (runs after grading handler) ---- */
- document.addEventListener('click',function(e){
-   var li=e.target.closest?e.target.closest('.mcq .opts li'):null; if(!li)return;
-   var mcq=li.closest('.mcq'); if(!mcq||!mcq.classList.contains('done'))return;
+ document.addEventListener('cfamcqgraded',function(e){
+   var mcq=e.detail&&e.detail.mcq,li=e.detail&&e.detail.li,ok=e.detail&&e.detail.ok; if(!mcq)return;
    S=loadS();migrateS();
    var qid=mcq.getAttribute('data-qid'); if(!qid){qid='h'+Math.abs(hashStr(txt(mcq.querySelector('.stem'))));mcq.setAttribute('data-qid',qid);}
-   var ok=li.getAttribute('data-c')==='1';
    var los=losOf(mcq), now=Date.now();
    var r=S[qid]||{att:0,wrong:0,mt:null,ivl:0};
    r.att++; r.los=los.id; r.losLabel=los.zh; r.qtype=mcq.getAttribute('data-qtype')||'';
    r.stem=txt(mcq.querySelector('.stem')).slice(0,80); r.lec=mcq.getAttribute('data-lec')||''; r.ts=now; r.lastOk=ok;
-   if(ok){ if(r.wrong>0){ r.ivl=r.ivl?Math.min(r.ivl*2.2,60):1; r.next=now+r.ivl*DAY; if(r.ivl>=16)r.wrong=0; } }
-   else { r.wrong++; r.ivl=1; r.next=now; }
+   var STEPS=[1,3,7,16];
+   if(ok){ if(r.wrong>0){ var idx=r.step||0; r.ivl=STEPS[Math.min(idx,STEPS.length-1)]; r.next=now+r.ivl*DAY; r.step=idx+1; if(r.step>=STEPS.length){ r.wrong=0; r.step=0; } } }
+   else { r.wrong++; r.ivl=1; r.step=0; r.next=now; }
    S[qid]=r; saveS(S); updateBadge();
  });
  function hashStr(s){var h=0,i;for(i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0;}return h;}
@@ -13771,7 +13788,7 @@ function setSize(s){
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&root.getAttribute('data-open')==='true')close();});
  /* ---- 学习目标覆盖表:运行时扫描每个小节,始终与内容同步 ---- */
  var covVol=null;
- function covShell(){return '<div class="cs_sec"><details id="cs_cov"><summary class="cs_covsum">📋 '+L('学习目标覆盖表','Learning-objective coverage')+'</summary><div id="cs_covBody"></div></details></div>';}
+ function covShell(){return '<div class="cs_sec"><details id="cs_cov"><summary class="cs_covsum">📋 '+L('页面内容配置检查','Page content check')+'</summary><div id="cs_covBody"></div></details></div>';}
  function depthOf(los){var s=(los||'').toLowerCase();
    if(/calculate|compute|determine the (value|price)/.test(s))return L('计算','Calculate');
    if(/compare|distinguish|contrast|differentiate/.test(s))return L('区分','Distinguish');
@@ -13800,7 +13817,7 @@ function setSize(s){
    var h='<div class="cs_covtabs">'; vols.forEach(function(v){h+='<button class="cs_tag'+(v===covVol?' on':'')+'" data-cov="'+v+'">V'+v.replace('vol','')+'</button>';}); h+='</div>';
    var rows=covRows(covVol).filter(function(r){return !/总表|Summary/.test(r.title);});
    var cnt={ok:0,mid:0,bad:0}; rows.forEach(function(r){cnt[covStatus(r)]++;});
-   h+='<div class="cs_note">'+rows.length+L(' 个小节 · 完整 ',' sections · complete ')+cnt.ok+L(' · 缺示范或缺练习 ',' · missing example or practice ')+cnt.mid+L(' · 只有正文 ',' · text only ')+cnt.bad+'</div>';
+   h+='<div class="cs_note">'+rows.length+L(' 个小节 · 已配套 ',' sections · has blocks ')+cnt.ok+L(' · 缺示范或缺练习 ',' · missing example or practice ')+cnt.mid+L(' · 只有正文 ',' · text only ')+cnt.bad+'</div><div class="cs_note">'+L('❗ 本检查只统计页面内现有的内容区块(示范/讲解/练习),不是对照官方年度 LOS 清单的逐条核验;未列入不代表该知识点被排除在考纲之外,有区块也不保证讲解完整或正确。','❗ This checks which content blocks (example / deep dive / practice) exist on the page — it is not a verified match against the official annual LOS list. Anything not listed here is not thereby excluded from the exam, and having a block does not guarantee complete or correct coverage.')+'</div>';
    rows.forEach(function(r){var s=covStatus(r);
      h+='<div class="cs_cv '+s+'"><button class="cs_lnk" data-sec="'+r.id+'">'+esc(r.title)+'</button>'+(r.los?'<div class="cs_los_t">'+esc(r.los)+'</div>':'')+'<div class="cs_chips"><span class="cs_chip">'+depthOf(r.los)+'</span><span class="cs_chip'+(r.ex?'':' z')+'">'+L('示范 ','Example ')+r.ex+'</span><span class="cs_chip'+(r.dd?'':' z')+'">'+L('深入 ','Deep ')+r.dd+'</span><span class="cs_chip'+(r.pr?'':' z')+'">'+L('练习 ','Practice ')+r.pr+'</span><span class="cs_chip'+(r.mk?'':' z')+'">'+L('真题 ','Mock ')+r.mk+'</span></div></div>';});
    body.innerHTML=h;}

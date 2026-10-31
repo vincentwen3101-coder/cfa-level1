@@ -14329,17 +14329,17 @@ function setSize(s){
        </div>
        <div class="fc_pad" id="fc_pad"></div>
      </div>
-     <p class="fc_note"><button type="button" id="fc_decbtn" class="fc_decbtn" title="Click to cycle decimal places: 0-9 or FLOAT. Same as real 2ND · (FORMAT). / 点击切换小数位"><span class="t-zh">小数位 DEC</span><span class="t-en">DEC places</span>: 2 ▸</button> · <span class="t-zh"><code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</span><span class="t-en"><code>CPT</code> compute · <code>2ND</code>→ gold-print function · <code>2ND CPT</code>=QUIT exit worksheet</span></p>
+     <p class="fc_note"><button type="button" id="fc_decbtn" class="fc_decbtn" title="Click to step decimal places 0-9 → FLOAT (shortcut). Real-device order also works: 2ND · (FORMAT), type 0-9, ENTER (9 = floating), 2ND CPT to quit. / 点击循环切换小数位（快捷方式）；也可按真机顺序 2ND ·(FORMAT)→输入 0–9→ENTER（9=浮动）→2ND CPT 退出"><span class="t-zh">小数位 DEC</span><span class="t-en">DEC places</span>: 2 ▸</button> · <span class="t-zh"><code>CPT</code> 计算 · <code>2ND</code>→黄字功能 · <code>2ND CPT</code>=QUIT 退出工作表</span><span class="t-en"><code>CPT</code> compute · <code>2ND</code>→ gold-print function · <code>2ND CPT</code>=QUIT exit worksheet</span></p>
      <details class="fc_guide">
        <summary><span class="t-zh">使用说明 / 全部功能</span><span class="t-en">Guide / full feature list</span></summary>
        <div class="gg">
-         <p><span class="t-zh">与真机 BA II Plus Professional 键位、按键顺序完全一致。黄字为 <b>2ND</b> 二级功能：先按 <code>2ND</code> 再按该键。</span><span class="t-en">Key layout and press order exactly match the real BA II Plus Professional. Gold print is the <b>2ND</b> secondary function: press <code>2ND</code> then that key.</span></p>
+         <p><span class="t-zh">键位与常用按键顺序按真机 BA II Plus Professional 设计（FORMAT 只含小数位设置）。黄字为 <b>2ND</b> 二级功能：先按 <code>2ND</code> 再按该键。</span><span class="t-en">Key layout and common press orders follow the real BA II Plus Professional (FORMAT covers decimal places only). Gold print is the <b>2ND</b> secondary function: press <code>2ND</code> then that key.</span></p>
          <ul>
            <li><b>TVM</b>：<span class="t-zh">N I/Y PV PMT FV 输四求一 → <code>CPT</code>+第五键；<code>2ND I/Y</code>=P/Y、<code>2ND PMT</code>=BGN/END 工作表，<code>2ND ENTER</code>=SET 切换、<code>2ND CPT</code>=QUIT、<code>2ND FV</code>=清TVM</span><span class="t-en">enter 4 of N I/Y PV PMT FV → <code>CPT</code>+5th key; <code>2ND I/Y</code>=P/Y, <code>2ND PMT</code>=BGN/END worksheet, <code>2ND ENTER</code>=SET to toggle, <code>2ND CPT</code>=QUIT, <code>2ND FV</code>=clear TVM</span></li>
            <li><b><span class="t-zh">现金流</span><span class="t-en">Cash flow</span></b>：<span class="t-zh"><code>CF</code> 录入 → <code>NPV</code> 输 I ↓ <code>CPT</code>；<code>IRR CPT</code></span><span class="t-en"><code>CF</code> enter → <code>NPV</code> enter I ↓ <code>CPT</code>; <code>IRR CPT</code></span></li>
            <li><b><span class="t-zh">工作表</span><span class="t-en">Worksheets</span></b>：AMORT(2ND PV), BOND(2ND 9), DEPR(2ND 4), DATA/STAT(2ND 7/8), ICONV(2ND 2), DATE(2ND 1), PROFIT(2ND 3), BRKEVN(2ND 6), MEM(2ND 0)</li>
            <li><b><span class="t-zh">数学</span><span class="t-en">Math</span></b>：√x x² 1/x yˣ LN, eˣ(2ND LN), x!(2ND ×), nPr(2ND −), nCr(2ND +), SIN/COS/TAN(2ND ( ) yˣ)</li>
-           <li><b><span class="t-zh">设置</span><span class="t-en">Settings</span></b>：FORMAT(2ND ·) <span class="t-zh">小数位</span><span class="t-en">decimal places</span>, RESET(2ND +/−), CLR Work(2ND CE\|C), <span class="t-zh">退出工作表</span><span class="t-en">exit worksheet</span> QUIT(2ND CPT)</li>
+           <li><b><span class="t-zh">设置</span><span class="t-en">Settings</span></b>：FORMAT(2ND ·) <span class="t-zh">小数位：输入 0–9 后 ENTER（9=浮动），2ND CPT 退出；或点“小数位 DEC”按钮循环</span><span class="t-en">decimal places: type 0-9 then ENTER (9 = floating), 2ND CPT to quit; or click the “DEC places” button to step</span>, RESET(2ND +/−), CLR Work(2ND CE\|C), <span class="t-zh">退出工作表</span><span class="t-en">exit worksheet</span> QUIT(2ND CPT)</li>
          </ul>
          <p><span class="t-zh">日期 <code>MM.DDYYYY</code>；流入正、流出负。教学仿真，非 TI 官方软件。</span><span class="t-en">Date format <code>MM.DDYYYY</code>; inflows positive, outflows negative. Teaching simulation, not official TI software.</span></p>
        </div>
@@ -14476,6 +14476,7 @@ function setSize(s){
  function recalcAmort(){var r=amortize(S,S.amort.P1,S.amort.P2);S.amort.BAL=r.BAL;S.amort.PRN=r.PRN;S.amort.INT=r.INT;}
  function recalcDepr(){var r=deprCalc(S.depr);S.depr.DEP=r.DEP;S.depr.RBV=r.RBV;S.depr.RDV=r.RDV;}
  function wsFields(id){
+  if(id==='format')return [{get k(){return S.fmtErr?'DEC <small class="fc_err"><span class="t-zh">仅接受 0–9 整数，已保留原设置</span><span class="t-en">Integers 0–9 only; previous setting kept</span></small>':'DEC';},g:function(){return S.dec==='F'?9:S.dec;},s:function(v){if(v!==Math.floor(v)||v<0||v>9){S.fmtErr=true;return;}S.fmtErr=false;S.dec=v===9?'F':v;syncDec();}}];
   if(id==='bgn')return [{k:'BGN/END',g:function(){return S.bgn?'BGN':'END';},tg:function(){S.bgn=!S.bgn;},tx:1}];
   if(id==='py')return [{k:'P/Y',g:function(){return S.PY;},s:function(v){S.PY=v;S.CY=v;}},{k:'C/Y',g:function(){return S.CY;},s:function(v){S.CY=v;}}];
   if(id==='amort')return [{k:'P1',g:function(){return S.amort.P1;},s:function(v){S.amort.P1=Math.round(v);recalcAmort();}},{k:'P2',g:function(){return S.amort.P2;},s:function(v){S.amort.P2=Math.round(v);recalcAmort();}},{k:'BAL',g:function(){return S.amort.BAL;},ro:1},{k:'PRN',g:function(){return S.amort.PRN;},ro:1},{k:'INT',g:function(){return S.amort.INT;},ro:1}];
@@ -14521,8 +14522,9 @@ function setSize(s){
  function openMEM(){S.ws='mem';S.wsIdx=0;S.entering=false;showMEM();}
  function showMEM(){out('M'+S.wsIdx,S.mem[S.wsIdx]);}
  function clrWork(){if(S.ws==='cf'){S.cf={CFo:0,C:[],F:[],I:0,NPV:null,IRR:null,NFV:null,PB:null,DPB:null};S.wsIdx=0;return showCF();}if(S.ws==='stat'){S.stat.X=[];S.stat.Y=[];S.wsIdx=0;return showStat();}if(S.ws==='amort'){S.amort.P1=1;S.amort.P2=1;recalcAmort();return showWS();}if(S.ws)return showWS();clearEA();}
- function doReset(){S.N=0;S.IY=0;S.PV=0;S.PMT=0;S.FV=0;S.PY=1;S.CY=1;S.bgn=false;S.dec=2;S.tok=[];S.cf={CFo:0,C:[],F:[],I:0,NPV:null,IRR:null,NFV:null,PB:null,DPB:null};S.mem=[0,0,0,0,0,0,0,0,0,0];S.ws=null;S.entering=false;S.invMode=false;S.hypMode=false;out('RST',0);}
- function openFORMAT(){var seq=[0,1,2,3,4,5,6,7,8,9,'F'],i=seq.indexOf(S.dec);if(i<0)i=2;S.dec=seq[(i+1)%seq.length];R('#fc_fname').innerHTML='DEC <small>▸小数位 0-9/FLOAT</small>';R('#fc_readout').textContent=(S.dec==='F'?'FLOAT':String(S.dec));var db=R('#fc_decbtn');if(db)db.textContent='小数位 DEC: '+(S.dec==='F'?'FLOAT':String(S.dec))+' ▸';if(S.ws)setTimeout(showWS,700);}
+ function doReset(){S.N=0;S.IY=0;S.PV=0;S.PMT=0;S.FV=0;S.PY=1;S.CY=1;S.bgn=false;S.dec=2;syncDec();S.tok=[];S.cf={CFo:0,C:[],F:[],I:0,NPV:null,IRR:null,NFV:null,PB:null,DPB:null};S.mem=[0,0,0,0,0,0,0,0,0,0];S.ws=null;S.entering=false;S.invMode=false;S.hypMode=false;out('RST',0);}
+ function syncDec(){var db=R('#fc_decbtn');if(db)db.innerHTML='<span class="t-zh">小数位 DEC</span><span class="t-en">DEC places</span>: '+(S.dec==='F'?'FLOAT':String(S.dec))+' ▸';}
+ function openFORMAT(){var seq=[0,1,2,3,4,5,6,7,8,9,'F'],i=seq.indexOf(S.dec);if(i<0)i=2;S.dec=seq[(i+1)%seq.length];R('#fc_fname').innerHTML='DEC <small>▸小数位 0-9/FLOAT</small>';R('#fc_readout').textContent=(S.dec==='F'?'FLOAT':String(S.dec));syncDec();if(S.ws)setTimeout(showWS,700);}
  function tvmKey(id){var lbl={N:'N',IY:'I/Y',PV:'PV',PMT:'PMT',FV:'FV'};
   if(S.cpt){S.cpt=false;try{var r=tvmSolve(id,S);S[id]=r;out(lbl[id],r);}catch(e){out(lbl[id],(typeof e==='string'?e:'Error'));}return;}
   if(S.entering)S[id]=curVal();S.entering=false;out(lbl[id],S[id]);}
@@ -14559,7 +14561,7 @@ function setSize(s){
   if(/^[0-9]$/.test(id)&&!sec){if(S.ws==='mem'){S.wsIdx=+id;return showMEM();}return digit(id);}
   if(id==='dot'&&!sec)return digit('.');
   if(sec){switch(id){
-    case 'cpt':S.ws=null;S.fname='';return render();          /* QUIT */
+    case 'cpt':if(S.ws==='format'){S.entering=false;S.entry='';S.disp=0;}S.ws=null;S.fname='';return render();          /* QUIT */
     case 'enter':return S.ws?wsSet():void 0;                    /* SET */
     case 'up':if(S.ws==='cf')cfDel();return; case 'dn':if(S.ws==='cf')cfIns();return; /* DEL / INS */
     case 'N':S.N=curVal()*S.PY;return out('N',S.N);             /* xP/Y */
@@ -14581,7 +14583,7 @@ function setSize(s){
     case '2':return openWS('iconv'); case '3':return openWS('profit');
     case 'eq':return showValue(S.ans);                          /* ANS */
     case '7':return openDATA(); case '8':return openSTAT(); case '9':return openWS('bond');
-    case 'clr':return clrWork(); case '0':return openMEM(); case 'dot':return openFORMAT(); case 'negk':return doReset();
+    case 'clr':return clrWork(); case '0':return openMEM(); case 'dot':S.fmtErr=false;return openWS('format'); case 'negk':return doReset();
     default:return;}}
   /* primary */
   switch(id){
